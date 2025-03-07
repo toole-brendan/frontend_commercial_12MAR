@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { PageHeader } from "@/components/ui/page-header";
 import { ActionButton } from "@/components/ui/action-button";
+import PageWrapper from "@/components/layout/PageWrapper";
 import { 
   PieChart, 
   Pie, 
@@ -78,12 +79,12 @@ export default function Analytics() {
   );
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      <PageHeader 
-        title="Analytics" 
-        description="Supply chain performance and insights"
-        actions={actionButtons}
-      />
+    <PageWrapper
+      title="Analytics" 
+      description="Supply chain performance and insights"
+      actions={actionButtons}
+      className="space-y-6"
+    >
       
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
@@ -550,6 +551,6 @@ export default function Analytics() {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </PageWrapper>
   );
 }

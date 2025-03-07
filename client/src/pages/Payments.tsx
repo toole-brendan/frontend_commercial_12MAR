@@ -4,6 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import { recentTransactions as mockTransactions } from '@/lib/mockData';
 import { PageHeader } from '@/components/ui/page-header';
 import { ActionButton } from '@/components/ui/action-button';
+import PageWrapper from '@/components/layout/PageWrapper';
 
 export default function Payments() {
   const [showNewPaymentForm, setShowNewPaymentForm] = useState(false);
@@ -137,12 +138,12 @@ export default function Payments() {
   );
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      <PageHeader 
-        title="Payments" 
-        description="Manage shell payments and transactions" 
-        actions={actionButtons}
-      />
+    <PageWrapper
+      title="Payments" 
+      description="Manage shell payments and transactions" 
+      actions={actionButtons}
+      className="space-y-6"
+    >
 
       {/* Payment Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -426,6 +427,6 @@ export default function Payments() {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
