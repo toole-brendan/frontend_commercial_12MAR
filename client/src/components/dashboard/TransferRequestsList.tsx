@@ -70,30 +70,30 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
   };
 
   return (
-    <div className="bg-white border shadow-sm">
-      <div className="p-5 border-b border-gray-200">
+    <div className="bg-white dark:bg-gray-900 border shadow-sm dark:border-gray-700">
+      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-gray-800 font-display">Recent Transfer Requests</h2>
+          <h2 className="font-semibold text-gray-800 dark:text-gray-200 font-display">Recent Transfer Requests</h2>
           <a href="/transfers" className="text-primary text-sm hover:underline">View All</a>
         </div>
       </div>
       <div className="p-0">
-        <ul className="divide-y divide-gray-200">
+        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {requests.map((request) => {
             const processed = processedRequests[request.id];
             
             if (processed) {
               return (
-                <li key={request.id} className={`p-4 ${processed.status === 'accepted' ? 'bg-green-50' : 'bg-red-50'}`}>
+                <li key={request.id} className={`p-4 ${processed.status === 'accepted' ? 'bg-green-50 dark:bg-green-900/20' : 'bg-red-50 dark:bg-red-900/20'}`}>
                   <div className="flex items-center space-x-3">
-                    <div className={`${processed.status === 'accepted' ? 'bg-green-100 p-2' : 'bg-red-100 p-2'}`}>
-                      <i className={`${processed.status === 'accepted' ? 'fas fa-check-circle text-green-500' : 'fas fa-times-circle text-red-500'}`}></i>
+                    <div className={`${processed.status === 'accepted' ? 'bg-green-100 dark:bg-green-800 p-2' : 'bg-red-100 dark:bg-red-800 p-2'}`}>
+                      <i className={`${processed.status === 'accepted' ? 'fas fa-check-circle text-green-500 dark:text-green-400' : 'fas fa-times-circle text-red-500 dark:text-red-400'}`}></i>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-800">
+                      <p className="font-medium text-gray-800 dark:text-gray-200">
                         {processed.status === 'accepted' ? 'Transfer accepted' : 'Transfer declined'}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
                         {processed.status === 'accepted' 
                           ? 'The item has been added to your inventory' 
                           : 'The sender has been notified'}
@@ -105,15 +105,15 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
             }
 
             return (
-              <li key={request.id} className="p-4 hover:bg-gray-50">
+              <li key={request.id} className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="bg-primary-50 p-2">
+                    <div className="bg-primary-50 dark:bg-primary-900/20 p-2">
                       <i className={`fas fa-arrow-${request.type === 'incoming' ? 'right' : 'left'} text-primary`}></i>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-800">{request.itemName}</p>
-                      <p className="text-xs text-gray-500">
+                      <p className="font-medium text-gray-800 dark:text-gray-200">{request.itemName}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
                         {request.type === 'incoming' ? `From: ${request.fromParty}` : `To: ${request.toParty}`}
                       </p>
                     </div>

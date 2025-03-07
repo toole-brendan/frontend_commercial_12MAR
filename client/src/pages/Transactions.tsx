@@ -78,8 +78,8 @@ const Transactions: React.FC = () => {
       actions={actionButtons}
     >
       {/* Tabs */}
-      <div className="bg-white shadow-sm mb-6 overflow-hidden">
-        <div className="flex border-b border-gray-200">
+      <div className="bg-white dark:bg-gray-900 shadow-sm mb-6 overflow-hidden">
+        <div className="flex border-b border-gray-200 dark:border-gray-700">
           <button 
             className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'all' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
             onClick={() => setActiveTab('all')}
@@ -114,10 +114,10 @@ const Transactions: React.FC = () => {
       </div>
       
       {/* Filters and Search */}
-      <div className="bg-white shadow-sm p-6 mb-6">
+      <div className="bg-white dark:bg-gray-900 shadow-sm p-6 mb-6">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center">
-            <label className="text-sm font-medium text-gray-700 mr-2">Date Range:</label>
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mr-2">Date Range:</label>
             <select className="border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-display">
               <option>All Time</option>
               <option>Last 7 Days</option>
@@ -147,39 +147,39 @@ const Transactions: React.FC = () => {
       </div>
       
       {/* Transactions Table */}
-      <div className="bg-white shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-gray-900 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-gray-50 dark:bg-gray-800">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Transaction</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Description</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Reference</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Status</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Transaction</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Description</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Amount</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Reference</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Date</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Status</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider font-display">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
               {mockTransactions
                 .filter(tx => activeTab === 'all' || tx.type === activeTab.slice(0, -1))
                 .map((tx) => (
-                  <tr key={tx.id} className="hover:bg-gray-50">
+                  <tr key={tx.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className={`flex-shrink-0 h-10 w-10 flex items-center justify-center mr-3 ${getIconBgColor(tx.type)}`}>
+                        <div className={`flex-shrink-0 h-10 w-10 flex items-center justify-center mr-3 ${getIconBgColor(tx.type)} dark:bg-gray-800`}>
                           {getTypeIcon(tx.type)}
                         </div>
-                        <div className="text-sm font-medium text-gray-900 font-display px-2">{tx.id}</div>
+                        <div className="text-sm font-medium text-gray-900 dark:text-gray-200 font-display px-2">{tx.id}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize font-display">{tx.type}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.description}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.amount}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.reference}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.date.toLocaleDateString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 capitalize font-display">{tx.type}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 font-display">{tx.description}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 font-display">{tx.amount}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 font-display">{tx.reference}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 font-display">{tx.date.toLocaleDateString()}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {getStatusBadge(tx.status)}
                     </td>
@@ -194,31 +194,31 @@ const Transactions: React.FC = () => {
             </tbody>
           </table>
         </div>
-        <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-6 py-3 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
           <div className="flex items-center">
-            <p className="text-sm text-gray-700">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
               Showing <span className="font-medium">1</span> to <span className="font-medium">6</span> of <span className="font-medium">42</span> results
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-500 font-display">Previous</button>
+            <button className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-sm bg-white dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-display">Previous</button>
             <button className="border border-primary bg-primary px-2 py-1 text-sm text-white font-display">1</button>
-            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-700 font-display">2</button>
-            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-700 font-display">3</button>
-            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-700 font-display">Next</button>
+            <button className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-display">2</button>
+            <button className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-display">3</button>
+            <button className="border border-gray-300 dark:border-gray-600 px-2 py-1 text-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-display">Next</button>
           </div>
         </div>
       </div>
       
       {/* Blockchain Verification */}
-      <div className="bg-white shadow-sm p-6 mt-6">
+      <div className="bg-white dark:bg-gray-900 shadow-sm p-6 mt-6">
         <div className="flex items-start">
-          <div className="bg-blue-50 p-3 mr-4">
+          <div className="bg-blue-50 dark:bg-blue-900/20 p-3 mr-4">
             <span className="material-icons text-primary">security</span>
           </div>
           <div>
-            <h3 className="font-medium text-gray-900">Blockchain Verification</h3>
-            <p className="text-sm text-gray-500 mt-1">
+            <h3 className="font-medium text-gray-900 dark:text-gray-200">Blockchain Verification</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               All transactions are securely recorded on the blockchain for maximum transparency and auditability.
               Click on any transaction to view the blockchain details.
             </p>
