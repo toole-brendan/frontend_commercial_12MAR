@@ -174,6 +174,7 @@
     border-radius: 0;
     color: hsl(var(--text-sidebar));
     position: relative;
+    cursor: pointer;
   }
   
   .sidebar-item:hover {
@@ -222,6 +223,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  /* Fix for profile color text */
+  .sidebar .profile-name {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+  
+  .sidebar .profile-role {
+    @apply text-gray-600 dark:text-gray-400;
   }
   
   /* Main content area that adjusts based on sidebar state */

@@ -138,8 +138,8 @@ export default function Sidebar({
               title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {theme === 'light' ? 
-                <Moon className="h-5 w-5 text-gray-200" /> : 
-                <Sun className="h-5 w-5 text-gray-200" />
+                <Moon className="h-5 w-5 text-gray-800 dark:text-gray-200" /> : 
+                <Sun className="h-5 w-5 text-gray-800 dark:text-gray-200" />
               }
             </button>
             
@@ -148,8 +148,8 @@ export default function Sidebar({
                 {user.profileImage}
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-200">{user.name}</p>
-                <p className="text-xs text-gray-400">{user.role}</p>
+                <p className="text-sm font-medium profile-name">{user.name}</p>
+                <p className="text-xs profile-role">{user.role}</p>
               </div>
             </div>
           </div>
@@ -230,8 +230,8 @@ export default function Sidebar({
                 {user.profileImage}
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-200">{user.name}</p>
-                <p className="text-xs text-gray-400">{user.role}</p>
+                <p className="text-sm font-medium profile-name">{user.name}</p>
+                <p className="text-xs profile-role">{user.role}</p>
               </div>
             </div>
           </>
