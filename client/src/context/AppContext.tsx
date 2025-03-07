@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import { mockUser, mockStats } from '../lib/mockData';
+import { currentUser } from '../lib/mockData';
 
 interface AppContextType {
   isLoading: boolean;
@@ -9,6 +9,10 @@ interface AppContextType {
   showScanner: boolean;
   showTransferModal: boolean;
   scannedItem: InventoryItem | null;
+  theme: 'light' | 'dark';
+  sidebarCollapsed: boolean;
+  toggleTheme: () => void;
+  toggleSidebar: () => void;
   toggleScanner: () => void;
   closeScanner: () => void;
   openTransferModal: (item: InventoryItem) => void;
@@ -80,6 +84,10 @@ export const AppContext = createContext<AppContextType>({
   showScanner: false,
   showTransferModal: false,
   scannedItem: null,
+  theme: 'light',
+  sidebarCollapsed: false,
+  toggleTheme: () => {},
+  toggleSidebar: () => {},
   toggleScanner: () => {},
   closeScanner: () => {},
   openTransferModal: () => {},
@@ -111,6 +119,31 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [showScanner, setShowScanner] = useState(false);
   const [showTransferModal, setShowTransferModal] = useState(false);
   const [scannedItem, setScannedItem] = useState<InventoryItem | null>(null);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('handreceipt-theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      return savedTheme;
+    }
+    // Use system preference as fallback
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    const savedState = localStorage.getItem('handreceipt-sidebar');
+    return savedState === 'collapsed';
+  });
+
+  // Apply theme class to document
+  useEffect(() => {
+    document.documentElement.classList.remove('light-theme', 'dark-theme');
+    document.documentElement.classList.add(`${theme}-theme`);
+    localStorage.setItem('handreceipt-theme', theme);
+  }, [theme]);
+
+  // Save sidebar state
+  useEffect(() => {
+    localStorage.setItem('handreceipt-sidebar', sidebarCollapsed ? 'collapsed' : 'expanded');
+  }, [sidebarCollapsed]);
 
   useEffect(() => {
     // Simulate loading data
@@ -119,10 +152,33 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
         
         // Set mock data
-        setUser(mockUser);
-        setStats(mockStats);
-        setNotifications(3);
+        setUser({
+          id: currentUser.id,
+          name: currentUser.name,
+          role: currentUser.role,
+          avatar: currentUser.avatar
+        });
         
+        setStats({
+          totalInventory: {
+            value: 1250000,
+            change: 5.8,
+          },
+          pendingTransfers: {
+            value: 14,
+            change: -2.3,
+          },
+          completedToday: {
+            value: 32,
+            change: 12.5,
+          },
+          usdcBalance: {
+            value: 287500,
+            lastUpdated: new Date().toISOString(),
+          },
+        });
+        
+        setNotifications(3);
         setIsLoading(false);
       } catch (error) {
         console.error("Error loading data:", error);
@@ -132,6 +188,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
     loadData();
   }, []);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
+
+  const toggleSidebar = () => {
+    setSidebarCollapsed(prev => !prev);
+  };
 
   const toggleScanner = () => {
     setShowScanner(!showScanner);
@@ -162,6 +226,10 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         showScanner,
         showTransferModal,
         scannedItem,
+        theme,
+        sidebarCollapsed,
+        toggleTheme,
+        toggleSidebar,
         toggleScanner,
         closeScanner,
         openTransferModal,
