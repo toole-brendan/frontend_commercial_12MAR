@@ -127,7 +127,7 @@ const Transactions: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.description}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.amount}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.counterparty}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.date}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.date.toLocaleDateString()}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {getStatusBadge(tx.status)}
                   </td>
