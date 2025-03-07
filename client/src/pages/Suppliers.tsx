@@ -9,6 +9,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Plus, Search, Filter, Star, MessageSquare, FileText, ExternalLink, Edit, Trash2 } from "lucide-react";
+import { PageHeader } from "@/components/ui/page-header";
+import { ActionButton } from "@/components/ui/action-button";
 import { format } from "date-fns";
 
 export default function Suppliers() {
@@ -37,19 +39,24 @@ export default function Suppliers() {
     setSelectedSupplier(supplier);
   }
 
+  const actionButtons = (
+    <ActionButton 
+      variant="primary"
+      onClick={() => setIsAddDialogOpen(true)}
+      icon={<Plus className="h-4 w-4" />}
+    >
+      Add Supplier
+    </ActionButton>
+  );
+
   return (
     <div className="container mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">Suppliers</h1>
-          <p className="text-sm text-gray-500">Manage your supplier relationships and contracts</p>
-        </div>
-        
-        <Button onClick={() => setIsAddDialogOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" />
-          Add Supplier
-        </Button>
-      </div>
+      <PageHeader 
+        title="Suppliers" 
+        description="Manage your supplier relationships and contracts"
+        actions={actionButtons}
+        className="mb-6"
+      />
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <Card>
