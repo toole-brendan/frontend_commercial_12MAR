@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { currentUser } from '@/lib/mockData';
+import { PageHeader } from '@/components/ui/page-header';
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -134,9 +135,10 @@ export default function Settings() {
 
   return (
     <div className="p-4 md:p-6 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold text-gray-800">Settings</h1>
-      </div>
+      <PageHeader 
+        title="Settings" 
+        description="Manage your account preferences and application settings"
+      />
 
       <div className="bg-white rounded-lg shadow">
         <div className="sm:hidden p-4">
