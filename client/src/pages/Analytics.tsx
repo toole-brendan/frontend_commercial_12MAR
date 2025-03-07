@@ -87,7 +87,7 @@ export default function Analytics() {
       
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <Card className="border dark:border-gray-700">
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Fulfillment Rate</CardTitle>
           </CardHeader>
@@ -103,7 +103,7 @@ export default function Analytics() {
           </CardContent>
         </Card>
         
-        <Card className="border dark:border-gray-700">
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Avg. Processing Time</CardTitle>
           </CardHeader>
@@ -119,7 +119,7 @@ export default function Analytics() {
           </CardContent>
         </Card>
         
-        <Card className="border dark:border-gray-700">
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Order Accuracy</CardTitle>
           </CardHeader>
@@ -135,7 +135,7 @@ export default function Analytics() {
           </CardContent>
         </Card>
         
-        <Card className="border dark:border-gray-700">
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">On-Time Payment</CardTitle>
           </CardHeader>
@@ -151,7 +151,7 @@ export default function Analytics() {
           </CardContent>
         </Card>
         
-        <Card className="border dark:border-gray-700">
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Inventory Turnover</CardTitle>
           </CardHeader>
@@ -167,7 +167,7 @@ export default function Analytics() {
           </CardContent>
         </Card>
         
-        <Card className="border dark:border-gray-700">
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Supplier Reliability</CardTitle>
           </CardHeader>
@@ -207,7 +207,7 @@ export default function Analytics() {
         
         <TabsContent value="overview" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory Trends</CardTitle>
               </CardHeader>
@@ -231,7 +231,7 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Monthly Transactions</CardTitle>
               </CardHeader>
@@ -264,7 +264,7 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Transfer Status Distribution</CardTitle>
               </CardHeader>
@@ -294,7 +294,7 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Payment Method Distribution</CardTitle>
               </CardHeader>
@@ -328,7 +328,7 @@ export default function Analytics() {
         
         <TabsContent value="inventory" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory by Category</CardTitle>
               </CardHeader>
@@ -349,7 +349,7 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory Aging</CardTitle>
               </CardHeader>
@@ -378,14 +378,14 @@ export default function Analytics() {
             </Card>
             
             {/* Inventory Alerts Card */}
-            <Card className="md:col-span-2 border dark:border-gray-700">
+            <Card className="md:col-span-2 border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory Alerts</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {data.inventoryAlerts.map((alert, index) => (
-                    <Card key={index} className={`border-l-4 border dark:border-gray-700 ${
+                    <Card key={index} className={`border-l-4 border dark:border-gray-700 dark:bg-gray-800 ${
                       alert.category === 'Low Stock' ? 'border-l-red-500' :
                       alert.category === 'Excess Inventory' ? 'border-l-amber-500' :
                       alert.category === 'Aging Inventory' ? 'border-l-purple-500' :
@@ -411,7 +411,7 @@ export default function Analytics() {
         
         <TabsContent value="transactions" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Monthly Transaction Volume</CardTitle>
               </CardHeader>
@@ -430,7 +430,7 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Cash Flow Balance</CardTitle>
               </CardHeader>
@@ -460,7 +460,7 @@ export default function Analytics() {
         
         <TabsContent value="suppliers" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Top Suppliers by Value</CardTitle>
               </CardHeader>
@@ -481,7 +481,7 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card className="border dark:border-gray-700">
+            <Card className="border dark:border-gray-700 dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Top Suppliers by Transaction Count</CardTitle>
               </CardHeader>
@@ -506,7 +506,7 @@ export default function Analytics() {
       </Tabs>
       
       {/* Additional Insights Card */}
-      <Card className="mb-6 border dark:border-gray-700">
+      <Card className="mb-6 border dark:border-gray-700 dark:bg-gray-800">
         <CardHeader>
           <CardTitle className="text-gray-900 dark:text-gray-100">Key Insights</CardTitle>
         </CardHeader>
