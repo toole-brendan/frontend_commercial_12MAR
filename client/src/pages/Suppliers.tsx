@@ -59,42 +59,42 @@ export default function Suppliers() {
       />
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <Card>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Total Suppliers</CardTitle>
+            <CardTitle className="text-sm font-medium dark:text-gray-100">Total Suppliers</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{suppliers.length}</div>
-            <p className="text-xs text-muted-foreground">
+            <div className="text-2xl font-bold dark:text-gray-100">{suppliers.length}</div>
+            <p className="text-xs text-muted-foreground dark:text-gray-400">
               {suppliers.filter(s => s.status === "Active").length} active
             </p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Smart Contracts</CardTitle>
+            <CardTitle className="text-sm font-medium dark:text-gray-100">Smart Contracts</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className="text-2xl font-bold dark:text-gray-100">
               {suppliers.filter(s => s.contractId).length}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground dark:text-gray-400">
               {Math.round((suppliers.filter(s => s.contractId).length / suppliers.length) * 100)}% of suppliers
             </p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Supplier Rating</CardTitle>
+            <CardTitle className="text-sm font-medium dark:text-gray-100">Avg. Supplier Rating</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold flex items-center">
+            <div className="text-2xl font-bold flex items-center dark:text-gray-100">
               {(suppliers.reduce((acc, supplier) => acc + supplier.rating, 0) / suppliers.length).toFixed(1)}
               <Star className="h-4 w-4 text-amber-500 dark:text-amber-400 ml-1" />
             </div>
-            <p className="text-xs text-muted-foreground">Based on performance history</p>
+            <p className="text-xs text-muted-foreground dark:text-gray-400">Based on performance history</p>
           </CardContent>
         </Card>
       </div>
@@ -126,11 +126,11 @@ export default function Suppliers() {
         </div>
         
         <TabsContent value="all" className="mt-0">
-          <Card>
+          <Card className="border dark:border-gray-700 dark:bg-gray-800">
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-50 dark:bg-gray-700">
+                  <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Supplier</th>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Category</th>

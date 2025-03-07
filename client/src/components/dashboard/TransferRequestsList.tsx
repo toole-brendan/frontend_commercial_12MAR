@@ -70,11 +70,11 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 border shadow-sm dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 border shadow-sm dark:border-gray-700">
       <div className="p-5 border-b border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-gray-800 dark:text-gray-200 font-display">Recent Transfer Requests</h2>
-          <a href="/transfers" className="text-primary text-sm hover:underline">View All</a>
+          <h2 className="font-semibold text-gray-800 dark:text-gray-100 font-display">Recent Transfer Requests</h2>
+          <a href="/transfers" className="text-primary dark:text-primary-400 text-sm hover:underline">View All</a>
         </div>
       </div>
       <div className="p-0">
@@ -90,7 +90,7 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                       <i className={`${processed.status === 'accepted' ? 'fas fa-check-circle text-green-500 dark:text-green-400' : 'fas fa-times-circle text-red-500 dark:text-red-400'}`}></i>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-800 dark:text-gray-200">
+                      <p className="font-medium text-gray-800 dark:text-gray-100">
                         {processed.status === 'accepted' ? 'Transfer accepted' : 'Transfer declined'}
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -105,14 +105,14 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
             }
 
             return (
-              <li key={request.id} className="p-4 hover:bg-gray-50 dark:hover:bg-gray-800">
+              <li key={request.id} className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className="bg-primary-50 dark:bg-primary-900/20 p-2">
-                      <i className={`fas fa-arrow-${request.type === 'incoming' ? 'right' : 'left'} text-primary`}></i>
+                      <i className={`fas fa-arrow-${request.type === 'incoming' ? 'right' : 'left'} text-primary dark:text-primary-400`}></i>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-800 dark:text-gray-200">{request.itemName}</p>
+                      <p className="font-medium text-gray-800 dark:text-gray-100">{request.itemName}</p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         {request.type === 'incoming' ? `From: ${request.fromParty}` : `To: ${request.toParty}`}
                       </p>
@@ -136,15 +136,15 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                       </div>
                     ) : (
                       <div>
-                        <span className="bg-yellow-100 dark:bg-yellow-900/20 text-yellow-500 dark:text-yellow-400 px-2 py-1 text-xs status-tag">Pending</span>
+                        <span className="bg-yellow-100 dark:bg-yellow-900/20 text-yellow-500 dark:text-yellow-300 px-2 py-1 text-xs status-tag">Pending</span>
                       </div>
                     )
                   ) : (
                     <div>
                       <span className={`${
                         request.status === 'completed' 
-                          ? 'bg-green-100 dark:bg-green-900/20 text-green-500 dark:text-green-400' 
-                          : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'
+                          ? 'bg-green-100 dark:bg-green-900/20 text-green-500 dark:text-green-300' 
+                          : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300'
                       } px-2 py-1 text-xs status-tag`}>
                         {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
                       </span>
