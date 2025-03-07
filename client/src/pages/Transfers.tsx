@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import { transferRequests as mockTransfers } from '@/lib/mockData';
 import QRScannerModal from '@/components/shared/QRScannerModal';
-import { PageHeader } from '@/components/ui/page-header';
 import { ActionButton } from '@/components/ui/action-button';
+import PageWrapper from '@/components/layout/PageWrapper';
 
 export default function Transfers() {
   const [isQRScannerOpen, setIsQRScannerOpen] = useState(false);
@@ -132,12 +132,12 @@ export default function Transfers() {
   );
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      <PageHeader 
-        title="Transfers" 
-        description="Manage transfers between locations and suppliers"
-        actions={actionButtons}
-      />
+    <PageWrapper
+      title="Transfers" 
+      description="Manage transfers between locations and suppliers"
+      actions={actionButtons}
+      className="space-y-6"
+    >
 
       {/* Tabs */}
       <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow">
@@ -290,6 +290,6 @@ export default function Transfers() {
         onClose={() => setIsQRScannerOpen(false)}
         onScan={handleQRCodeScanned}
       />
-    </div>
+    </PageWrapper>
   );
 }

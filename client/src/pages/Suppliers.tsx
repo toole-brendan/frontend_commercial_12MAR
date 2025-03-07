@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Plus, Search, Filter, Star, MessageSquare, FileText, ExternalLink, Edit, Trash2 } from "lucide-react";
 import { PageHeader } from "@/components/ui/page-header";
 import { ActionButton } from "@/components/ui/action-button";
+import PageWrapper from "@/components/layout/PageWrapper";
 import { format } from "date-fns";
 
 export default function Suppliers() {
@@ -50,13 +51,12 @@ export default function Suppliers() {
   );
 
   return (
-    <div className="container mx-auto p-6">
-      <PageHeader 
-        title="Suppliers" 
-        description="Manage your supplier relationships and contracts"
-        actions={actionButtons}
-        className="mb-6"
-      />
+    <PageWrapper
+      title="Suppliers" 
+      description="Manage your supplier relationships and contracts"
+      actions={actionButtons}
+      className="space-y-6"
+    >
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <Card className="border dark:border-gray-700 dark:bg-gray-800">
@@ -407,6 +407,6 @@ export default function Suppliers() {
           </DialogContent>
         </Dialog>
       )}
-    </div>
+    </PageWrapper>
   );
 }

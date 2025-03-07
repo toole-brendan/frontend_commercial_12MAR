@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import { smartContracts as mockSmartContracts } from '@/lib/mockData';
-import { PageHeader } from '@/components/ui/page-header';
 import { ActionButton } from '@/components/ui/action-button';
+import PageWrapper from '@/components/layout/PageWrapper';
 
 export default function SmartContracts() {
   const [showNewContractForm, setShowNewContractForm] = useState(false);
@@ -107,12 +107,12 @@ export default function SmartContracts() {
   );
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      <PageHeader 
-        title="Smart Contracts" 
-        description="Automate payments and agreements with blockchain-based smart contracts"
-        actions={actionButtons}
-      />
+    <PageWrapper
+      title="Smart Contracts" 
+      description="Automate payments and agreements with blockchain-based smart contracts"
+      actions={actionButtons}
+      className="space-y-6"
+    >
 
       {/* New Contract Form */}
       {showNewContractForm && (
@@ -456,6 +456,6 @@ export default function SmartContracts() {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
