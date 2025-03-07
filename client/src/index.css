@@ -115,7 +115,7 @@
     --bg-secondary: 210 30% 6%;
     --bg-accent: 210 100% 50%;
     --bg-accent-hover: 210 100% 55%;
-    --bg-sidebar: 210 50% 5%;
+    --bg-sidebar: 210 30% 10%; /* Updated to match card background */
     
     --text-primary: 0 0% 100%;
     --text-secondary: 210 15% 65%;
@@ -125,7 +125,7 @@
     
     --border-primary: 210 30% 20%;
     --border-accent: 210 100% 50%;
-    --border-sidebar: 210 30% 10%;
+    --border-sidebar: 210 30% 20%; /* Updated to match card border */
     
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -224,8 +224,8 @@
   .dark .card, 
   .dark [class*="bg-gray-800"],
   .dark .bg-white {
-    background-color: hsl(var(--card));
-    border-color: hsl(var(--border));
+    background-color: hsl(var(--card-background));
+    border-color: hsl(var(--border-primary));
   }
   
   /* Ensure cards have coherent styling in dark mode */
@@ -236,7 +236,7 @@
   
   /* Fix for nested components in dark mode */
   .dark [class*="dark:bg-gray-800"] {
-    background-color: hsl(var(--card));
+    background-color: hsl(var(--card-background));
   }
   
   /* Ensure all dashboard cards have the same style and no gaps */
