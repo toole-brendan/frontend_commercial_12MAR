@@ -13,13 +13,13 @@ interface StatCardProps {
 
 export default function StatCard({ label, value, icon, trend, iconBgColor, iconColor }: StatCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow p-5">
+    <div className="bg-white border shadow-sm p-5">
       <div className="flex justify-between items-center">
         <div>
           <p className="text-sm font-medium text-gray-500">{label}</p>
-          <p className="text-2xl font-semibold text-gray-800">{value}</p>
+          <p className="text-2xl font-semibold text-gray-800 font-display key-number">{value}</p>
         </div>
-        <div className={`${iconBgColor} ${iconColor} p-3 rounded-full`}>
+        <div className={`${iconBgColor} ${iconColor} p-3`}>
           <i className={`fas ${icon}`}></i>
         </div>
       </div>

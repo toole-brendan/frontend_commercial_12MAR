@@ -53,7 +53,7 @@ export default function IntegrationCard({
     const config = badgeConfig[category];
     
     return (
-      <span className={`${config.bg} ${config.text} text-xs px-2 py-1 rounded-full font-medium ml-2`}>
+      <span className={`${config.bg} ${config.text} text-xs px-2 py-1 font-medium ml-2`}>
         {config.label}
       </span>
     );
