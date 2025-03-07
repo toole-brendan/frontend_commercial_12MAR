@@ -8,11 +8,11 @@ const Transactions: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-green-100 text-green-800 status-tag">Completed</span>;
       case 'pending':
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-amber-100 text-amber-800">Pending</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-amber-100 text-amber-800 status-tag">Pending</span>;
       default:
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">{status}</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-gray-100 text-gray-800 status-tag">{status}</span>;
     }
   };
   
@@ -32,7 +32,7 @@ const Transactions: React.FC = () => {
   return (
     <PageContainer title="Transactions">
       {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm mb-6 overflow-hidden">
+      <div className="bg-white shadow-sm mb-6 overflow-hidden">
         <div className="flex border-b border-gray-200">
           <button 
             className={`px-6 py-4 font-medium text-sm focus:outline-none ${activeTab === 'all' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
@@ -62,7 +62,7 @@ const Transactions: React.FC = () => {
       </div>
       
       {/* Filters and Search */}
-      <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
+      <div className="bg-white shadow-sm p-6 mb-6">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center">
             <label className="text-sm font-medium text-gray-700 mr-2">Date Range:</label>
@@ -95,7 +95,7 @@ const Transactions: React.FC = () => {
       </div>
       
       {/* Transactions Table */}
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -149,19 +149,19 @@ const Transactions: React.FC = () => {
             </p>
           </div>
           <div className="flex items-center space-x-2">
-            <button className="border border-gray-300 rounded-md px-2 py-1 text-sm bg-white text-gray-500">Previous</button>
-            <button className="border border-primary bg-primary rounded-md px-2 py-1 text-sm text-white">1</button>
-            <button className="border border-gray-300 rounded-md px-2 py-1 text-sm bg-white text-gray-700">2</button>
-            <button className="border border-gray-300 rounded-md px-2 py-1 text-sm bg-white text-gray-700">3</button>
-            <button className="border border-gray-300 rounded-md px-2 py-1 text-sm bg-white text-gray-700">Next</button>
+            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-500 font-display">Previous</button>
+            <button className="border border-primary bg-primary px-2 py-1 text-sm text-white font-display">1</button>
+            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-700 font-display">2</button>
+            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-700 font-display">3</button>
+            <button className="border border-gray-300 px-2 py-1 text-sm bg-white text-gray-700 font-display">Next</button>
           </div>
         </div>
       </div>
       
       {/* Blockchain Verification */}
-      <div className="bg-white rounded-xl shadow-sm p-6 mt-6">
+      <div className="bg-white shadow-sm p-6 mt-6">
         <div className="flex items-start">
-          <div className="bg-blue-50 p-3 rounded-full mr-4">
+          <div className="bg-blue-50 p-3 mr-4">
             <span className="material-icons text-primary">security</span>
           </div>
           <div>

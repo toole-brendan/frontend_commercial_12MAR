@@ -87,14 +87,14 @@ export default function IntegrationCard({
           <div className="mt-4">
             {status === 'connected' ? (
               <button 
-                className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50 transition-colors"
+                className="px-4 py-2 border border-gray-300 text-gray-700 text-sm hover:bg-gray-50 transition-colors font-display"
                 onClick={onConfigure}
               >
                 <i className="fas fa-cog mr-1"></i> Configure
               </button>
             ) : status === 'available' ? (
               <button 
-                className="px-4 py-2 bg-primary text-white rounded-lg text-sm hover:bg-primary-dark transition-colors"
+                className="px-4 py-2 bg-primary text-white text-sm hover:bg-primary-dark transition-colors font-display"
                 onClick={onConnect}
               >
                 <i className="fas fa-plug mr-1"></i> Connect
