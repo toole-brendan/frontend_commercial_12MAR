@@ -83,7 +83,7 @@ export default function IntegrationCard({
   };
   
   return (
-    <div className="bg-white shadow-sm p-6 border border-gray-200 hover:border-gray-300 transition-colors">
+    <div className="bg-card dark:bg-card-bg-dark shadow-sm p-6 border border-border dark:border-border hover:border-gray-300 dark:hover:border-border-hover transition-colors">
       <div className="flex items-start">
         <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center mr-4 bg-blue-50">
           <span className="material-icons text-primary">{getIconByCategory()}</span>
@@ -91,7 +91,7 @@ export default function IntegrationCard({
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <h3 className="font-medium text-gray-900 font-display">{title}</h3>
+              <h3 className="font-medium text-foreground dark:text-theme-text-primary font-display">{title}</h3>
               {getCategoryBadge()}
             </div>
             {status === 'connected' && (

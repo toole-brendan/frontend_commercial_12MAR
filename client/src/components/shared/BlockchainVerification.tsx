@@ -67,15 +67,15 @@ export default function BlockchainVerification({
   const typeConfig = type ? typeIcons[type] : null;
   
   return (
-    <div className="bg-white shadow-sm p-6">
+    <div className="bg-card dark:bg-card-bg-dark shadow-sm p-6">
       <div className="flex items-center mb-5">
         <div className={`h-10 w-10 ${statusConfig.bgColor} flex items-center justify-center mr-4`}>
           <span className={`material-icons ${statusConfig.color}`}>{statusConfig.icon}</span>
         </div>
         <div>
-          <h3 className="font-medium text-gray-900 font-display">{statusConfig.label}</h3>
+          <h3 className="font-medium text-foreground dark:text-theme-text-primary font-display">{statusConfig.label}</h3>
           {typeConfig && (
-            <div className="flex items-center mt-1 text-xs text-gray-500 font-display">
+            <div className="flex items-center mt-1 text-xs text-muted-foreground dark:text-theme-text-secondary font-display">
               <span className={`material-icons-outlined text-sm mr-1 ${typeConfig.color}`}>{typeConfig.icon}</span>
               <span>{typeConfig.label}</span>
             </div>
@@ -85,26 +85,26 @@ export default function BlockchainVerification({
       
       <div className="space-y-3 text-sm font-display">
         <div className="flex items-center justify-between">
-          <span className="text-gray-500">Transaction ID:</span>
-          <span className="font-mono text-xs bg-gray-100 px-2 py-1 rounded-none">{transactionId}</span>
+          <span className="text-muted-foreground dark:text-theme-text-secondary">Transaction ID:</span>
+          <span className="font-mono text-xs bg-accent dark:bg-accent-dark px-2 py-1 rounded-none dark:text-theme-text-primary">{transactionId}</span>
         </div>
         
         <div className="flex items-center justify-between">
-          <span className="text-gray-500">Blockchain ID:</span>
-          <span className="font-mono text-xs bg-gray-100 px-2 py-1 rounded-none truncate max-w-[180px]">
+          <span className="text-muted-foreground dark:text-theme-text-secondary">Blockchain ID:</span>
+          <span className="font-mono text-xs bg-accent dark:bg-accent-dark px-2 py-1 rounded-none truncate max-w-[180px] dark:text-theme-text-primary">
             {blockchainId}
           </span>
         </div>
         
         {timestamp && (
           <div className="flex items-center justify-between">
-            <span className="text-gray-500">Timestamp:</span>
-            <span className="text-gray-700 font-mono text-xs">{timestamp.toLocaleString()}</span>
+            <span className="text-muted-foreground dark:text-theme-text-secondary">Timestamp:</span>
+            <span className="text-foreground dark:text-theme-text-primary font-mono text-xs">{timestamp.toLocaleString()}</span>
           </div>
         )}
       </div>
       
-      <div className="mt-5 pt-4 border-t border-gray-200">
+      <div className="mt-5 pt-4 border-t border-border dark:border-border">
         <a 
           href="#" 
           className="flex items-center justify-center text-primary text-sm hover:text-primary-dark font-display"
