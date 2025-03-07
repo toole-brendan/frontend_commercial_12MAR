@@ -23,16 +23,16 @@ export default function LowStockItems({ items, onReorder }: LowStockItemsProps) 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-lg shadow">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow border dark:border-gray-700">
       <div className="p-5 border-b border-gray-200 dark:border-gray-700">
-        <h2 className="font-semibold text-gray-800 dark:text-gray-200">Low Stock Items</h2>
+        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Low Stock Items</h2>
       </div>
       <div className="p-0">
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {items.map((item) => (
-            <li key={item.id} className="p-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800">
+            <li key={item.id} className="p-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700">
               <div>
-                <p className="font-medium text-gray-800 dark:text-gray-200">{item.name}</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">{item.name}</p>
                 <div className="flex items-center mt-1">
                   <div className="w-20 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                     <div 
@@ -44,7 +44,7 @@ export default function LowStockItems({ items, onReorder }: LowStockItemsProps) 
                 </div>
               </div>
               <button 
-                className="text-primary hover:text-primary-dark text-sm"
+                className="text-primary hover:text-primary-dark dark:text-primary-400 dark:hover:text-primary-300 text-sm"
                 onClick={() => handleReorder(item.id)}
               >
                 Reorder
