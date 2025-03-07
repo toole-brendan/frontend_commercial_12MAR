@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { PageHeader } from "@/components/ui/page-header";
+import { ActionButton } from "@/components/ui/action-button";
 import { 
   PieChart, 
   Pie, 
@@ -67,10 +68,12 @@ export default function Analytics() {
         </SelectContent>
       </Select>
       
-      <Button variant="outline" className="flex items-center">
-        <Download className="mr-2 h-4 w-4" />
+      <ActionButton 
+        variant="secondary"
+        icon={<Download className="h-4 w-4" />}
+      >
         Export
-      </Button>
+      </ActionButton>
     </div>
   );
 
