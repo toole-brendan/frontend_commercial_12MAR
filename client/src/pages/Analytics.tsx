@@ -158,7 +158,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.inventoryTurnover}</div>
-              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900 dark:text-amber-100 dark:hover:bg-amber-900">
+              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 0.1
               </Badge>
@@ -174,7 +174,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.supplierReliability}%</div>
-              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900 dark:text-amber-100 dark:hover:bg-amber-900">
+              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
                 <ArrowDownRight className="h-3 w-3 mr-1" />
                 0.8%
               </Badge>
@@ -513,36 +513,36 @@ export default function Analytics() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-start space-x-3">
-              <div className="bg-green-100 p-2 rounded-full dark:bg-green-900">
-                <ArrowUpRight className="h-5 w-5 text-green-600 dark:text-green-300" />
+              <div className="bg-green-100 p-2 rounded-full dark:bg-green-900/30">
+                <ArrowUpRight className="h-5 w-5 text-green-600 dark:text-green-400" />
               </div>
               <div>
                 <h3 className="font-medium text-sm">Increased Efficiency</h3>
-                <p className="text-sm text-muted-foreground dark:text-theme-text-secondary mt-1">
+                <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
                   Processing time has decreased by 12% compared to last quarter, resulting in faster order fulfillment.
                 </p>
               </div>
             </div>
             
             <div className="flex items-start space-x-3">
-              <div className="bg-blue-100 p-2 rounded-full dark:bg-blue-900">
-                <Clock className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+              <div className="bg-blue-100 p-2 rounded-full dark:bg-blue-900/30">
+                <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
                 <h3 className="font-medium text-sm">Aging Inventory Alert</h3>
-                <p className="text-sm text-muted-foreground dark:text-theme-text-secondary mt-1">
+                <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
                   12% of inventory is over 90 days old. Consider promotional strategies to move these items.
                 </p>
               </div>
             </div>
             
             <div className="flex items-start space-x-3">
-              <div className="bg-purple-100 p-2 rounded-full dark:bg-purple-900">
-                <CheckCircle2 className="h-5 w-5 text-purple-600 dark:text-purple-300" />
+              <div className="bg-purple-100 p-2 rounded-full dark:bg-purple-900/30">
+                <CheckCircle2 className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
                 <h3 className="font-medium text-sm">Smart Contract Efficiency</h3>
-                <p className="text-sm text-muted-foreground dark:text-theme-text-secondary mt-1">
+                <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
                   Suppliers with smart contracts show 15% faster payment processing and 23% fewer disputes.
                 </p>
               </div>
