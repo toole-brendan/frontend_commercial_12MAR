@@ -17,8 +17,11 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
   // Apply theme class to body element
   useEffect(() => {
-    document.documentElement.classList.remove('light-theme', 'dark-theme');
+    document.documentElement.classList.remove('light-theme', 'dark-theme', 'dark');
     document.documentElement.classList.add(`${theme}-theme`);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
   }, [theme]);
 
   const toggleMobileMenu = () => {

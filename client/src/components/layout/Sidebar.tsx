@@ -40,11 +40,11 @@ export default function Sidebar({
   toggleSidebar: toggleSidebarProp
 }: SidebarProps) {
   const [location] = useLocation();
-  const { theme, sidebarCollapsed, toggleTheme: contextToggleTheme, toggleSidebar: contextToggleSidebar } = useContext(AppContext);
+  const { theme, sidebarCollapsed } = useContext(AppContext);
   
-  // Use props if provided, otherwise fallback to context functions
-  const toggleTheme = toggleThemeProp || contextToggleTheme;
-  const toggleSidebar = toggleSidebarProp || contextToggleSidebar;
+  // Only use the props explicitly passed from AppLayout which has the correct context
+  const toggleTheme = toggleThemeProp;
+  const toggleSidebar = toggleSidebarProp;
 
   const isActive = (path: string) => {
     return location === path;
@@ -197,12 +197,12 @@ export default function Sidebar({
           
           <button 
             onClick={toggleSidebar}
-            className="p-2 rounded-md hover:bg-blue-900/50 transition-colors"
+            className="p-2 rounded-md bg-black hover:bg-gray-800 transition-colors"
             title={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {sidebarCollapsed ? 
-              <ChevronRight className="h-5 w-5 text-gray-200" /> : 
-              <ChevronLeft className="h-5 w-5 text-gray-200" />
+              <ChevronRight className="h-5 w-5 text-white" /> : 
+              <ChevronLeft className="h-5 w-5 text-white" />
             }
           </button>
         </div>

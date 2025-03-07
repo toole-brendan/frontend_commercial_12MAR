@@ -115,6 +115,7 @@
     background-color: hsl(var(--bg-sidebar));
     color: hsl(var(--text-sidebar));
     border-color: hsl(var(--border-sidebar));
+    transition: width 0.3s ease;
   }
   
   .sidebar.collapsed {
