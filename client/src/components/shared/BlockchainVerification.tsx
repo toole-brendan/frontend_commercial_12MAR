@@ -10,40 +10,48 @@ interface BlockchainVerificationProps {
 
 const statusIcons = {
   verified: {
-    icon: 'fa-check-circle',
+    icon: 'check_circle',
     color: 'text-green-600',
-    bgColor: 'bg-green-100',
+    bgColor: 'bg-green-50',
     label: 'Verified on Blockchain'
   },
   pending: {
-    icon: 'fa-clock',
-    color: 'text-yellow-600',
-    bgColor: 'bg-yellow-100',
+    icon: 'schedule',
+    color: 'text-amber-600',
+    bgColor: 'bg-amber-50',
     label: 'Pending Verification'
   },
   failed: {
-    icon: 'fa-exclamation-circle',
+    icon: 'error',
     color: 'text-red-600',
-    bgColor: 'bg-red-100',
+    bgColor: 'bg-red-50',
     label: 'Verification Failed'
   }
 };
 
 const typeIcons = {
   transfer: {
-    icon: 'fa-exchange-alt',
+    icon: 'swap_horiz',
+    color: 'text-blue-500',
+    bgColor: 'bg-blue-50',
     label: 'Transfer'
   },
   payment: {
-    icon: 'fa-dollar-sign',
+    icon: 'payments',
+    color: 'text-indigo-500',
+    bgColor: 'bg-indigo-50',
     label: 'Payment'
   },
   contract: {
-    icon: 'fa-file-contract',
+    icon: 'description',
+    color: 'text-red-500',
+    bgColor: 'bg-red-50',
     label: 'Smart Contract'
   },
   inventory: {
-    icon: 'fa-boxes',
+    icon: 'inventory',
+    color: 'text-emerald-500',
+    bgColor: 'bg-emerald-50',
     label: 'Inventory Update'
   }
 };
@@ -59,30 +67,31 @@ export default function BlockchainVerification({
   const typeConfig = type ? typeIcons[type] : null;
   
   return (
-    <div className="bg-white border shadow-sm p-4">
-      <div className="flex items-center mb-4">
-        <div className={`${statusConfig.bgColor} p-2 mr-3`}>
-          <i className={`fas ${statusConfig.icon} ${statusConfig.color}`}></i>
+    <div className="bg-white shadow-sm p-6">
+      <div className="flex items-center mb-5">
+        <div className={`h-10 w-10 ${statusConfig.bgColor} flex items-center justify-center mr-4`}>
+          <span className={`material-icons ${statusConfig.color}`}>{statusConfig.icon}</span>
         </div>
         <div>
-          <h3 className="font-medium text-gray-800 font-display">{statusConfig.label}</h3>
+          <h3 className="font-medium text-gray-900 font-display">{statusConfig.label}</h3>
           {typeConfig && (
-            <span className="text-xs text-gray-500">
-              <i className={`fas ${typeConfig.icon} mr-1`}></i> {typeConfig.label}
-            </span>
+            <div className="flex items-center mt-1 text-xs text-gray-500 font-display">
+              <span className={`material-icons-outlined text-sm mr-1 ${typeConfig.color}`}>{typeConfig.icon}</span>
+              <span>{typeConfig.label}</span>
+            </div>
           )}
         </div>
       </div>
       
-      <div className="space-y-2 text-sm">
+      <div className="space-y-3 text-sm font-display">
         <div className="flex items-center justify-between">
           <span className="text-gray-500">Transaction ID:</span>
-          <span className="font-mono text-xs bg-gray-100 px-2 py-1">{transactionId}</span>
+          <span className="font-mono text-xs bg-gray-100 px-2 py-1 rounded-none">{transactionId}</span>
         </div>
         
         <div className="flex items-center justify-between">
           <span className="text-gray-500">Blockchain ID:</span>
-          <span className="font-mono text-xs bg-gray-100 px-2 py-1 truncate max-w-[180px]">
+          <span className="font-mono text-xs bg-gray-100 px-2 py-1 rounded-none truncate max-w-[180px]">
             {blockchainId}
           </span>
         </div>
@@ -90,17 +99,17 @@ export default function BlockchainVerification({
         {timestamp && (
           <div className="flex items-center justify-between">
             <span className="text-gray-500">Timestamp:</span>
-            <span className="text-gray-700 data-value">{timestamp.toLocaleString()}</span>
+            <span className="text-gray-700 font-mono text-xs">{timestamp.toLocaleString()}</span>
           </div>
         )}
       </div>
       
-      <div className="mt-4 pt-3 border-t border-gray-100">
+      <div className="mt-5 pt-4 border-t border-gray-200">
         <a 
           href="#" 
           className="flex items-center justify-center text-primary text-sm hover:text-primary-dark font-display"
         >
-          <i className="fas fa-external-link-alt mr-2"></i>
+          <span className="material-icons text-sm mr-2">open_in_new</span>
           View on Blockchain Explorer
         </a>
       </div>

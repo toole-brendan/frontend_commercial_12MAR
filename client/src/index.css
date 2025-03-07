@@ -50,13 +50,36 @@
   }
   
   /* Apply monospace font for code, data values, and numeric displays */
-  code, pre, .data-value, .numeric-display {
+  code, pre, .data-value, .numeric-display, .font-mono, .monospace {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
   
   /* Apply D-DIN Condensed for actionable elements and key stats */
-  .stat-value, .action-element, .key-number {
+  .stat-value, .action-element, .key-number, .font-display {
     font-family: var(--font-display);
+  }
+  
+  /* Transaction icons and status indicators */
+  .transaction-icon {
+    @apply flex-shrink-0 h-10 w-10 flex items-center justify-center mr-3;
+  }
+  
+  /* Technical data badge styles */
+  .technical-badge {
+    @apply font-mono text-xs bg-gray-100 px-2 py-1 rounded-none;
+  }
+  
+  /* Table styling */
+  .data-table {
+    @apply min-w-full divide-y divide-gray-200;
+  }
+  
+  .data-table th {
+    @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display;
+  }
+  
+  .data-table td {
+    @apply px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display;
   }
 
   body {
