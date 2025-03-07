@@ -101,13 +101,13 @@ export default function IntegrationCard({
               </span>
             )}
             {status === 'coming-soon' && (
-              <span className="px-2 py-1 text-xs bg-gray-50 text-gray-500 flex-shrink-0 flex items-center font-display">
+              <span className="px-2 py-1 text-xs bg-accent dark:bg-accent-dark text-muted-foreground dark:text-theme-text-secondary flex-shrink-0 flex items-center font-display">
                 <span className="material-icons text-xs mr-1">schedule</span>
                 Coming Soon
               </span>
             )}
           </div>
-          <p className="text-sm text-gray-500 mt-1 line-clamp-2 font-display">{description}</p>
+          <p className="text-sm text-muted-foreground dark:text-theme-text-secondary mt-1 line-clamp-2 font-display">{description}</p>
           <div className="mt-4">
             {status === 'connected' ? (
               <button 
@@ -128,7 +128,7 @@ export default function IntegrationCard({
             ) : (
               <button 
                 disabled 
-                className="btn flex items-center bg-gray-50 text-gray-400 cursor-not-allowed"
+                className="btn flex items-center bg-accent dark:bg-accent-dark text-muted-foreground dark:text-theme-text-muted cursor-not-allowed"
               >
                 <span className="material-icons text-sm mr-2">schedule</span>
                 Coming Soon
