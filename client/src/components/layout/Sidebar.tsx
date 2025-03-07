@@ -160,7 +160,7 @@ export default function Sidebar({
 
   return (
     <aside className={`sidebar hidden md:flex flex-col ${sidebarCollapsed ? 'collapsed' : ''}`}>
-      <div className="p-4 border-b border-gray-700/50">
+      <div className="p-4 border-b border-gray-700/50 dark:border-border-primary">
         {!sidebarCollapsed ? (
           <div 
             className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
@@ -201,7 +201,7 @@ export default function Sidebar({
         )}
       </nav>
       
-      <div className="p-4 border-t border-gray-700/50">
+      <div className="p-4 border-t border-gray-700/50 dark:border-border-primary">
         {!sidebarCollapsed && (
           <>
             <div className="flex items-center justify-between mb-4">

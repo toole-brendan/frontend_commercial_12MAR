@@ -115,7 +115,7 @@
     --bg-secondary: 210 30% 6%;
     --bg-accent: 210 100% 50%;
     --bg-accent-hover: 210 100% 55%;
-    --bg-sidebar: 210 30% 10%; /* Updated to match card background */
+    --bg-sidebar: 210 30% 10%; /* Exact same value as card-background */
     
     --text-primary: 0 0% 100%;
     --text-secondary: 210 15% 65%;
