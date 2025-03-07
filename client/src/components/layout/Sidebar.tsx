@@ -42,9 +42,18 @@ export default function Sidebar({
   const [location] = useLocation();
   const { theme, sidebarCollapsed } = useContext(AppContext);
   
-  // Only use the props explicitly passed from AppLayout which has the correct context
-  const toggleTheme = toggleThemeProp;
-  const toggleSidebar = toggleSidebarProp;
+  // Use the functions from context directly if they're not passed as props
+  const toggleTheme = () => {
+    if (toggleThemeProp) {
+      toggleThemeProp(); 
+    }
+  };
+  
+  const toggleSidebar = () => {
+    if (toggleSidebarProp) {
+      toggleSidebarProp();
+    }
+  };
 
   const isActive = (path: string) => {
     return location === path;

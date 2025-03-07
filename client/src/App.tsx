@@ -11,10 +11,11 @@ import Suppliers from "@/pages/Suppliers";
 import Analytics from "@/pages/Analytics";
 import Integrations from "@/pages/Integrations";
 import Settings from "@/pages/Settings";
+import { AppProvider } from "@/context/AppContext";
 
 function App() {
   return (
-    <>
+    <AppProvider>
       <AppLayout>
         <Switch>
           <Route path="/" component={Dashboard} />
@@ -30,7 +31,7 @@ function App() {
         </Switch>
       </AppLayout>
       <Toaster />
-    </>
+    </AppProvider>
   );
 }
 

@@ -15,14 +15,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isQRScannerOpen, setIsQRScannerOpen] = useState(false);
 
-  // Apply theme class to body element
-  useEffect(() => {
-    document.documentElement.classList.remove('light-theme', 'dark-theme', 'dark');
-    document.documentElement.classList.add(`${theme}-theme`);
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
-  }, [theme]);
+  // Theme classes are already managed by the AppContext effect
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
