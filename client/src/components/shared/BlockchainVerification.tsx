@@ -77,12 +77,12 @@ export default function BlockchainVerification({
       <div className="space-y-2 text-sm">
         <div className="flex items-center justify-between">
           <span className="text-gray-500">Transaction ID:</span>
-          <span className="font-mono text-xs bg-gray-100 px-2 py-1 data-value">{transactionId}</span>
+          <span className="font-mono text-xs bg-gray-100 px-2 py-1 data-value tech-data">{transactionId}</span>
         </div>
         
         <div className="flex items-center justify-between">
           <span className="text-gray-500">Blockchain ID:</span>
-          <span className="font-mono text-xs bg-gray-100 px-2 py-1 data-value truncate max-w-[180px]">
+          <span className="font-mono text-xs bg-gray-100 px-2 py-1 data-value tech-data truncate max-w-[180px]">
             {blockchainId}
           </span>
         </div>
@@ -98,7 +98,7 @@ export default function BlockchainVerification({
       <div className="mt-4 pt-3 border-t border-gray-100">
         <a 
           href="#" 
-          className="flex items-center justify-center text-primary text-sm hover:text-primary-dark"
+          className="flex items-center justify-center text-primary text-sm hover:text-primary-dark font-display"
         >
           <i className="fas fa-external-link-alt mr-2"></i>
           View on Blockchain Explorer

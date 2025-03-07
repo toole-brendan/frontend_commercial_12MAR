@@ -53,16 +53,16 @@ export default function IntegrationCard({
     const config = badgeConfig[category];
     
     return (
-      <span className={`${config.bg} ${config.text} text-xs px-2 py-1 font-medium ml-2`}>
+      <span className={`${config.bg} ${config.text} text-xs px-2 py-1 font-medium ml-2 status-tag`}>
         {config.label}
       </span>
     );
   };
   
   return (
-    <div className="bg-white rounded-xl shadow-sm p-5 border border-gray-100 hover:shadow-md transition-shadow">
+    <div className="bg-white shadow-sm p-5 border border-gray-100 hover:shadow-md transition-shadow">
       <div className="flex items-start">
-        <div className="bg-blue-50 p-3 rounded-full mr-4 flex-shrink-0">
+        <div className="bg-blue-50 p-3 mr-4 flex-shrink-0">
           <i className={`fas ${icon} text-primary`}></i>
         </div>
         <div className="flex-1 min-w-0">
@@ -72,13 +72,13 @@ export default function IntegrationCard({
               {getCategoryBadge()}
             </div>
             {status === 'connected' && (
-              <span className="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800 flex-shrink-0">
+              <span className="px-2 py-1 text-xs bg-green-100 text-green-800 flex-shrink-0 status-tag">
                 <i className="fas fa-check-circle mr-1"></i>
                 Connected
               </span>
             )}
             {status === 'coming-soon' && (
-              <span className="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800 flex-shrink-0">
+              <span className="px-2 py-1 text-xs bg-gray-100 text-gray-800 flex-shrink-0 status-tag">
                 Coming Soon
               </span>
             )}
