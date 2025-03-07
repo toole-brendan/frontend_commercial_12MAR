@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import { Link, useLocation } from "wouter";
+import { LayoutDashboard, Package, QrCode, Send, Wallet } from "lucide-react";
+import { AppContext } from "@/context/AppContext";
 
 interface MobileNavProps {
   openQRScanner?: () => void;
@@ -6,6 +9,7 @@ interface MobileNavProps {
 
 export default function MobileNav({ openQRScanner }: MobileNavProps) {
   const [location] = useLocation();
+  const { theme } = useContext(AppContext);
 
   const isActive = (path: string) => {
     return location === path;
@@ -19,37 +23,38 @@ export default function MobileNav({ openQRScanner }: MobileNavProps) {
   };
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around p-3 z-10">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-sky-900 to-blue-900 border-t border-gray-700/50 flex justify-around p-3 z-10 shadow-lg">
       <Link href="/">
-        <div className={`flex flex-col items-center justify-center cursor-pointer ${isActive('/') ? 'text-primary' : 'text-gray-500'}`}>
-          <i className="fas fa-tachometer-alt text-lg"></i>
+        <a className={`flex flex-col items-center justify-center ${isActive('/') ? 'text-blue-300' : 'text-gray-300'}`}>
+          <LayoutDashboard className="h-5 w-5" />
           <span className="text-xs mt-1">Dashboard</span>
-        </div>
+        </a>
       </Link>
       <Link href="/inventory">
-        <div className={`flex flex-col items-center justify-center cursor-pointer ${isActive('/inventory') ? 'text-primary' : 'text-gray-500'}`}>
-          <i className="fas fa-boxes text-lg"></i>
+        <a className={`flex flex-col items-center justify-center ${isActive('/inventory') ? 'text-blue-300' : 'text-gray-300'}`}>
+          <Package className="h-5 w-5" />
           <span className="text-xs mt-1">Inventory</span>
-        </div>
+        </a>
       </Link>
       <div 
-        className="flex flex-col items-center justify-center text-gray-500 cursor-pointer"
+        className={`flex flex-col items-center justify-center text-gray-300 cursor-pointer 
+                   p-2 bg-blue-700 rounded-full -mt-5 shadow-md border-4 
+                   ${theme === 'dark' ? 'border-gray-900' : 'border-blue-800'}`}
         onClick={handleQRScanClick}
       >
-        <i className="fas fa-qrcode text-lg"></i>
-        <span className="text-xs mt-1">Scan</span>
+        <QrCode className="h-6 w-6" />
       </div>
       <Link href="/transfers">
-        <div className={`flex flex-col items-center justify-center cursor-pointer ${isActive('/transfers') ? 'text-primary' : 'text-gray-500'}`}>
-          <i className="fas fa-exchange-alt text-lg"></i>
+        <a className={`flex flex-col items-center justify-center ${isActive('/transfers') ? 'text-blue-300' : 'text-gray-300'}`}>
+          <Send className="h-5 w-5" />
           <span className="text-xs mt-1">Transfers</span>
-        </div>
+        </a>
       </Link>
-      <Link href="/payments">
-        <div className={`flex flex-col items-center justify-center cursor-pointer ${isActive('/payments') ? 'text-primary' : 'text-gray-500'}`}>
-          <i className="fas fa-wallet text-lg"></i>
-          <span className="text-xs mt-1">Payments</span>
-        </div>
+      <Link href="/transactions">
+        <a className={`flex flex-col items-center justify-center ${isActive('/transactions') ? 'text-blue-300' : 'text-gray-300'}`}>
+          <Wallet className="h-5 w-5" />
+          <span className="text-xs mt-1">Money</span>
+        </a>
       </Link>
     </nav>
   );

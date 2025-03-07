@@ -156,7 +156,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
           id: currentUser.id,
           name: currentUser.name,
           role: currentUser.role,
-          avatar: currentUser.avatar
+          avatar: currentUser.profileImage
         });
         
         setStats({
