@@ -101,7 +101,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
       {/* Main content area */}
       <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-        {children}
+        <div className="w-full max-w-full">
+          {children}
+        </div>
       </main>
 
       {/* Mobile bottom navigation */}

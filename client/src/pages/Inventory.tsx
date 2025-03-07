@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
-import { PageHeader } from '@/components/ui/page-header';
+import PageWrapper from '@/components/layout/PageWrapper';
 import { inventoryItems as mockInventoryItems } from '@/lib/mockData';
 
 export default function Inventory() {
@@ -76,12 +76,12 @@ export default function Inventory() {
   );
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      <PageHeader 
-        title="Inventory Management" 
-        description="Manage and track your inventory items across all locations"
-        actions={actionButtons}
-      />
+    <PageWrapper
+      title="Inventory Management" 
+      description="Manage and track your inventory items across all locations"
+      actions={actionButtons}
+      className="space-y-6"
+    >
 
       {/* Filter and Search */}
       <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow p-4">
@@ -196,6 +196,6 @@ export default function Inventory() {
           </div>
         )}
       </div>
-    </div>
+    </PageWrapper>
   );
 }

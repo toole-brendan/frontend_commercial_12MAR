@@ -8,7 +8,7 @@ import ActivityTimeline from '@/components/dashboard/ActivityTimeline';
 import LowStockItems from '@/components/dashboard/LowStockItems';
 import TransactionsTable from '@/components/dashboard/TransactionsTable';
 import QRScannerModal from '@/components/shared/QRScannerModal';
-import { PageHeader } from '@/components/ui/page-header';
+import PageWrapper from '@/components/layout/PageWrapper';
 
 // Import mock data for initial development
 import { 
@@ -77,13 +77,12 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      <PageHeader 
-        title="Dashboard" 
-        description="Overview of your inventory, transfers, and transactions"
-        actions={actionButtons}
-      />
-
+    <PageWrapper
+      title="Dashboard" 
+      description="Overview of your inventory, transfers, and transactions"
+      actions={actionButtons}
+      className="space-y-6"
+    >
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
@@ -156,6 +155,6 @@ export default function Dashboard() {
         onClose={() => setIsQRScannerOpen(false)}
         onScan={handleQRCodeScanned}
       />
-    </div>
+    </PageWrapper>
   );
 }

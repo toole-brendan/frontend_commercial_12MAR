@@ -3,33 +3,32 @@ import { PageHeader } from '@/components/ui/page-header';
 import { cn } from '@/lib/utils';
 import { usePageLayout } from '@/hooks/use-page-layout';
 
-interface StandardPageLayoutProps {
+interface PageWrapperProps {
   title?: string;
   description?: string;
   actions?: ReactNode;
   children: ReactNode;
+  fullWidth?: boolean;
   className?: string;
 }
 
 /**
- * StandardPageLayout - A consistent wrapper for all pages
- * Ensures consistent padding, width constraints, and responsive behavior
+ * PageWrapper - A standardized container component for all pages
+ * Maintains consistent spacing, width, and responsive behavior
  */
-export function StandardPageLayout({
+const PageWrapper: React.FC<PageWrapperProps> = ({
   title,
   description,
   actions,
   children,
-  className
-}: StandardPageLayoutProps) {
-  const { layoutClasses } = usePageLayout({
-    width: 'default',
-    basePadding: 'p-4 md:p-6 lg:p-8'
-  });
+  fullWidth = false,
+  className,
+}) => {
+  const { layoutClasses } = usePageLayout({ fullWidth });
 
   return (
     <div className={cn(
-      'standard-page',
+      'page-container',
       layoutClasses,
       className
     )}>
@@ -38,7 +37,6 @@ export function StandardPageLayout({
           title={title}
           description={description}
           actions={actions}
-          className="mb-6"
         />
       )}
       <div className="w-full">
@@ -46,6 +44,6 @@ export function StandardPageLayout({
       </div>
     </div>
   );
-}
+};
 
-export default StandardPageLayout;
+export default PageWrapper;
