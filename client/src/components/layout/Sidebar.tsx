@@ -147,21 +147,14 @@ export default function Sidebar({
           {!sidebarCollapsed && (
             <>
               <div className="flex items-center space-x-2">
-                <div className="bg-blue-600 text-white p-1 rounded">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
-                  </svg>
-                </div>
                 <span className="text-lg font-semibold text-gray-100">HandReceipt</span>
               </div>
               <span className="text-xs font-medium bg-blue-900/50 text-blue-100 py-1 px-2 rounded">Commercial</span>
             </>
           )}
           {sidebarCollapsed && (
-            <div className="mx-auto">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
-              </svg>
+            <div className="mx-auto w-5 h-5">
+              {/* Empty div to maintain spacing in collapsed mode */}
             </div>
           )}
         </div>
@@ -197,12 +190,12 @@ export default function Sidebar({
             <div className="flex items-center justify-between mb-4">
               <button 
                 onClick={toggleTheme}
-                className="p-2 rounded-md hover:bg-blue-900/50 transition-colors"
+                className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-blue-900/50 transition-colors"
                 title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
               >
                 {theme === 'light' ? 
-                  <Moon className="h-5 w-5 text-gray-200" /> : 
-                  <Sun className="h-5 w-5 text-gray-200" />
+                  <Moon className="h-5 w-5 text-gray-800 dark:text-gray-200" /> : 
+                  <Sun className="h-5 w-5 text-gray-800 dark:text-gray-200" />
                 }
               </button>
               
