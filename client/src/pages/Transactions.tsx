@@ -35,25 +35,25 @@ const Transactions: React.FC = () => {
       <div className="bg-white shadow-sm mb-6 overflow-hidden">
         <div className="flex border-b border-gray-200">
           <button 
-            className={`px-6 py-4 font-medium text-sm focus:outline-none ${activeTab === 'all' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
+            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'all' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
             onClick={() => setActiveTab('all')}
           >
             All Transactions
           </button>
           <button 
-            className={`px-6 py-4 font-medium text-sm focus:outline-none ${activeTab === 'transfers' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
+            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'transfers' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
             onClick={() => setActiveTab('transfers')}
           >
             Transfers
           </button>
           <button 
-            className={`px-6 py-4 font-medium text-sm focus:outline-none ${activeTab === 'payments' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
+            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'payments' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
             onClick={() => setActiveTab('payments')}
           >
             Payments
           </button>
           <button 
-            className={`px-6 py-4 font-medium text-sm focus:outline-none ${activeTab === 'contracts' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
+            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'contracts' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
             onClick={() => setActiveTab('contracts')}
           >
             Smart Contracts
@@ -66,7 +66,7 @@ const Transactions: React.FC = () => {
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center">
             <label className="text-sm font-medium text-gray-700 mr-2">Date Range:</label>
-            <select className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+            <select className="border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-display">
               <option>All Time</option>
               <option>Last 7 Days</option>
               <option>Last 30 Days</option>
@@ -83,11 +83,11 @@ const Transactions: React.FC = () => {
             <input 
               type="text" 
               placeholder="Search transactions..." 
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="pl-10 pr-4 py-2 border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-display"
             />
           </div>
           
-          <button className="flex items-center px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg">
+          <button className="flex items-center px-4 py-2 bg-white border border-gray-300 text-gray-700 font-display">
             <span className="material-icons mr-2">file_download</span>
             <span>Export</span>
           </button>
@@ -104,7 +104,7 @@ const Transactions: React.FC = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Counterparty</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -126,13 +126,13 @@ const Transactions: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize">{tx.type}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.description}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.amount}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.counterparty}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.reference}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.date.toLocaleDateString()}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {getStatusBadge(tx.status)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-primary hover:text-blue-700 mr-3">View</button>
+                    <button className="text-primary hover:text-blue-700 mr-3 font-display">View</button>
                     <button className="text-gray-500 hover:text-gray-700">
                       <span className="material-icons text-sm">more_vert</span>
                     </button>
