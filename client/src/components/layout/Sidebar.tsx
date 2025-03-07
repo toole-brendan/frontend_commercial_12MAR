@@ -37,9 +37,11 @@ export default function Sidebar({ user, isMobile = false, closeMobileMenu, openQ
     { path: "/", icon: "fa-tachometer-alt", label: "Dashboard" },
     { path: "/inventory", icon: "fa-boxes", label: "Inventory" },
     { path: "/transfers", icon: "fa-exchange-alt", label: "Transfers" },
+    { path: "/suppliers", icon: "fa-truck", label: "Suppliers" },
     { path: "/smart-contracts", icon: "fa-file-contract", label: "Smart Contracts" },
-    { path: "/payments", icon: "fa-wallet", label: "Payments" },
-    { path: "/transaction-history", icon: "fa-history", label: "Transaction History" },
+    { path: "/transactions", icon: "fa-wallet", label: "Transactions" },
+    { path: "/analytics", icon: "fa-chart-line", label: "Analytics" },
+    { path: "/integrations", icon: "fa-plug", label: "Integrations" },
     { path: "/qr-scanner", icon: "fa-qrcode", label: "QR Scanner", onClick: handleQRScanClick },
     { path: "/settings", icon: "fa-cogs", label: "Settings" },
   ];

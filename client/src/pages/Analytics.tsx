@@ -1,0 +1,550 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { analyticsData } from "@/lib/mockData";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { 
+  PieChart, 
+  Pie, 
+  Cell, 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend, 
+  ResponsiveContainer, 
+  LineChart, 
+  Line,
+  AreaChart,
+  Area
+} from "recharts";
+import { 
+  Download, 
+  Calendar, 
+  ArrowUpRight, 
+  ArrowDownRight, 
+  Clock, 
+  CheckCircle2, 
+  BarChart3, 
+  PieChart as PieChartIcon, 
+  LineChart as LineChartIcon,
+  Repeat
+} from "lucide-react";
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A259FF'];
+
+export default function Analytics() {
+  const [timeRange, setTimeRange] = useState("6m");
+  
+  // Simulate API fetch with mock data
+  const { data = analyticsData, isLoading } = useQuery({
+    queryKey: ["/api/analytics"],
+    queryFn: async () => analyticsData
+  });
+
+  if (isLoading) {
+    return <div className="p-8">Loading analytics data...</div>;
+  }
+
+  return (
+    <div className="container mx-auto p-6">
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800">Analytics</h1>
+          <p className="text-sm text-gray-500">Supply chain performance and insights</p>
+        </div>
+        
+        <div className="flex items-center space-x-2">
+          <Select defaultValue="6m" onValueChange={(val) => setTimeRange(val)}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select time range" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1m">Last 30 days</SelectItem>
+              <SelectItem value="3m">Last 3 months</SelectItem>
+              <SelectItem value="6m">Last 6 months</SelectItem>
+              <SelectItem value="1y">Last year</SelectItem>
+              <SelectItem value="all">All time</SelectItem>
+            </SelectContent>
+          </Select>
+          
+          <Button variant="outline" className="flex items-center">
+            <Download className="mr-2 h-4 w-4" />
+            Export
+          </Button>
+        </div>
+      </div>
+      
+      {/* KPI Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Fulfillment Rate</CardTitle>
+          </CardHeader>
+          <CardContent className="py-0">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold">{data.kpis.fulfillmentRate}%</div>
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+                <ArrowUpRight className="h-3 w-3 mr-1" />
+                2.1%
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Avg. Processing Time</CardTitle>
+          </CardHeader>
+          <CardContent className="py-0">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold">{data.kpis.avgProcessingTime} days</div>
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+                <ArrowDownRight className="h-3 w-3 mr-1" />
+                0.3 days
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Order Accuracy</CardTitle>
+          </CardHeader>
+          <CardContent className="py-0">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold">{data.kpis.orderAccuracy}%</div>
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+                <ArrowUpRight className="h-3 w-3 mr-1" />
+                0.5%
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">On-Time Payment</CardTitle>
+          </CardHeader>
+          <CardContent className="py-0">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold">{data.kpis.onTimePayment}%</div>
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+                <ArrowUpRight className="h-3 w-3 mr-1" />
+                1.2%
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Inventory Turnover</CardTitle>
+          </CardHeader>
+          <CardContent className="py-0">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold">{data.kpis.inventoryTurnover}</div>
+              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100">
+                <ArrowUpRight className="h-3 w-3 mr-1" />
+                0.1
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium">Supplier Reliability</CardTitle>
+          </CardHeader>
+          <CardContent className="py-0">
+            <div className="flex items-center">
+              <div className="text-2xl font-bold">{data.kpis.supplierReliability}%</div>
+              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100">
+                <ArrowDownRight className="h-3 w-3 mr-1" />
+                0.8%
+              </Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+          </CardContent>
+        </Card>
+      </div>
+      
+      {/* Chart Tabs */}
+      <Tabs defaultValue="overview" className="w-full mb-6">
+        <TabsList className="mb-4">
+          <TabsTrigger value="overview">
+            <BarChart3 className="h-4 w-4 mr-2" />
+            Overview
+          </TabsTrigger>
+          <TabsTrigger value="inventory">
+            <LineChartIcon className="h-4 w-4 mr-2" />
+            Inventory
+          </TabsTrigger>
+          <TabsTrigger value="transactions">
+            <Repeat className="h-4 w-4 mr-2" />
+            Transactions
+          </TabsTrigger>
+          <TabsTrigger value="suppliers">
+            <PieChartIcon className="h-4 w-4 mr-2" />
+            Suppliers
+          </TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="overview" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Inventory Trends</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={data.inventoryOverTime}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line 
+                      type="monotone" 
+                      dataKey="totalItems" 
+                      stroke="#0088FE" 
+                      activeDot={{ r: 8 }}
+                      name="Total Items"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Monthly Transactions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <AreaChart data={data.monthlyTransactions}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Area 
+                      type="monotone" 
+                      dataKey="incoming" 
+                      stackId="1"
+                      stroke="#00C49F" 
+                      fill="#00C49F" 
+                      name="Incoming ($)"
+                    />
+                    <Area 
+                      type="monotone" 
+                      dataKey="outgoing" 
+                      stackId="1"
+                      stroke="#FF8042" 
+                      fill="#FF8042"
+                      name="Outgoing ($)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Transfer Status Distribution</CardTitle>
+              </CardHeader>
+              <CardContent className="flex justify-center">
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={data.transfersByStatus.labels.map((label, i) => ({
+                        name: label,
+                        value: data.transfersByStatus.values[i]
+                      }))}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={true}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    >
+                      {data.transfersByStatus.labels.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Payment Method Distribution</CardTitle>
+              </CardHeader>
+              <CardContent className="flex justify-center">
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={data.paymentMethodDistribution.labels.map((label, i) => ({
+                        name: label,
+                        value: data.paymentMethodDistribution.values[i]
+                      }))}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={true}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="value"
+                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    >
+                      {data.paymentMethodDistribution.labels.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="inventory" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Inventory by Category</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={data.categoryDistribution.labels.map((label, i) => ({
+                    name: label,
+                    value: data.categoryDistribution.values[i]
+                  }))}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="value" fill="#0088FE" name="Percentage (%)" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Inventory Aging</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={data.inventoryAging}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={true}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="percentage"
+                      nameKey="age"
+                      label={({ age, percentage }) => `${age}: ${percentage}%`}
+                    >
+                      {data.inventoryAging.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            
+            {/* Inventory Alerts Card */}
+            <Card className="md:col-span-2">
+              <CardHeader>
+                <CardTitle className="text-lg">Inventory Alerts</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {data.inventoryAlerts.map((alert, index) => (
+                    <Card key={index} className={`border-l-4 ${
+                      alert.category === 'Low Stock' ? 'border-l-red-500' :
+                      alert.category === 'Excess Inventory' ? 'border-l-amber-500' :
+                      alert.category === 'Aging Inventory' ? 'border-l-purple-500' :
+                      'border-l-blue-500'
+                    }`}>
+                      <CardContent className="p-4">
+                        <p className="text-sm font-medium">{alert.category}</p>
+                        <p className="text-2xl font-bold mt-1">{alert.count}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {alert.category === 'Low Stock' ? 'Items below threshold' :
+                          alert.category === 'Excess Inventory' ? 'Overstock items' :
+                          alert.category === 'Aging Inventory' ? 'Items > 90 days' :
+                          'Items with issues'}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="transactions" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Monthly Transaction Volume</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={data.monthlyTransactions}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="incoming" fill="#00C49F" name="Incoming ($)" />
+                    <Bar dataKey="outgoing" fill="#FF8042" name="Outgoing ($)" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Cash Flow Balance</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={data.monthlyTransactions.map(item => ({
+                    month: item.month,
+                    balance: item.incoming - item.outgoing
+                  }))}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line 
+                      type="monotone" 
+                      dataKey="balance" 
+                      stroke="#8884d8" 
+                      name="Net Balance ($)"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="suppliers" className="mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Top Suppliers by Value</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart 
+                    layout="vertical" 
+                    data={data.topSuppliers}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis type="category" dataKey="name" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="value" fill="#0088FE" name="Value ($)" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Top Suppliers by Transaction Count</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart 
+                    layout="vertical" 
+                    data={data.topSuppliers}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis type="category" dataKey="name" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="transactions" fill="#00C49F" name="Transactions" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+      </Tabs>
+      
+      {/* Additional Insights Card */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Key Insights</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex items-start space-x-3">
+              <div className="bg-green-100 p-2 rounded-full">
+                <ArrowUpRight className="h-5 w-5 text-green-600" />
+              </div>
+              <div>
+                <h3 className="font-medium text-sm">Increased Efficiency</h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  Processing time has decreased by 12% compared to last quarter, resulting in faster order fulfillment.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <div className="bg-blue-100 p-2 rounded-full">
+                <Clock className="h-5 w-5 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-medium text-sm">Aging Inventory Alert</h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  12% of inventory is over 90 days old. Consider promotional strategies to move these items.
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <div className="bg-purple-100 p-2 rounded-full">
+                <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              </div>
+              <div>
+                <h3 className="font-medium text-sm">Smart Contract Efficiency</h3>
+                <p className="text-sm text-gray-500 mt-1">
+                  Suppliers with smart contracts show 15% faster payment processing and 23% fewer disputes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

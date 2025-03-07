@@ -17,6 +17,100 @@ export const dashboardStats = {
   shellBalance: 1245
 };
 
+// Mock suppliers
+export const mockSuppliers = [
+  {
+    id: "SUP-001",
+    name: "SupplyTech Inc.",
+    contactPerson: "John Williams",
+    email: "john.williams@supplytech.com",
+    phone: "555-123-4567",
+    address: "123 Supply Lane, San Francisco, CA 94107",
+    rating: 4.8,
+    status: "Active",
+    category: "Electronics",
+    paymentTerms: "Net 30",
+    onboarded: new Date("2022-05-15"),
+    lastOrder: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    totalOrders: 47,
+    contractId: "SC-1001",
+    preferredPayment: "USDC",
+    notes: "Preferred supplier for electronics and IT equipment."
+  },
+  {
+    id: "SUP-002",
+    name: "ServicePro Inc.",
+    contactPerson: "Emma Davis",
+    email: "e.davis@servicepro.com",
+    phone: "555-987-6543",
+    address: "456 Provider Ave, Austin, TX 78701",
+    rating: 4.5,
+    status: "Active",
+    category: "Maintenance",
+    paymentTerms: "Net 15",
+    onboarded: new Date("2021-11-20"),
+    lastOrder: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
+    totalOrders: 32,
+    contractId: "SC-1002",
+    preferredPayment: "Shells",
+    notes: "Primary service provider for equipment maintenance."
+  },
+  {
+    id: "SUP-003",
+    name: "TechLease Corporation",
+    contactPerson: "Michael Chen",
+    email: "m.chen@techlease.com",
+    phone: "555-234-5678",
+    address: "789 Lease Blvd, Seattle, WA 98101",
+    rating: 4.2,
+    status: "Inactive",
+    category: "Equipment",
+    paymentTerms: "Net 45",
+    onboarded: new Date("2022-02-10"),
+    lastOrder: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
+    totalOrders: 8,
+    contractId: "SC-1003",
+    preferredPayment: "Shells",
+    notes: "Equipment leasing provider, contract currently on hold."
+  },
+  {
+    id: "SUP-004",
+    name: "RapidShip Logistics",
+    contactPerson: "Sarah Parker",
+    email: "s.parker@rapidship.com",
+    phone: "555-345-6789",
+    address: "101 Shipping Lane, Chicago, IL 60607",
+    rating: 4.7,
+    status: "Active",
+    category: "Logistics",
+    paymentTerms: "Net 7",
+    onboarded: new Date("2023-01-05"),
+    lastOrder: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    totalOrders: 53,
+    contractId: null,
+    preferredPayment: "Traditional",
+    notes: "Reliable shipping partner for expedited deliveries."
+  },
+  {
+    id: "SUP-005",
+    name: "OfficeWorks Solutions",
+    contactPerson: "Robert Taylor",
+    email: "r.taylor@officeworks.com",
+    phone: "555-456-7890",
+    address: "222 Office Park, Boston, MA 02110",
+    rating: 4.0,
+    status: "Active",
+    category: "Office Supplies",
+    paymentTerms: "Net 30",
+    onboarded: new Date("2022-08-15"),
+    lastOrder: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000),
+    totalOrders: 29,
+    contractId: null,
+    preferredPayment: "Traditional",
+    notes: "Primary supplier for office and stationery supplies."
+  }
+];
+
 // Mock transfer requests
 export const transferRequests = [
   {
@@ -300,3 +394,62 @@ export const mockRecipients = [
   'TechLease Corporation',
   'Retail Distribution Center'
 ];
+
+// Mock analytics data
+export const analyticsData = {
+  inventoryOverTime: [
+    { month: 'Jan', totalItems: 284 },
+    { month: 'Feb', totalItems: 306 },
+    { month: 'Mar', totalItems: 325 },
+    { month: 'Apr', totalItems: 332 },
+    { month: 'May', totalItems: 356 },
+    { month: 'Jun', totalItems: 370 }
+  ],
+  transfersByStatus: {
+    labels: ['Completed', 'In Progress', 'Pending', 'Cancelled'],
+    values: [67, 23, 12, 5]
+  },
+  topSuppliers: [
+    { name: 'SupplyTech Inc.', transactions: 47, value: 58500 },
+    { name: 'ServicePro Inc.', transactions: 32, value: 45000 },
+    { name: 'RapidShip Logistics', transactions: 53, value: 37800 },
+    { name: 'OfficeWorks Solutions', transactions: 29, value: 22450 },
+    { name: 'TechLease Corporation', transactions: 8, value: 12000 }
+  ],
+  monthlyTransactions: [
+    { month: 'Jan', incoming: 12500, outgoing: 9800 },
+    { month: 'Feb', incoming: 18300, outgoing: 15200 },
+    { month: 'Mar', incoming: 22100, outgoing: 17800 },
+    { month: 'Apr', incoming: 19700, outgoing: 16500 },
+    { month: 'May', incoming: 24500, outgoing: 18900 },
+    { month: 'Jun', incoming: 28700, outgoing: 22100 }
+  ],
+  categoryDistribution: {
+    labels: ['Electronics', 'Equipment', 'Supplies', 'Furniture', 'Other'],
+    values: [35, 28, 22, 10, 5]
+  },
+  paymentMethodDistribution: {
+    labels: ['USDC', 'Shells (SHL)', 'Traditional'],
+    values: [45, 37, 18]
+  },
+  inventoryAging: [
+    { age: '0-30 days', percentage: 42 },
+    { age: '31-60 days', percentage: 28 },
+    { age: '61-90 days', percentage: 18 },
+    { age: '91+ days', percentage: 12 }
+  ],
+  kpis: {
+    fulfillmentRate: 96.8,
+    avgProcessingTime: 1.4,
+    orderAccuracy: 99.2,
+    onTimePayment: 97.5,
+    inventoryTurnover: 4.2,
+    supplierReliability: 94.1
+  },
+  inventoryAlerts: [
+    { category: 'Low Stock', count: 12 },
+    { category: 'Excess Inventory', count: 8 },
+    { category: 'Aging Inventory', count: 6 },
+    { category: 'Quality Issues', count: 2 }
+  ]
+};
