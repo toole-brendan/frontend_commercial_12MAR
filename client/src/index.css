@@ -26,7 +26,7 @@
 
 @layer base {
   :root {
-    --sidebar-width: 260px;
+    --sidebar-width: 240px;
     --sidebar-collapsed-width: 70px;
     --header-height: 64px;
     --mobile-nav-height: 56px;
@@ -168,9 +168,11 @@
   }
   
   .sidebar-item {
-    @apply flex items-center px-4 py-3 
+    @apply flex items-center py-3 
            transition-colors
            whitespace-nowrap overflow-hidden;
+    padding-left: 1rem;
+    padding-right: 0.75rem;
     border-radius: 0;
     color: hsl(var(--text-sidebar));
     position: relative;
