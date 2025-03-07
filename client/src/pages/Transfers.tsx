@@ -140,14 +140,14 @@ export default function Transfers() {
       />
 
       {/* Tabs */}
-      <div className="bg-white rounded-lg shadow">
-        <div className="border-b border-gray-200">
+      <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow">
+        <div className="border-b border-gray-200 dark:border-gray-700">
           <nav className="flex -mb-px overflow-x-auto">
             <button 
               className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
                 activeTab === 'all' 
-                  ? 'border-primary text-primary' 
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primary dark:text-blue-400' 
+                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
               }`}
               onClick={() => setActiveTab('all')}
             >
@@ -156,8 +156,8 @@ export default function Transfers() {
             <button 
               className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
                 activeTab === 'incoming' 
-                  ? 'border-primary text-primary' 
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primary dark:text-blue-400' 
+                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
               }`}
               onClick={() => setActiveTab('incoming')}
             >
@@ -166,8 +166,8 @@ export default function Transfers() {
             <button 
               className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
                 activeTab === 'outgoing' 
-                  ? 'border-primary text-primary' 
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primary dark:text-blue-400' 
+                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
               }`}
               onClick={() => setActiveTab('outgoing')}
             >
@@ -176,8 +176,8 @@ export default function Transfers() {
             <button 
               className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
                 activeTab === 'pending' 
-                  ? 'border-primary text-primary' 
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primary dark:text-blue-400' 
+                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
               }`}
               onClick={() => setActiveTab('pending')}
             >
@@ -186,8 +186,8 @@ export default function Transfers() {
             <button 
               className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
                 activeTab === 'completed' 
-                  ? 'border-primary text-primary' 
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primary dark:text-blue-400' 
+                  : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
               }`}
               onClick={() => setActiveTab('completed')}
             >
@@ -200,55 +200,55 @@ export default function Transfers() {
         {isLoading ? (
           <div className="p-8 text-center">
             <i className="fas fa-spinner fa-spin text-primary text-2xl mb-2"></i>
-            <p className="text-gray-600">Loading transfers...</p>
+            <p className="text-gray-600 dark:text-gray-400">Loading transfers...</p>
           </div>
         ) : filteredTransfers.length === 0 ? (
           <div className="p-8 text-center">
-            <i className="fas fa-exchange-alt text-gray-400 text-2xl mb-2"></i>
-            <p className="text-gray-600">No transfers found</p>
+            <i className="fas fa-exchange-alt text-gray-400 dark:text-gray-500 text-2xl mb-2"></i>
+            <p className="text-gray-600 dark:text-gray-400">No transfers found</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID/Item</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">From/To</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Blockchain</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">ID/Item</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">From/To</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Quantity</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Blockchain</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                 {filteredTransfers.map((transfer) => (
-                  <tr key={transfer.id} className="hover:bg-gray-50">
+                  <tr key={transfer.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="flex-shrink-0 h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center">
-                          <i className={`fas ${transfer.type === 'incoming' ? 'fa-arrow-down text-green-500' : 'fa-arrow-up text-blue-500'}`}></i>
+                        <div className="flex-shrink-0 h-10 w-10 bg-gray-100 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                          <i className={`fas ${transfer.type === 'incoming' ? 'fa-arrow-down text-green-500 dark:text-green-400' : 'fa-arrow-up text-blue-500 dark:text-blue-400'}`}></i>
                         </div>
                         <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">#{transfer.id}</div>
-                          <div className="text-xs text-gray-500">{transfer.itemName}</div>
+                          <div className="text-sm font-medium text-gray-900 dark:text-gray-100">#{transfer.id}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{transfer.itemName}</div>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{transfer.type === 'incoming' ? 'From:' : 'To:'}</div>
-                      <div className="text-sm text-gray-500">{transfer.type === 'incoming' ? transfer.fromParty : transfer.toParty}</div>
+                      <div className="text-sm text-gray-900 dark:text-gray-100">{transfer.type === 'incoming' ? 'From:' : 'To:'}</div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400">{transfer.type === 'incoming' ? transfer.fromParty : transfer.toParty}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transfer.quantity}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">{transfer.quantity}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {getStatusBadge(transfer.status)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {transfer.blockchainVerified ? (
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300">
                           <i className="fas fa-check-circle mr-1"></i> Verified
                         </span>
                       ) : (
-                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
                           <i className="fas fa-clock mr-1"></i> Pending
                         </span>
                       )}
@@ -263,7 +263,7 @@ export default function Transfers() {
                             Accept
                           </button>
                           <button 
-                            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded text-xs"
+                            className="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-300 px-3 py-1 rounded text-xs"
                             onClick={() => handleDeclineTransfer(transfer.id)}
                           >
                             Decline
@@ -271,7 +271,7 @@ export default function Transfers() {
                         </div>
                       )}
                       {(transfer.status !== 'pending' || transfer.type !== 'incoming') && (
-                        <button className="text-primary hover:text-primary-dark">
+                        <button className="text-primary hover:text-primary-dark dark:text-blue-400 dark:hover:text-blue-300">
                           <i className="fas fa-eye"></i> Details
                         </button>
                       )}
