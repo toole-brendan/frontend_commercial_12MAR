@@ -135,8 +135,14 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   // Apply theme class to document
   useEffect(() => {
-    document.documentElement.classList.remove('light-theme', 'dark-theme');
+    document.documentElement.classList.remove('light-theme', 'dark-theme', 'dark');
     document.documentElement.classList.add(`${theme}-theme`);
+    
+    // Add dark class for Tailwind's dark: variants to work
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+    
     localStorage.setItem('handreceipt-theme', theme);
   }, [theme]);
 

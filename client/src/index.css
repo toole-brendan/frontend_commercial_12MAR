@@ -59,17 +59,17 @@
     --bg-secondary: 210 40% 98%;
     --bg-accent: 210 100% 50%;
     --bg-accent-hover: 210 100% 45%;
-    --bg-sidebar: 210 100% 15%;
+    --bg-sidebar: 39 70% 97%; /* Cream/off-white color */
     
     --text-primary: 210 50% 10%;
     --text-secondary: 210 20% 40%;
     --text-accent: 210 100% 50%;
     --text-inverse: 0 0% 100%;
-    --text-sidebar: 0 0% 100%;
+    --text-sidebar: 210 50% 15%; /* Dark text for sidebar */
     
     --border-primary: 210 30% 92%;
     --border-accent: 210 100% 50%;
-    --border-sidebar: 210 50% 20%;
+    --border-sidebar: 39 30% 90%; /* Light border for sidebar */
     
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -110,9 +110,11 @@
   .sidebar {
     @apply fixed top-0 left-0 z-30 h-screen 
            transition-all duration-300 ease-in-out
-           bg-blue-900 text-white
-           border-r border-gray-800;
+           border-r;
     width: var(--sidebar-width);
+    background-color: hsl(var(--bg-sidebar));
+    color: hsl(var(--text-sidebar));
+    border-color: hsl(var(--border-sidebar));
   }
   
   .sidebar.collapsed {
@@ -120,15 +122,29 @@
   }
   
   .sidebar-item {
-    @apply flex items-center px-4 py-3 text-gray-200 
-           hover:bg-blue-800 transition-colors
+    @apply flex items-center px-4 py-3 
+           transition-colors
            whitespace-nowrap overflow-hidden;
     border-radius: 0;
+    color: hsl(var(--text-sidebar));
+  }
+  
+  .sidebar-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .dark .sidebar-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
   }
   
   .sidebar-item.active {
-    @apply bg-blue-800 text-white font-medium;
-    border-left: 3px solid white;
+    @apply font-medium;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-left: 3px solid hsl(var(--bg-accent));
+  }
+  
+  .dark .sidebar-item.active {
+    background-color: rgba(255, 255, 255, 0.1);
   }
   
   .sidebar-item-icon {
