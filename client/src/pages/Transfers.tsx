@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import { transferRequests as mockTransfers } from '@/lib/mockData';
 import QRScannerModal from '@/components/shared/QRScannerModal';
+import { PageHeader } from '@/components/ui/page-header';
+import { ActionButton } from '@/components/ui/action-button';
 
 export default function Transfers() {
   const [isQRScannerOpen, setIsQRScannerOpen] = useState(false);
@@ -110,27 +112,32 @@ export default function Transfers() {
     }
   };
 
+  const actionButtons = (
+    <div className="flex flex-col sm:flex-row gap-2">
+      <ActionButton 
+        variant="primary"
+        onClick={handleScanQRCode}
+        icon={<i className="fas fa-qrcode"></i>}
+      >
+        Scan QR Code
+      </ActionButton>
+      <ActionButton 
+        variant="secondary"
+        onClick={handleNewTransfer}
+        icon={<i className="fas fa-plus"></i>}
+      >
+        New Transfer
+      </ActionButton>
+    </div>
+  );
+
   return (
     <div className="p-4 md:p-6 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold text-gray-800">Transfer Management</h1>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <button 
-            className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm"
-            onClick={handleScanQRCode}
-          >
-            <i className="fas fa-qrcode"></i>
-            <span>Scan QR Code</span>
-          </button>
-          <button 
-            className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm"
-            onClick={handleNewTransfer}
-          >
-            <i className="fas fa-plus"></i>
-            <span>New Transfer</span>
-          </button>
-        </div>
-      </div>
+      <PageHeader 
+        title="Transfers" 
+        description="Manage transfers between locations and suppliers"
+        actions={actionButtons}
+      />
 
       {/* Tabs */}
       <div className="bg-white rounded-lg shadow">

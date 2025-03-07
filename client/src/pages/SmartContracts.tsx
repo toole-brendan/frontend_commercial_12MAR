@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import { smartContracts as mockSmartContracts } from '@/lib/mockData';
+import { PageHeader } from '@/components/ui/page-header';
+import { ActionButton } from '@/components/ui/action-button';
 
 export default function SmartContracts() {
   const [showNewContractForm, setShowNewContractForm] = useState(false);
@@ -94,18 +96,23 @@ export default function SmartContracts() {
     });
   };
 
+  const actionButtons = (
+    <ActionButton 
+      variant="primary"
+      onClick={handleCreateContract}
+      icon={<i className="fas fa-plus"></i>}
+    >
+      Create Contract
+    </ActionButton>
+  );
+
   return (
     <div className="p-4 md:p-6 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold text-gray-800">Smart Contracts</h1>
-        <button 
-          className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm"
-          onClick={handleCreateContract}
-        >
-          <i className="fas fa-plus"></i>
-          <span>Create Contract</span>
-        </button>
-      </div>
+      <PageHeader 
+        title="Smart Contracts" 
+        description="Automate payments and agreements with blockchain-based smart contracts"
+        actions={actionButtons}
+      />
 
       {/* New Contract Form */}
       {showNewContractForm && (
