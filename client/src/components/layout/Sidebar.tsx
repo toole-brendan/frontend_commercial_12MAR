@@ -27,16 +27,24 @@ interface SidebarProps {
   isMobile?: boolean;
   closeMobileMenu?: () => void;
   openQRScanner?: () => void;
+  toggleTheme?: () => void;
+  toggleSidebar?: () => void;
 }
 
 export default function Sidebar({ 
   user, 
   isMobile = false, 
   closeMobileMenu, 
-  openQRScanner 
+  openQRScanner,
+  toggleTheme: toggleThemeProp,
+  toggleSidebar: toggleSidebarProp
 }: SidebarProps) {
   const [location] = useLocation();
-  const { theme, sidebarCollapsed, toggleTheme, toggleSidebar } = useContext(AppContext);
+  const { theme, sidebarCollapsed, toggleTheme: contextToggleTheme, toggleSidebar: contextToggleSidebar } = useContext(AppContext);
+  
+  // Use props if provided, otherwise fallback to context functions
+  const toggleTheme = toggleThemeProp || contextToggleTheme;
+  const toggleSidebar = toggleSidebarProp || contextToggleSidebar;
 
   const isActive = (path: string) => {
     return location === path;
@@ -98,11 +106,24 @@ export default function Sidebar({
         )}
         
         <div className="mt-8 pt-4 border-t border-gray-700">
-          <div className="flex items-center space-x-3 px-4 py-3">
-            <img src={user.profileImage} alt={user.name} className="w-10 h-10 rounded-full" />
-            <div>
-              <p className="text-sm font-medium text-gray-200">{user.name}</p>
-              <p className="text-xs text-gray-400">{user.role}</p>
+          <div className="flex items-center justify-between px-4 py-3 mb-4">
+            <button 
+              onClick={toggleTheme}
+              className="p-2 rounded-md hover:bg-blue-900/50 transition-colors"
+              title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            >
+              {theme === 'light' ? 
+                <Moon className="h-5 w-5 text-gray-200" /> : 
+                <Sun className="h-5 w-5 text-gray-200" />
+              }
+            </button>
+            
+            <div className="flex items-center space-x-3">
+              <img src={user.profileImage} alt={user.name} className="w-10 h-10 rounded-full" />
+              <div>
+                <p className="text-sm font-medium text-gray-200">{user.name}</p>
+                <p className="text-xs text-gray-400">{user.role}</p>
+              </div>
             </div>
           </div>
         </div>

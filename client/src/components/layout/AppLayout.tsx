@@ -11,7 +11,7 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
-  const { theme, sidebarCollapsed } = useContext(AppContext);
+  const { theme, sidebarCollapsed, toggleTheme, toggleSidebar } = useContext(AppContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isQRScannerOpen, setIsQRScannerOpen] = useState(false);
 
@@ -39,6 +39,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
       <Sidebar 
         user={currentUser} 
         openQRScanner={openQRScanner}
+        toggleTheme={toggleTheme}
+        toggleSidebar={toggleSidebar}
       />
 
       {/* Mobile header */}
@@ -95,6 +97,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
             isMobile={true} 
             closeMobileMenu={toggleMobileMenu}
             openQRScanner={openQRScanner}
+            toggleTheme={toggleTheme}
+            toggleSidebar={toggleSidebar}
           />
         </div>
       )}
