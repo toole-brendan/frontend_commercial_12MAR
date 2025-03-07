@@ -78,7 +78,7 @@ export default function Analytics() {
   );
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="p-4 md:p-6 space-y-6">
       <PageHeader 
         title="Analytics" 
         description="Supply chain performance and insights"
@@ -87,119 +87,119 @@ export default function Analytics() {
       
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <Card>
+        <Card className="border dark:border-gray-700">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Fulfillment Rate</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Fulfillment Rate</CardTitle>
           </CardHeader>
           <CardContent className="py-0">
             <div className="flex items-center">
-              <div className="text-2xl font-bold">{data.kpis.fulfillmentRate}%</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.fulfillmentRate}%</div>
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 2.1%
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="border dark:border-gray-700">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Processing Time</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Avg. Processing Time</CardTitle>
           </CardHeader>
           <CardContent className="py-0">
             <div className="flex items-center">
-              <div className="text-2xl font-bold">{data.kpis.avgProcessingTime} days</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.avgProcessingTime} days</div>
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowDownRight className="h-3 w-3 mr-1" />
                 0.3 days
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="border dark:border-gray-700">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Order Accuracy</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Order Accuracy</CardTitle>
           </CardHeader>
           <CardContent className="py-0">
             <div className="flex items-center">
-              <div className="text-2xl font-bold">{data.kpis.orderAccuracy}%</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.orderAccuracy}%</div>
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 0.5%
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="border dark:border-gray-700">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">On-Time Payment</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">On-Time Payment</CardTitle>
           </CardHeader>
           <CardContent className="py-0">
             <div className="flex items-center">
-              <div className="text-2xl font-bold">{data.kpis.onTimePayment}%</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.onTimePayment}%</div>
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 1.2%
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="border dark:border-gray-700">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Inventory Turnover</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Inventory Turnover</CardTitle>
           </CardHeader>
           <CardContent className="py-0">
             <div className="flex items-center">
-              <div className="text-2xl font-bold">{data.kpis.inventoryTurnover}</div>
-              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.inventoryTurnover}</div>
+              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 0.1
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="border dark:border-gray-700">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Supplier Reliability</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Supplier Reliability</CardTitle>
           </CardHeader>
           <CardContent className="py-0">
             <div className="flex items-center">
-              <div className="text-2xl font-bold">{data.kpis.supplierReliability}%</div>
-              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.supplierReliability}%</div>
+              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
                 <ArrowDownRight className="h-3 w-3 mr-1" />
                 0.8%
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">vs previous period</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
           </CardContent>
         </Card>
       </div>
       
       {/* Chart Tabs */}
       <Tabs defaultValue="overview" className="w-full mb-6">
-        <TabsList className="mb-4">
-          <TabsTrigger value="overview">
+        <TabsList className="mb-4 dark:bg-gray-700">
+          <TabsTrigger value="overview" className="dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-white dark:text-gray-300">
             <BarChart3 className="h-4 w-4 mr-2" />
             Overview
           </TabsTrigger>
-          <TabsTrigger value="inventory">
+          <TabsTrigger value="inventory" className="dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-white dark:text-gray-300">
             <LineChartIcon className="h-4 w-4 mr-2" />
             Inventory
           </TabsTrigger>
-          <TabsTrigger value="transactions">
+          <TabsTrigger value="transactions" className="dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-white dark:text-gray-300">
             <Repeat className="h-4 w-4 mr-2" />
             Transactions
           </TabsTrigger>
-          <TabsTrigger value="suppliers">
+          <TabsTrigger value="suppliers" className="dark:data-[state=active]:bg-gray-800 dark:data-[state=active]:text-white dark:text-gray-300">
             <PieChartIcon className="h-4 w-4 mr-2" />
             Suppliers
           </TabsTrigger>
@@ -207,17 +207,17 @@ export default function Analytics() {
         
         <TabsContent value="overview" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Inventory Trends</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory Trends</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={data.inventoryOverTime}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="month" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                     <Legend />
                     <Line 
                       type="monotone" 
@@ -231,17 +231,17 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Monthly Transactions</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Monthly Transactions</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <AreaChart data={data.monthlyTransactions}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="month" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                     <Legend />
                     <Area 
                       type="monotone" 
@@ -264,9 +264,9 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Transfer Status Distribution</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Transfer Status Distribution</CardTitle>
               </CardHeader>
               <CardContent className="flex justify-center">
                 <ResponsiveContainer width="100%" height={300}>
@@ -288,15 +288,15 @@ export default function Analytics() {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Payment Method Distribution</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Payment Method Distribution</CardTitle>
               </CardHeader>
               <CardContent className="flex justify-center">
                 <ResponsiveContainer width="100%" height={300}>
@@ -318,7 +318,7 @@ export default function Analytics() {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -328,9 +328,9 @@ export default function Analytics() {
         
         <TabsContent value="inventory" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Inventory by Category</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory by Category</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -338,10 +338,10 @@ export default function Analytics() {
                     name: label,
                     value: data.categoryDistribution.values[i]
                   }))}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="name" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                     <Legend />
                     <Bar dataKey="value" fill="#0088FE" name="Percentage (%)" />
                   </BarChart>
@@ -349,9 +349,9 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Inventory Aging</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory Aging</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -371,30 +371,30 @@ export default function Analytics() {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
             
             {/* Inventory Alerts Card */}
-            <Card className="md:col-span-2">
+            <Card className="md:col-span-2 border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Inventory Alerts</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Inventory Alerts</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {data.inventoryAlerts.map((alert, index) => (
-                    <Card key={index} className={`border-l-4 ${
+                    <Card key={index} className={`border-l-4 border dark:border-gray-700 ${
                       alert.category === 'Low Stock' ? 'border-l-red-500' :
                       alert.category === 'Excess Inventory' ? 'border-l-amber-500' :
                       alert.category === 'Aging Inventory' ? 'border-l-purple-500' :
                       'border-l-blue-500'
                     }`}>
                       <CardContent className="p-4">
-                        <p className="text-sm font-medium">{alert.category}</p>
-                        <p className="text-2xl font-bold mt-1">{alert.count}</p>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{alert.category}</p>
+                        <p className="text-2xl font-bold mt-1 text-gray-900 dark:text-gray-100">{alert.count}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                           {alert.category === 'Low Stock' ? 'Items below threshold' :
                           alert.category === 'Excess Inventory' ? 'Overstock items' :
                           alert.category === 'Aging Inventory' ? 'Items > 90 days' :
@@ -411,17 +411,17 @@ export default function Analytics() {
         
         <TabsContent value="transactions" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Monthly Transaction Volume</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Monthly Transaction Volume</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={data.monthlyTransactions}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="month" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                     <Legend />
                     <Bar dataKey="incoming" fill="#00C49F" name="Incoming ($)" />
                     <Bar dataKey="outgoing" fill="#FF8042" name="Outgoing ($)" />
@@ -430,9 +430,9 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Cash Flow Balance</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Cash Flow Balance</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -440,10 +440,10 @@ export default function Analytics() {
                     month: item.month,
                     balance: item.incoming - item.outgoing
                   }))}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis dataKey="month" stroke="#9CA3AF" />
+                    <YAxis stroke="#9CA3AF" />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                     <Legend />
                     <Line 
                       type="monotone" 
@@ -460,9 +460,9 @@ export default function Analytics() {
         
         <TabsContent value="suppliers" className="mt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Top Suppliers by Value</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Top Suppliers by Value</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -470,10 +470,10 @@ export default function Analytics() {
                     layout="vertical" 
                     data={data.topSuppliers}
                   >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" />
-                    <YAxis type="category" dataKey="name" />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis type="number" stroke="#9CA3AF" />
+                    <YAxis type="category" dataKey="name" stroke="#9CA3AF" />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                     <Legend />
                     <Bar dataKey="value" fill="#0088FE" name="Value ($)" />
                   </BarChart>
@@ -481,9 +481,9 @@ export default function Analytics() {
               </CardContent>
             </Card>
             
-            <Card>
+            <Card className="border dark:border-gray-700">
               <CardHeader>
-                <CardTitle className="text-lg">Top Suppliers by Transaction Count</CardTitle>
+                <CardTitle className="text-lg text-gray-900 dark:text-gray-100">Top Suppliers by Transaction Count</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -491,10 +491,10 @@ export default function Analytics() {
                     layout="vertical" 
                     data={data.topSuppliers}
                   >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" />
-                    <YAxis type="category" dataKey="name" />
-                    <Tooltip />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                    <XAxis type="number" stroke="#9CA3AF" />
+                    <YAxis type="category" dataKey="name" stroke="#9CA3AF" />
+                    <Tooltip contentStyle={{ backgroundColor: '#1F2937', color: '#F9FAFB', borderColor: '#374151' }} />
                     <Legend />
                     <Bar dataKey="transactions" fill="#00C49F" name="Transactions" />
                   </BarChart>
@@ -506,9 +506,9 @@ export default function Analytics() {
       </Tabs>
       
       {/* Additional Insights Card */}
-      <Card className="mb-6">
+      <Card className="mb-6 border dark:border-gray-700">
         <CardHeader>
-          <CardTitle>Key Insights</CardTitle>
+          <CardTitle className="text-gray-900 dark:text-gray-100">Key Insights</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -517,8 +517,8 @@ export default function Analytics() {
                 <ArrowUpRight className="h-5 w-5 text-green-600 dark:text-green-400" />
               </div>
               <div>
-                <h3 className="font-medium text-sm">Increased Efficiency</h3>
-                <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
+                <h3 className="font-medium text-sm text-gray-900 dark:text-gray-100">Increased Efficiency</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   Processing time has decreased by 12% compared to last quarter, resulting in faster order fulfillment.
                 </p>
               </div>
@@ -529,8 +529,8 @@ export default function Analytics() {
                 <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h3 className="font-medium text-sm">Aging Inventory Alert</h3>
-                <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
+                <h3 className="font-medium text-sm text-gray-900 dark:text-gray-100">Aging Inventory Alert</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   12% of inventory is over 90 days old. Consider promotional strategies to move these items.
                 </p>
               </div>
@@ -541,8 +541,8 @@ export default function Analytics() {
                 <CheckCircle2 className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <h3 className="font-medium text-sm">Smart Contract Efficiency</h3>
-                <p className="text-sm text-muted-foreground dark:text-gray-400 mt-1">
+                <h3 className="font-medium text-sm text-gray-900 dark:text-gray-100">Smart Contract Efficiency</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   Suppliers with smart contracts show 15% faster payment processing and 23% fewer disputes.
                 </p>
               </div>
