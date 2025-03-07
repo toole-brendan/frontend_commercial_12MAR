@@ -166,10 +166,10 @@ export default function Suppliers() {
                             </div>
                           </TableCell>
                           <TableCell>
-                            <Badge className={
+                            <Badge variant="outline" className={
                               supplier.status === "Active" 
-                                ? "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900" 
-                                : "bg-accent text-accent-foreground hover:bg-accent dark:bg-accent-dark dark:text-theme-text-muted dark:hover:bg-accent-dark"
+                                ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800/50 dark:hover:bg-green-900/30" 
+                                : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 dark:bg-gray-800/30 dark:text-gray-400 dark:border-gray-700/50 dark:hover:bg-gray-800/40"
                             }>
                               {supplier.status}
                             </Badge>
@@ -254,10 +254,10 @@ export default function Suppliers() {
           </div>
           
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsAddDialogOpen(false)}>
+            <Button variant="outline" onClick={() => setIsAddDialogOpen(false)} className="border-gray-200 dark:border-gray-700">
               Cancel
             </Button>
-            <Button onClick={() => setIsAddDialogOpen(false)}>
+            <Button onClick={() => setIsAddDialogOpen(false)} className="bg-primary hover:bg-primary/90 text-primary-foreground">
               Save Supplier
             </Button>
           </DialogFooter>
@@ -307,10 +307,10 @@ export default function Suppliers() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground dark:text-gray-400">Status:</span>
-                    <Badge className={
+                    <Badge variant="outline" className={
                       selectedSupplier.status === "Active" 
-                        ? "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900" 
-                        : "bg-accent text-accent-foreground hover:bg-accent dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                        ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800/50 dark:hover:bg-green-900/30" 
+                        : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 dark:bg-gray-800/30 dark:text-gray-400 dark:border-gray-700/50 dark:hover:bg-gray-800/40"
                     }>
                       {selectedSupplier.status}
                     </Badge>
@@ -359,22 +359,22 @@ export default function Suppliers() {
             
             <div className="flex justify-between mt-4">
               <div className="flex space-x-2">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-gray-200 dark:border-gray-700">
                   <MessageSquare className="mr-2 h-4 w-4" />
                   Contact
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-gray-200 dark:border-gray-700">
                   <FileText className="mr-2 h-4 w-4" />
                   View Contracts
                 </Button>
               </div>
               
               <div className="flex space-x-2">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-gray-200 dark:border-gray-700">
                   <Edit className="mr-2 h-4 w-4" />
                   Edit
                 </Button>
-                <Button variant="destructive" size="sm">
+                <Button variant="destructive" size="sm" className="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800">
                   <Trash2 className="mr-2 h-4 w-4" />
                   Delete
                 </Button>
