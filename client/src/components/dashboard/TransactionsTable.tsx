@@ -54,13 +54,13 @@ export default function TransactionsTable({ transactions, onFilterChange }: Tran
   };
 
   return (
-    <div className="bg-white rounded-lg shadow">
-      <div className="p-5 border-b border-gray-200">
+    <div className="bg-white dark:bg-gray-900 rounded-lg shadow">
+      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-gray-800">Latest Transactions</h2>
+          <h2 className="font-semibold text-gray-800 dark:text-gray-200">Latest Transactions</h2>
           <div>
             <select 
-              className="text-sm border border-gray-300 rounded py-1 px-2"
+              className="text-sm border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 rounded py-1 px-2"
               onChange={handleFilterChange}
             >
               <option value="all">All Transactions</option>
@@ -71,16 +71,16 @@ export default function TransactionsTable({ transactions, onFilterChange }: Tran
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead className="bg-gray-50 dark:bg-gray-800">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Transaction</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Amount</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
             {transactions.map((transaction) => (
               <tr key={transaction.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">

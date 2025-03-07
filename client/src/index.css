@@ -136,7 +136,7 @@
 /* Custom Components */
 @layer components {
   .card {
-    @apply bg-white border border-border shadow-none dark:bg-gray-800 dark:border-gray-700;
+    @apply bg-white border border-border shadow-none dark:bg-gray-900 dark:border-gray-700;
     border-radius: var(--card-border-radius);
   }
   
