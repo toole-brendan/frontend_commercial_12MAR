@@ -11,15 +11,15 @@ const MobileBottomNavigation: React.FC = () => {
   };
 
   return (
-    <nav className="lg:hidden flex items-center justify-around bg-white border-t border-gray-200 py-3">
+    <nav className="lg:hidden flex items-center justify-around bg-background dark:bg-mobile-nav-bg-dark border-t border-border dark:border-border py-3">
       <Link href="/dashboard">
-        <a className={`flex flex-col items-center ${isActive('/dashboard') || isActive('/') ? 'text-primary' : 'text-gray-500'}`}>
+        <a className={`flex flex-col items-center ${isActive('/dashboard') || isActive('/') ? 'text-primary' : 'text-muted-foreground dark:text-theme-text-secondary'}`}>
           <span className="material-icons text-sm">dashboard</span>
           <span className="text-xs mt-1">Dashboard</span>
         </a>
       </Link>
       <Link href="/inventory">
-        <a className={`flex flex-col items-center ${isActive('/inventory') ? 'text-primary' : 'text-gray-500'}`}>
+        <a className={`flex flex-col items-center ${isActive('/inventory') ? 'text-primary' : 'text-muted-foreground dark:text-theme-text-secondary'}`}>
           <span className="material-icons text-sm">inventory_2</span>
           <span className="text-xs mt-1">Inventory</span>
         </a>
@@ -34,10 +34,10 @@ const MobileBottomNavigation: React.FC = () => {
         <div className="bg-primary text-white p-3 rounded-full -mt-5 shadow-lg">
           <span className="material-icons">qr_code_scanner</span>
         </div>
-        <span className="text-xs mt-1">Scan</span>
+        <span className="text-xs mt-1 text-foreground dark:text-theme-text-primary">Scan</span>
       </a>
       <Link href="/transfers">
-        <a className={`flex flex-col items-center relative ${isActive('/transfers') ? 'text-primary' : 'text-gray-500'}`}>
+        <a className={`flex flex-col items-center relative ${isActive('/transfers') ? 'text-primary' : 'text-muted-foreground dark:text-theme-text-secondary'}`}>
           <span className="material-icons text-sm">swap_horiz</span>
           <span className="text-xs mt-1">Transfers</span>
           {notifications > 0 && (
@@ -47,9 +47,9 @@ const MobileBottomNavigation: React.FC = () => {
           )}
         </a>
       </Link>
-      <a className="flex flex-col items-center text-gray-500 group">
-        <span className="material-icons text-sm group-hover:text-gray-700">more_horiz</span>
-        <span className="text-xs mt-1 group-hover:text-gray-700">More</span>
+      <a className="flex flex-col items-center text-muted-foreground dark:text-theme-text-secondary group">
+        <span className="material-icons text-sm group-hover:text-foreground dark:group-hover:text-theme-text-primary">more_horiz</span>
+        <span className="text-xs mt-1 group-hover:text-foreground dark:group-hover:text-theme-text-primary">More</span>
       </a>
     </nav>
   );
