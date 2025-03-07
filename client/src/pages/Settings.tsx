@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { currentUser } from '@/lib/mockData';
 import { PageHeader } from '@/components/ui/page-header';
+import PageWrapper from '@/components/layout/PageWrapper';
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -134,11 +135,11 @@ export default function Settings() {
   };
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      <PageHeader 
-        title="Settings" 
-        description="Manage your account preferences and application settings"
-      />
+    <PageWrapper 
+      title="Settings" 
+      description="Manage your account preferences and application settings"
+      className="space-y-6"
+    >
 
       <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow">
         <div className="sm:hidden p-4">
@@ -618,6 +619,6 @@ export default function Settings() {
           )}
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
