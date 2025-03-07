@@ -515,31 +515,31 @@ export default function Analytics() {
               </div>
               <div>
                 <h3 className="font-medium text-sm">Increased Efficiency</h3>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   Processing time has decreased by 12% compared to last quarter, resulting in faster order fulfillment.
                 </p>
               </div>
             </div>
             
             <div className="flex items-start space-x-3">
-              <div className="bg-blue-100 p-2 rounded-full">
-                <Clock className="h-5 w-5 text-blue-600" />
+              <div className="bg-blue-100 p-2 rounded-full dark:bg-blue-900">
+                <Clock className="h-5 w-5 text-blue-600 dark:text-blue-300" />
               </div>
               <div>
                 <h3 className="font-medium text-sm">Aging Inventory Alert</h3>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   12% of inventory is over 90 days old. Consider promotional strategies to move these items.
                 </p>
               </div>
             </div>
             
             <div className="flex items-start space-x-3">
-              <div className="bg-purple-100 p-2 rounded-full">
-                <CheckCircle2 className="h-5 w-5 text-purple-600" />
+              <div className="bg-purple-100 p-2 rounded-full dark:bg-purple-900">
+                <CheckCircle2 className="h-5 w-5 text-purple-600 dark:text-purple-300" />
               </div>
               <div>
                 <h3 className="font-medium text-sm">Smart Contract Efficiency</h3>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   Suppliers with smart contracts show 15% faster payment processing and 23% fewer disputes.
                 </p>
               </div>

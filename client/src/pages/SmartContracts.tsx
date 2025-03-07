@@ -216,7 +216,7 @@ export default function SmartContracts() {
                 </label>
                 <div className="grid grid-cols-3 gap-3">
                   <div 
-                    className={`flex items-center justify-center px-3 py-2 border ${formData.paymentMethod === 'usdc' ? 'bg-green-50 border-green-500' : 'border-gray-300'} rounded-md cursor-pointer`}
+                    className={`flex items-center justify-center px-3 py-2 border ${formData.paymentMethod === 'usdc' ? 'bg-green-50 dark:bg-green-900/30 border-green-500' : 'border-gray-300 dark:border-gray-600'} rounded-md cursor-pointer`}
                     onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'usdc' }))}
                   >
                     <div className="flex items-center">
