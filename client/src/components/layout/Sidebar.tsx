@@ -144,7 +144,9 @@ export default function Sidebar({
             </button>
             
             <div className="flex items-center space-x-3">
-              <img src={user.profileImage} alt={user.name} className="w-10 h-10 rounded-full" />
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-medium">
+                {user.profileImage}
+              </div>
               <div>
                 <p className="text-sm font-medium text-gray-200">{user.name}</p>
                 <p className="text-xs text-gray-400">{user.role}</p>
@@ -224,7 +226,9 @@ export default function Sidebar({
             </div>
             
             <div className="flex items-center space-x-3">
-              <img src={user.profileImage} alt={user.name} className="w-10 h-10 rounded-full" />
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-medium">
+                {user.profileImage}
+              </div>
               <div>
                 <p className="text-sm font-medium text-gray-200">{user.name}</p>
                 <p className="text-xs text-gray-400">{user.role}</p>
@@ -243,7 +247,9 @@ export default function Sidebar({
               <ChevronRight className="h-5 w-5 text-black dark:text-white" />
             </button>
             
-            <img src={user.profileImage} alt={user.name} className="w-10 h-10 rounded-full" />
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-medium">
+              {user.profileImage}
+            </div>
           </div>
         )}
       </div>
