@@ -8,11 +8,11 @@ const Transactions: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-green-100 text-green-800 status-tag">Completed</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-green-100 text-green-800 font-display">Completed</span>;
       case 'pending':
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-amber-100 text-amber-800 status-tag">Pending</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-amber-100 text-amber-800 font-display">Pending</span>;
       default:
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-gray-100 text-gray-800 status-tag">{status}</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-gray-100 text-gray-800 font-display">{status}</span>;
     }
   };
   
@@ -117,23 +117,23 @@ const Transactions: React.FC = () => {
                 <tr key={tx.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center mr-3">
+                      <div className="flex-shrink-0 h-8 w-8 bg-blue-50 flex items-center justify-center mr-3">
                         {getTypeIcon(tx.type)}
                       </div>
-                      <div className="text-sm font-medium text-gray-900">{tx.id}</div>
+                      <div className="text-sm font-medium text-gray-900 font-display">{tx.id}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize">{tx.type}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.description}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.amount}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.reference}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{tx.date.toLocaleDateString()}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize font-display">{tx.type}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.description}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.amount}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.reference}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.date.toLocaleDateString()}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {getStatusBadge(tx.status)}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button className="text-primary hover:text-blue-700 mr-3 font-display">View</button>
-                    <button className="text-gray-500 hover:text-gray-700">
+                    <button className="text-gray-500 hover:text-gray-700 font-display">
                       <span className="material-icons text-sm">more_vert</span>
                     </button>
                   </td>
