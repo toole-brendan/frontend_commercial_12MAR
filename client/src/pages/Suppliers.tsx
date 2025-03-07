@@ -92,7 +92,7 @@ export default function Suppliers() {
           <CardContent>
             <div className="text-2xl font-bold flex items-center">
               {(suppliers.reduce((acc, supplier) => acc + supplier.rating, 0) / suppliers.length).toFixed(1)}
-              <Star className="h-4 w-4 text-yellow-400 ml-1" />
+              <Star className="h-4 w-4 text-amber-500 dark:text-amber-400 ml-1" />
             </div>
             <p className="text-xs text-muted-foreground">Based on performance history</p>
           </CardContent>
@@ -109,7 +109,7 @@ export default function Suppliers() {
           
           <div className="flex items-center space-x-2">
             <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground dark:text-theme-text-secondary" />
               <Input
                 type="search"
                 placeholder="Search suppliers..."
@@ -162,14 +162,14 @@ export default function Suppliers() {
                           <TableCell>
                             <div className="flex items-center">
                               {supplier.rating}
-                              <Star className="h-3 w-3 ml-1 text-yellow-400" />
+                              <Star className="h-3 w-3 ml-1 text-amber-500 dark:text-amber-400" />
                             </div>
                           </TableCell>
                           <TableCell>
                             <Badge className={
                               supplier.status === "Active" 
                                 ? "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900" 
-                                : "bg-gray-100 text-gray-800 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-700"
+                                : "bg-accent text-accent-foreground hover:bg-accent dark:bg-accent-dark dark:text-theme-text-muted dark:hover:bg-accent-dark"
                             }>
                               {supplier.status}
                             </Badge>
@@ -277,7 +277,7 @@ export default function Suppliers() {
             
             <div className="grid grid-cols-2 gap-6 py-4">
               <div>
-                <h3 className="font-medium mb-2 dark:text-gray-200">Contact Information</h3>
+                <h3 className="font-medium mb-2 text-foreground dark:text-theme-text-primary">Contact Information</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-500 dark:text-gray-400">Contact Person:</span>
@@ -310,7 +310,7 @@ export default function Suppliers() {
                     <Badge className={
                       selectedSupplier.status === "Active" 
                         ? "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900" 
-                        : "bg-gray-100 text-gray-800 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-700"
+                        : "bg-accent text-accent-foreground hover:bg-accent dark:bg-accent-dark dark:text-theme-text-muted dark:hover:bg-accent-dark"
                     }>
                       {selectedSupplier.status}
                     </Badge>
@@ -319,7 +319,7 @@ export default function Suppliers() {
                     <span className="text-gray-500 dark:text-gray-400">Rating:</span>
                     <div className="flex items-center dark:text-gray-300">
                       {selectedSupplier.rating}
-                      <Star className="h-3 w-3 ml-1 text-yellow-400" />
+                      <Star className="h-3 w-3 ml-1 text-amber-500 dark:text-amber-400" />
                     </div>
                   </div>
                   <div className="flex justify-between">

@@ -527,7 +527,7 @@ export default function Analytics() {
               </div>
               <div>
                 <h3 className="font-medium text-sm">Aging Inventory Alert</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-sm text-muted-foreground dark:text-theme-text-secondary mt-1">
                   12% of inventory is over 90 days old. Consider promotional strategies to move these items.
                 </p>
               </div>
@@ -539,7 +539,7 @@ export default function Analytics() {
               </div>
               <div>
                 <h3 className="font-medium text-sm">Smart Contract Efficiency</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-sm text-muted-foreground dark:text-theme-text-secondary mt-1">
                   Suppliers with smart contracts show 15% faster payment processing and 23% fewer disputes.
                 </p>
               </div>
