@@ -48,6 +48,16 @@
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
+  
+  /* Apply monospace font for code, data values, and numeric displays */
+  code, pre, .data-value, .numeric-display {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+  
+  /* Apply D-DIN Condensed for actionable elements and key stats */
+  .stat-value, .action-element, .key-number {
+    font-family: var(--font-display);
+  }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
