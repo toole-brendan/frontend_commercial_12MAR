@@ -92,7 +92,7 @@
     --bg-secondary: 210 40% 98%;
     --bg-accent: 210 100% 50%;
     --bg-accent-hover: 210 100% 45%;
-    --bg-sidebar: 39 70% 97%; /* Cream/off-white color */
+    --bg-sidebar: 0 0% 100%; /* Pure white sidebar */
     
     --text-primary: 210 50% 10%;
     --text-secondary: 210 20% 40%;
@@ -102,7 +102,7 @@
     
     --border-primary: 210 30% 92%;
     --border-accent: 210 100% 50%;
-    --border-sidebar: 39 30% 90%; /* Light border for sidebar */
+    --border-sidebar: 210 30% 92%; /* Light border for sidebar */
     
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.05);

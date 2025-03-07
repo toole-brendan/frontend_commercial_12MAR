@@ -129,71 +129,77 @@ export default function Suppliers() {
           <Card>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Supplier</TableHead>
-                      <TableHead>Category</TableHead>
-                      <TableHead>Payment Terms</TableHead>
-                      <TableHead>Rating</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Last Order</TableHead>
-                      <TableHead className="text-right">Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                  <thead className="bg-gray-50 dark:bg-gray-700">
+                    <tr>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Supplier</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Category</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Payment Terms</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Rating</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Last Order</th>
+                      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                     {isLoading ? (
-                      <TableRow>
-                        <TableCell colSpan={7} className="text-center py-4">Loading suppliers...</TableCell>
-                      </TableRow>
+                      <tr>
+                        <td colSpan={7} className="px-6 py-4 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Loading suppliers...</td>
+                      </tr>
                     ) : filteredSuppliers.length === 0 ? (
-                      <TableRow>
-                        <TableCell colSpan={7} className="text-center py-4">No suppliers found</TableCell>
-                      </TableRow>
+                      <tr>
+                        <td colSpan={7} className="px-6 py-4 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">No suppliers found</td>
+                      </tr>
                     ) : (
                       filteredSuppliers.map((supplier) => (
-                        <TableRow key={supplier.id}>
-                          <TableCell>
-                            <div className="font-medium">{supplier.name}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
-                          </TableCell>
-                          <TableCell>{supplier.category}</TableCell>
-                          <TableCell>{supplier.paymentTerms}</TableCell>
-                          <TableCell>
+                        <tr key={supplier.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                          <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
+                              <div className="flex-shrink-0 h-10 w-10 bg-gray-100 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                                <i className="fas fa-building text-gray-500 dark:text-gray-300"></i>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{supplier.name}</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.category}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.paymentTerms}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center text-sm text-gray-900 dark:text-gray-100">
                               {supplier.rating}
                               <Star className="h-3 w-3 ml-1 text-amber-500 dark:text-amber-400" />
                             </div>
-                          </TableCell>
-                          <TableCell>
-                            <Badge variant="outline" className={
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                               supplier.status === "Active" 
-                                ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800/50 dark:hover:bg-green-900/30" 
-                                : "bg-gray-50 text-gray-700 border-gray-200 hover:bg-gray-100 dark:bg-gray-800/30 dark:text-gray-400 dark:border-gray-700/50 dark:hover:bg-gray-800/40"
-                            }>
+                                ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300" 
+                                : "bg-gray-100 text-gray-800 dark:bg-gray-800/30 dark:text-gray-300"
+                            }`}>
                               {supplier.status}
-                            </Badge>
-                          </TableCell>
-                          <TableCell>
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                             {format(supplier.lastOrder, 'MMM d, yyyy')}
-                          </TableCell>
-                          <TableCell className="text-right">
-                            <Button 
-                              variant="ghost" 
-                              size="icon"
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <button 
+                              className="text-primary hover:text-primary-dark mr-3"
                               onClick={() => handleViewDetails(supplier)}
                             >
-                              <ExternalLink className="h-4 w-4" />
-                            </Button>
-                            <Button variant="ghost" size="icon">
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                          </TableCell>
-                        </TableRow>
+                              <ExternalLink className="h-4 w-4 inline" />
+                            </button>
+                            <button className="text-primary hover:text-primary-dark">
+                              <Edit className="h-4 w-4 inline" />
+                            </button>
+                          </td>
+                        </tr>
                       ))
                     )}
-                  </TableBody>
-                </Table>
+                  </tbody>
+                </table>
               </div>
             </CardContent>
           </Card>
