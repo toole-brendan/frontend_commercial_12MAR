@@ -17,6 +17,7 @@ import {
   Moon 
 } from "lucide-react";
 import { AppContext } from "@/context/AppContext";
+import { cn } from "@/lib/utils";
 
 interface SidebarProps {
   user: {
@@ -73,6 +74,11 @@ export default function Sidebar({
       closeMobileMenu();
     }
   };
+  
+  const handleLogoClick = () => {
+    // Navigate to the dashboard page
+    window.location.href = '/';
+  };
 
   // Using Lucide icons instead of FontAwesome 
   const navItems = [
@@ -91,6 +97,16 @@ export default function Sidebar({
   if (isMobile) {
     return (
       <nav className="flex-1 p-4 space-y-1">
+        {/* Mobile Logo */}
+        <div 
+          className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity mb-4"
+          onClick={handleLogoClick}
+        >
+          <div className="border border-gray-100/70 px-6 py-2">
+            <h1 className="text-lg font-light tracking-widest text-gray-100 m-0 font-serif">HandReceipt</h1>
+          </div>
+        </div>
+        
         {navItems.map((item) => 
           item.onClick ? (
             <div 
@@ -143,21 +159,20 @@ export default function Sidebar({
   return (
     <aside className={`sidebar hidden md:flex flex-col ${sidebarCollapsed ? 'collapsed' : ''}`}>
       <div className="p-4 border-b border-gray-700/50">
-        <div className="flex items-center justify-between">
-          {!sidebarCollapsed && (
-            <>
-              <div className="flex items-center space-x-2">
-                <span className="text-lg font-semibold text-gray-100">HandReceipt</span>
-              </div>
-              <span className="text-xs font-medium bg-blue-900/50 text-blue-100 py-1 px-2 rounded">Commercial</span>
-            </>
-          )}
-          {sidebarCollapsed && (
-            <div className="mx-auto w-5 h-5">
-              {/* Empty div to maintain spacing in collapsed mode */}
+        {!sidebarCollapsed ? (
+          <div 
+            className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
+            onClick={handleLogoClick}
+          >
+            <div className="border border-gray-100/70 px-6 py-2">
+              <h1 className="text-lg font-light tracking-widest text-gray-100 m-0 font-serif">HandReceipt</h1>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="mx-auto w-5 h-5">
+            {/* Empty div to maintain spacing in collapsed mode */}
+          </div>
+        )}
       </div>
       
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
