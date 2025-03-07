@@ -3,10 +3,10 @@ import { InventoryItem, Transfer, Transaction, SmartContract } from '@shared/sch
 // Mock user
 export const currentUser = {
   id: 1,
-  username: 'sarah.johnson',
-  name: 'Sarah Johnson',
+  username: 'michael.chen',
+  name: 'Michael Chen',
   role: 'Supply Chain Manager',
-  profileImage: 'https://randomuser.me/api/portraits/women/68.jpg'
+  profileImage: 'MC'
 };
 
 // Mock dashboard stats

@@ -7,7 +7,7 @@ export default function Settings() {
   const [activeTab, setActiveTab] = useState('profile');
   const [profileForm, setProfileForm] = useState({
     name: currentUser.name,
-    email: 'sarah.johnson@company.com',
+    email: 'michael.chen@company.com',
     role: currentUser.role,
     department: 'Supply Chain Management',
     phone: '+1 (555) 123-4567',
@@ -207,11 +207,11 @@ export default function Settings() {
                 <div className="md:w-1/4">
                   <div className="flex flex-col items-center space-y-3">
                     <div className="relative">
-                      <img 
-                        src={currentUser.profileImage} 
-                        alt={currentUser.name} 
-                        className="w-32 h-32 rounded-full object-cover"
-                      />
+                      <div 
+                        className="w-32 h-32 rounded-full bg-primary flex items-center justify-center text-white text-4xl font-medium"
+                      >
+                        {currentUser.profileImage}
+                      </div>
                       <button 
                         type="button"
                         className="absolute bottom-0 right-0 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md border border-gray-200 dark:border-gray-600"
