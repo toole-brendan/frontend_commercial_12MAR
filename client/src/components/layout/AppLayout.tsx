@@ -40,18 +40,18 @@ export default function AppLayout({ children }: AppLayoutProps) {
       />
 
       {/* Mobile header */}
-      <div className="md:hidden bg-gradient-to-r from-sky-900 to-blue-900 text-white p-4 shadow-md">
+      <div className="md:hidden bg-gradient-to-r from-sky-100 to-blue-100 dark:from-sky-900 dark:to-blue-900 text-gray-800 dark:text-white p-4 shadow-md">
         <div className="flex items-center justify-between">
           <div 
             className="flex items-center cursor-pointer hover:opacity-90 transition-opacity"
             onClick={() => window.location.href = '/'}
           >
-            <div className="border border-gray-100/70 px-4 py-1">
-              <h1 className="text-base font-light tracking-widest text-gray-100 m-0 font-serif">HandReceipt</h1>
+            <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
+              <h1 className="text-base font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
             </div>
           </div>
           <button 
-            className="text-white hover:bg-blue-800 p-2 rounded-md transition-colors focus:outline-none"
+            className="text-gray-800 dark:text-white hover:bg-blue-200 dark:hover:bg-blue-800 p-2 rounded-md transition-colors focus:outline-none"
             onClick={toggleMobileMenu}
             aria-label="Open menu"
           >
@@ -70,18 +70,18 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-sky-950 to-blue-950 text-white z-50 md:hidden">
-          <div className="p-4 border-b border-gray-700/50 flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <div className="bg-blue-600 text-white p-1 rounded">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
-                </svg>
+        <div className="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-sky-100 to-blue-100 dark:from-sky-950 dark:to-blue-950 text-gray-800 dark:text-white z-50 md:hidden">
+          <div className="p-4 border-b border-gray-300/50 dark:border-gray-700/50 flex justify-between items-center">
+            <div 
+              className="flex items-center cursor-pointer hover:opacity-90 transition-opacity"
+              onClick={() => window.location.href = '/'}
+            >
+              <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
+                <h1 className="text-base font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
               </div>
-              <span className="text-lg font-semibold text-white">HandReceipt</span>
             </div>
             <button 
-              className="text-white hover:bg-blue-800 p-2 rounded-md transition-colors focus:outline-none"
+              className="text-gray-800 dark:text-white hover:bg-blue-200 dark:hover:bg-blue-800 p-2 rounded-md transition-colors focus:outline-none"
               onClick={toggleMobileMenu}
               aria-label="Close menu"
             >
