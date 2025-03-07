@@ -515,7 +515,7 @@ export default function Analytics() {
               </div>
               <div>
                 <h3 className="font-medium text-sm">Increased Efficiency</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-sm text-muted-foreground dark:text-theme-text-secondary mt-1">
                   Processing time has decreased by 12% compared to last quarter, resulting in faster order fulfillment.
                 </p>
               </div>
