@@ -66,6 +66,29 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom standardized theme colors
+        page: {
+          DEFAULT: "white", // Light mode default
+          dark: "hsl(var(--page-background))" // Dark mode
+        },
+        'card-bg': {
+          DEFAULT: "white", // Light mode default
+          dark: "hsl(var(--card-background))" // Dark mode
+        },
+        'input-bg': {
+          DEFAULT: "white", // Light mode default
+          dark: "hsl(var(--input-background))" // Dark mode
+        },
+        'hover-bg': {
+          DEFAULT: "hsl(210 30% 98%)", // Light mode hover
+          dark: "hsl(var(--hover-background))" // Dark mode hover
+        },
+        'theme-text': {
+          primary: "hsl(var(--text-primary))",
+          secondary: "hsl(var(--text-secondary))",
+          accent: "hsl(var(--text-accent))",
+          inverse: "hsl(var(--text-inverse))",
+        },
       },
       keyframes: {
         "accordion-down": {
