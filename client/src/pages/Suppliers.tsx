@@ -101,10 +101,28 @@ export default function Suppliers() {
       
       <Tabs defaultValue="all" className="w-full mb-6">
         <div className="flex justify-between items-center mb-4">
-          <TabsList>
-            <TabsTrigger value="all" onClick={() => setFilterStatus(null)}>All</TabsTrigger>
-            <TabsTrigger value="active" onClick={() => setFilterStatus("Active")}>Active</TabsTrigger>
-            <TabsTrigger value="inactive" onClick={() => setFilterStatus("Inactive")}>Inactive</TabsTrigger>
+          <TabsList className="bg-gray-100 dark:bg-gray-800">
+            <TabsTrigger 
+              value="all" 
+              onClick={() => setFilterStatus(null)}
+              className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
+            >
+              All
+            </TabsTrigger>
+            <TabsTrigger 
+              value="active" 
+              onClick={() => setFilterStatus("Active")}
+              className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
+            >
+              Active
+            </TabsTrigger>
+            <TabsTrigger 
+              value="inactive" 
+              onClick={() => setFilterStatus("Inactive")}
+              className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
+            >
+              Inactive
+            </TabsTrigger>
           </TabsList>
           
           <div className="flex items-center space-x-2">
@@ -113,13 +131,13 @@ export default function Suppliers() {
               <Input
                 type="search"
                 placeholder="Search suppliers..."
-                className="pl-8 w-[250px]"
+                className="pl-8 w-[250px] bg-white dark:bg-gray-800 border dark:border-gray-700"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             
-            <Button variant="outline" size="icon" className="h-10 w-10">
+            <Button variant="outline" size="icon" className="h-10 w-10 dark:bg-gray-800 dark:border-gray-700">
               <Filter className="h-4 w-4" />
             </Button>
           </div>
@@ -130,15 +148,15 @@ export default function Suppliers() {
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-50 dark:bg-gray-800">
+                  <thead className="bg-gray-50 dark:bg-gray-900">
                     <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Supplier</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Category</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Payment Terms</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Rating</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Last Order</th>
-                      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Supplier</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Category</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Payment Terms</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Rating</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Status</th>
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Last Order</th>
+                      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
