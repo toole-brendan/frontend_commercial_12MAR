@@ -110,11 +110,12 @@ export default function Sidebar({ user, isMobile = false, closeMobileMenu, openQ
       </div>
       
       <nav className="flex-1 p-4 space-y-1">
-        {navItems.map((item) => (
-          <Link key={item.path} href={item.path}>
-            <a
+        {navItems.map((item) => 
+          item.onClick ? (
+            <div 
+              key={item.path}
               onClick={item.onClick}
-              className={`flex items-center space-x-3 rounded-lg p-3 ${
+              className={`flex items-center space-x-3 rounded-lg p-3 cursor-pointer ${
                 isActive(item.path) 
                   ? "text-primary font-medium bg-primary-50" 
                   : "text-gray-700 hover:bg-gray-100"
@@ -122,9 +123,22 @@ export default function Sidebar({ user, isMobile = false, closeMobileMenu, openQ
             >
               <i className={`fas ${item.icon}`}></i>
               <span>{item.label}</span>
-            </a>
-          </Link>
-        ))}
+            </div>
+          ) : (
+            <Link key={item.path} href={item.path}>
+              <div
+                className={`flex items-center space-x-3 rounded-lg p-3 cursor-pointer ${
+                  isActive(item.path) 
+                    ? "text-primary font-medium bg-primary-50" 
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <i className={`fas ${item.icon}`}></i>
+                <span>{item.label}</span>
+              </div>
+            </Link>
+          )
+        )}
       </nav>
       
       <div className="p-4 border-t border-gray-200">

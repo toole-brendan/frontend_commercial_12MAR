@@ -10,6 +10,8 @@ export default function SmartContracts() {
     counterparty: '',
     paymentTerms: '',
     triggerConditions: '',
+    paymentMethod: 'usdc',
+    amount: '',
   });
   const { toast } = useToast();
 
@@ -34,6 +36,8 @@ export default function SmartContracts() {
       counterparty: '',
       paymentTerms: '',
       triggerConditions: '',
+      paymentMethod: 'usdc',
+      amount: '',
     });
   };
 
@@ -178,6 +182,68 @@ export default function SmartContracts() {
                 />
               </div>
               
+              <div>
+                <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
+                  Amount
+                </label>
+                <div className="flex">
+                  <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                    placeholder="0.00"
+                    value={formData.amount}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <span className="inline-flex items-center px-3 py-2 text-sm text-gray-500 bg-gray-100 border border-l-0 border-gray-300 rounded-r-md">
+                    USD
+                  </span>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Payment Method
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  <div 
+                    className={`flex items-center justify-center px-3 py-2 border ${formData.paymentMethod === 'usdc' ? 'bg-green-50 border-green-500' : 'border-gray-300'} rounded-md cursor-pointer`}
+                    onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'usdc' }))}
+                  >
+                    <div className="flex items-center">
+                      <div className={`w-4 h-4 mr-2 rounded-full flex items-center justify-center ${formData.paymentMethod === 'usdc' ? 'bg-green-500' : 'border border-gray-400'}`}>
+                        {formData.paymentMethod === 'usdc' && <i className="fas fa-check text-white text-xs"></i>}
+                      </div>
+                      <span className="text-sm">USDC</span>
+                    </div>
+                  </div>
+                  <div 
+                    className={`flex items-center justify-center px-3 py-2 border ${formData.paymentMethod === 'shells' ? 'bg-indigo-50 border-indigo-500' : 'border-gray-300'} rounded-md cursor-pointer`}
+                    onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'shells' }))}
+                  >
+                    <div className="flex items-center">
+                      <div className={`w-4 h-4 mr-2 rounded-full flex items-center justify-center ${formData.paymentMethod === 'shells' ? 'bg-indigo-500' : 'border border-gray-400'}`}>
+                        {formData.paymentMethod === 'shells' && <i className="fas fa-check text-white text-xs"></i>}
+                      </div>
+                      <span className="text-sm">Shells</span>
+                    </div>
+                  </div>
+                  <div 
+                    className={`flex items-center justify-center px-3 py-2 border ${formData.paymentMethod === 'traditional' ? 'bg-blue-50 border-blue-500' : 'border-gray-300'} rounded-md cursor-pointer`}
+                    onClick={() => setFormData(prev => ({ ...prev, paymentMethod: 'traditional' }))}
+                  >
+                    <div className="flex items-center">
+                      <div className={`w-4 h-4 mr-2 rounded-full flex items-center justify-center ${formData.paymentMethod === 'traditional' ? 'bg-blue-500' : 'border border-gray-400'}`}>
+                        {formData.paymentMethod === 'traditional' && <i className="fas fa-check text-white text-xs"></i>}
+                      </div>
+                      <span className="text-sm">Traditional</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
               <div className="flex justify-end space-x-3 pt-4">
                 <button
                   type="button"
@@ -289,26 +355,96 @@ export default function SmartContracts() {
         )}
       </div>
 
+      {/* Payment Options Section */}
+      <div className="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 className="text-lg font-semibold text-gray-800 mb-4">Payment Options</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center mb-3">
+              <div className="bg-green-100 p-2 rounded-full mr-3">
+                <i className="fas fa-dollar-sign text-green-600"></i>
+              </div>
+              <h3 className="font-medium">USDC Stablecoin</h3>
+            </div>
+            <p className="text-sm text-gray-600 mb-3">
+              Use USDC for immediate settlement with stable 1:1 USD value. Ideal for international transactions with no exchange rate volatility.
+            </p>
+            <span className="text-xs font-medium bg-green-100 text-green-800 px-2 py-1 rounded-full">Recommended</span>
+          </div>
+          
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center mb-3">
+              <div className="bg-indigo-100 p-2 rounded-full mr-3">
+                <i className="fas fa-coins text-indigo-600"></i>
+              </div>
+              <h3 className="font-medium">HandReceipt Shells (SHL)</h3>
+            </div>
+            <p className="text-sm text-gray-600 mb-3">
+              Use our native token for reduced fees within the HandReceipt ecosystem. Perfect for recurring business relationships.
+            </p>
+            <span className="text-xs font-medium bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">Platform Token</span>
+          </div>
+          
+          <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div className="flex items-center mb-3">
+              <div className="bg-blue-100 p-2 rounded-full mr-3">
+                <i className="fas fa-university text-blue-600"></i>
+              </div>
+              <h3 className="font-medium">Traditional Payments</h3>
+            </div>
+            <p className="text-sm text-gray-600 mb-3">
+              Connect with traditional banking systems for wire transfers and ACH payments when crypto settlement is not preferred.
+            </p>
+            <span className="text-xs font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Legacy Option</span>
+          </div>
+        </div>
+      </div>
+      
       {/* Info Section */}
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">About Smart Contracts</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h3 className="font-medium text-gray-700 mb-2">What are Smart Contracts?</h3>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 mb-3">
               Smart contracts are self-executing agreements with the terms directly written into code. 
               They automatically enforce and execute the terms when predefined conditions are met, 
               without the need for intermediaries.
             </p>
+            <div className="bg-blue-50 p-3 rounded-lg border border-blue-100">
+              <div className="flex items-start">
+                <div className="text-blue-500 mr-3">
+                  <i className="fas fa-info-circle text-lg"></i>
+                </div>
+                <p className="text-xs text-blue-800">
+                  All HandReceipt smart contracts are deployed on secure blockchain infrastructure with SOC 2 compliance and enterprise-grade security.
+                </p>
+              </div>
+            </div>
           </div>
           <div>
-            <h3 className="font-medium text-gray-700 mb-2">Benefits for Supply Chain</h3>
-            <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-              <li>Automated payments when goods are received</li>
-              <li>Transparent record of all transactions</li>
-              <li>Reduced paperwork and administrative costs</li>
-              <li>Faster settlement times</li>
-              <li>Immutable records for audit purposes</li>
+            <h3 className="font-medium text-gray-700 mb-2">Commercial Benefits</h3>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li className="flex items-start">
+                <span className="text-green-500 mr-2"><i className="fas fa-check-circle"></i></span>
+                <span>Immediate payment settlement when goods are received and verified</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-500 mr-2"><i className="fas fa-check-circle"></i></span>
+                <span>Create custom payment conditions (receipt of goods, sales levels, inventory thresholds)</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-500 mr-2"><i className="fas fa-check-circle"></i></span>
+                <span>Transparent, immutable transaction record for audit and compliance</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-500 mr-2"><i className="fas fa-check-circle"></i></span>
+                <span>Reduced administrative overhead and paperwork</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-500 mr-2"><i className="fas fa-check-circle"></i></span>
+                <span>Integration with existing ERP and accounting systems</span>
+              </li>
             </ul>
           </div>
         </div>
