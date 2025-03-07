@@ -88,100 +88,100 @@ export default function Analytics() {
       
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Fulfillment Rate</CardTitle>
-          </CardHeader>
-          <CardContent className="py-0">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.fulfillmentRate}%</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
-                <ArrowUpRight className="h-3 w-3 mr-1" />
-                2.1%
-              </Badge>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800 p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Fulfillment Rate</p>
+              <div className="flex items-center mt-1">
+                <div className="text-2xl font-semibold text-gray-800 dark:text-gray-200">{data.kpis.fulfillmentRate}%</div>
+                <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
+                  <ArrowUpRight className="h-3 w-3 mr-1" />
+                  2.1%
+                </Badge>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
-          </CardContent>
+          </div>
         </Card>
         
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Avg. Processing Time</CardTitle>
-          </CardHeader>
-          <CardContent className="py-0">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.avgProcessingTime} days</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
-                <ArrowDownRight className="h-3 w-3 mr-1" />
-                0.3 days
-              </Badge>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800 p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Avg. Processing Time</p>
+              <div className="flex items-center mt-1">
+                <div className="text-2xl font-semibold text-gray-800 dark:text-gray-200">{data.kpis.avgProcessingTime} days</div>
+                <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
+                  <ArrowDownRight className="h-3 w-3 mr-1" />
+                  0.3 days
+                </Badge>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
-          </CardContent>
+          </div>
         </Card>
         
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Order Accuracy</CardTitle>
-          </CardHeader>
-          <CardContent className="py-0">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.orderAccuracy}%</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
-                <ArrowUpRight className="h-3 w-3 mr-1" />
-                0.5%
-              </Badge>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800 p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Order Accuracy</p>
+              <div className="flex items-center mt-1">
+                <div className="text-2xl font-semibold text-gray-800 dark:text-gray-200">{data.kpis.orderAccuracy}%</div>
+                <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
+                  <ArrowUpRight className="h-3 w-3 mr-1" />
+                  0.5%
+                </Badge>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
-          </CardContent>
+          </div>
         </Card>
         
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">On-Time Payment</CardTitle>
-          </CardHeader>
-          <CardContent className="py-0">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.onTimePayment}%</div>
-              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
-                <ArrowUpRight className="h-3 w-3 mr-1" />
-                1.2%
-              </Badge>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800 p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">On-Time Payment</p>
+              <div className="flex items-center mt-1">
+                <div className="text-2xl font-semibold text-gray-800 dark:text-gray-200">{data.kpis.onTimePayment}%</div>
+                <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800 dark:hover:bg-green-900/30">
+                  <ArrowUpRight className="h-3 w-3 mr-1" />
+                  1.2%
+                </Badge>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
-          </CardContent>
+          </div>
         </Card>
         
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Inventory Turnover</CardTitle>
-          </CardHeader>
-          <CardContent className="py-0">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.inventoryTurnover}</div>
-              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
-                <ArrowUpRight className="h-3 w-3 mr-1" />
-                0.1
-              </Badge>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800 p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Inventory Turnover</p>
+              <div className="flex items-center mt-1">
+                <div className="text-2xl font-semibold text-gray-800 dark:text-gray-200">{data.kpis.inventoryTurnover}</div>
+                <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
+                  <ArrowUpRight className="h-3 w-3 mr-1" />
+                  0.1
+                </Badge>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
-          </CardContent>
+          </div>
         </Card>
         
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-gray-900 dark:text-gray-100">Supplier Reliability</CardTitle>
-          </CardHeader>
-          <CardContent className="py-0">
-            <div className="flex items-center">
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.kpis.supplierReliability}%</div>
-              <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
-                <ArrowDownRight className="h-3 w-3 mr-1" />
-                0.8%
-              </Badge>
+        <Card className="border dark:border-gray-700 dark:bg-gray-800 p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Supplier Reliability</p>
+              <div className="flex items-center mt-1">
+                <div className="text-2xl font-semibold text-gray-800 dark:text-gray-200">{data.kpis.supplierReliability}%</div>
+                <Badge variant="outline" className="ml-2 bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/50 dark:hover:bg-amber-900/30">
+                  <ArrowDownRight className="h-3 w-3 mr-1" />
+                  0.8%
+                </Badge>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
             </div>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">vs previous period</p>
-          </CardContent>
+          </div>
         </Card>
       </div>
       
