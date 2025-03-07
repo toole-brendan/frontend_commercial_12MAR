@@ -19,13 +19,13 @@ const Transactions: React.FC = () => {
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'transfer':
-        return <span className="material-icons text-blue-500">swap_horiz</span>;
+        return <span className="material-icons text-blue-500 text-xl">swap_horiz</span>;
       case 'payment':
-        return <span className="material-icons text-green-500">payments</span>;
+        return <span className="material-icons text-green-500 text-xl">payments</span>;
       case 'contract':
-        return <span className="material-icons text-amber-500">description</span>;
+        return <span className="material-icons text-amber-500 text-xl">description</span>;
       default:
-        return <span className="material-icons text-gray-500">receipt</span>;
+        return <span className="material-icons text-gray-500 text-xl">receipt</span>;
     }
   };
   
@@ -100,27 +100,27 @@ const Transactions: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transaction</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reference</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Transaction</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Description</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Amount</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Reference</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Date</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Status</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider font-display">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {mockTransactions
                 .filter(tx => activeTab === 'all' || tx.type === activeTab.slice(0, -1))
                 .map((tx) => (
-                <tr key={tx.id}>
+                <tr key={tx.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 h-8 w-8 bg-blue-50 flex items-center justify-center mr-3">
+                      <div className="flex-shrink-0 h-10 w-10 bg-blue-50 flex items-center justify-center mr-3">
                         {getTypeIcon(tx.type)}
                       </div>
-                      <div className="text-sm font-medium text-gray-900 font-display">{tx.id}</div>
+                      <div className="text-sm font-medium text-gray-900 font-display px-2">{tx.id}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize font-display">{tx.type}</td>
