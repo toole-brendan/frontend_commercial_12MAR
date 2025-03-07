@@ -230,10 +230,10 @@ export const lowStockItems = [
 // Mock transactions
 export const mockTransactions = [
   {
-    id: 1,
-    type: 'incoming',
-    description: 'Payment from TechMart Inc',
-    reference: 'Invoice #INV-2023-004',
+    id: "TR-10035",
+    type: 'receipt',
+    description: 'Inventory Receipt: Office Supplies',
+    reference: 'PO #PO-2023-156',
     date: new Date(2023, 4, 4),
     amount: 3500,
     amountUSD: 3500,
@@ -241,10 +241,10 @@ export const mockTransactions = [
     status: 'completed'
   },
   {
-    id: 2,
-    type: 'outgoing',
-    description: 'Payment to SupplyOne',
-    reference: 'PO #PO-2023-089',
+    id: "TR-10036",
+    type: 'invoice',
+    description: 'Payment to SupplyTech Inc',
+    reference: 'Invoice #INV-2023-089',
     date: new Date(2023, 4, 3),
     amount: 1250,
     amountUSD: 1250,
@@ -252,7 +252,7 @@ export const mockTransactions = [
     status: 'completed'
   },
   {
-    id: 3,
+    id: "TR-10037",
     type: 'transfer',
     description: 'Asset Transfer: Electronics',
     reference: 'Warehouse #1 to HQ',
@@ -263,15 +263,37 @@ export const mockTransactions = [
     status: 'in_transit'
   },
   {
-    id: 4,
-    type: 'outgoing',
-    description: 'Payment to OfficeDepot',
+    id: "TR-10038",
+    type: 'purchase',
+    description: 'Equipment Purchase: Scanners',
     reference: 'PO #PO-2023-075',
     date: new Date(2023, 4, 1),
     amount: 890,
     amountUSD: 890,
     currency: 'SHL',
     status: 'completed'
+  },
+  {
+    id: "TR-10039",
+    type: 'shipment',
+    description: 'Outbound Shipment: Customer Order',
+    reference: 'Order #ORD-2023-112',
+    date: new Date(2023, 4, 1),
+    amount: 24,
+    amountUSD: 5760,
+    currency: 'items',
+    status: 'processing'
+  },
+  {
+    id: "TR-10040",
+    type: 'contract',
+    description: 'Smart Contract: Service Agreement',
+    reference: 'Contract #SC-2023-008',
+    date: new Date(2023, 3, 28),
+    amount: 1200,
+    amountUSD: 1200,
+    currency: 'SHL',
+    status: 'pending'
   },
 ];
 

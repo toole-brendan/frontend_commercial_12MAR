@@ -11,6 +11,10 @@ const Transactions: React.FC = () => {
         return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-green-100 text-green-800 font-display">Completed</span>;
       case 'pending':
         return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-amber-100 text-amber-800 font-display">Pending</span>;
+      case 'in_transit':
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-blue-100 text-blue-800 font-display">In Transit</span>;
+      case 'processing':
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-purple-100 text-purple-800 font-display">Processing</span>;
       default:
         return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-gray-100 text-gray-800 font-display">{status}</span>;
     }
@@ -18,14 +22,39 @@ const Transactions: React.FC = () => {
   
   const getTypeIcon = (type: string) => {
     switch (type) {
+      case 'receipt':
+        return <span className="material-icons text-emerald-500 text-xl">inventory</span>;
+      case 'invoice':
+        return <span className="material-icons text-violet-500 text-xl">receipt_long</span>;
       case 'transfer':
         return <span className="material-icons text-blue-500 text-xl">swap_horiz</span>;
-      case 'payment':
-        return <span className="material-icons text-green-500 text-xl">payments</span>;
+      case 'purchase':
+        return <span className="material-icons text-indigo-500 text-xl">shopping_cart</span>;
+      case 'shipment':
+        return <span className="material-icons text-amber-500 text-xl">local_shipping</span>;
       case 'contract':
-        return <span className="material-icons text-amber-500 text-xl">description</span>;
+        return <span className="material-icons text-red-500 text-xl">description</span>;
       default:
         return <span className="material-icons text-gray-500 text-xl">receipt</span>;
+    }
+  };
+  
+  const getIconBgColor = (type: string) => {
+    switch (type) {
+      case 'receipt':
+        return 'bg-emerald-50';
+      case 'invoice':
+        return 'bg-violet-50';
+      case 'transfer':
+        return 'bg-blue-50';
+      case 'purchase':
+        return 'bg-indigo-50';
+      case 'shipment':
+        return 'bg-amber-50';
+      case 'contract':
+        return 'bg-red-50';
+      default:
+        return 'bg-gray-50';
     }
   };
   
@@ -41,22 +70,28 @@ const Transactions: React.FC = () => {
             All Transactions
           </button>
           <button 
+            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'receipts' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
+            onClick={() => setActiveTab('receipts')}
+          >
+            Receipts
+          </button>
+          <button 
             className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'transfers' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
             onClick={() => setActiveTab('transfers')}
           >
             Transfers
           </button>
           <button 
-            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'payments' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
-            onClick={() => setActiveTab('payments')}
+            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'shipments' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
+            onClick={() => setActiveTab('shipments')}
           >
-            Payments
+            Shipments
           </button>
           <button 
-            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'contracts' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
-            onClick={() => setActiveTab('contracts')}
+            className={`px-6 py-4 font-medium text-sm focus:outline-none font-display ${activeTab === 'purchases' ? 'text-primary border-b-2 border-primary' : 'text-gray-500 hover:text-gray-700'}`}
+            onClick={() => setActiveTab('purchases')}
           >
-            Smart Contracts
+            Purchases
           </button>
         </div>
       </div>
@@ -114,38 +149,38 @@ const Transactions: React.FC = () => {
               {mockTransactions
                 .filter(tx => activeTab === 'all' || tx.type === activeTab.slice(0, -1))
                 .map((tx) => (
-                <tr key={tx.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10 bg-blue-50 flex items-center justify-center mr-3">
-                        {getTypeIcon(tx.type)}
+                  <tr key={tx.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className={`flex-shrink-0 h-10 w-10 flex items-center justify-center mr-3 ${getIconBgColor(tx.type)}`}>
+                          {getTypeIcon(tx.type)}
+                        </div>
+                        <div className="text-sm font-medium text-gray-900 font-display px-2">{tx.id}</div>
                       </div>
-                      <div className="text-sm font-medium text-gray-900 font-display px-2">{tx.id}</div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize font-display">{tx.type}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.description}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.amount}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.reference}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.date.toLocaleDateString()}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {getStatusBadge(tx.status)}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-primary hover:text-blue-700 mr-3 font-display">View</button>
-                    <button className="text-gray-500 hover:text-gray-700 font-display">
-                      <span className="material-icons text-sm">more_vert</span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 capitalize font-display">{tx.type}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.description}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.amount}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.reference}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-display">{tx.date.toLocaleDateString()}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {getStatusBadge(tx.status)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button className="text-primary hover:text-blue-700 mr-3 font-display">View</button>
+                      <button className="text-gray-500 hover:text-gray-700 font-display">
+                        <span className="material-icons text-sm">more_vert</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
         <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
           <div className="flex items-center">
             <p className="text-sm text-gray-700">
-              Showing <span className="font-medium">1</span> to <span className="font-medium">4</span> of <span className="font-medium">42</span> results
+              Showing <span className="font-medium">1</span> to <span className="font-medium">6</span> of <span className="font-medium">42</span> results
             </p>
           </div>
           <div className="flex items-center space-x-2">
