@@ -81,71 +81,73 @@ export default function Dashboard() {
       title="Dashboard" 
       description="Overview of your inventory, transfers, and transactions"
       actions={actionButtons}
-      className="space-y-6"
+      className="space-y-0 p-0"
     >
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
-          label="Total Inventory"
-          value={statsLoading ? "Loading..." : displayStats.totalInventory}
-          icon="fa-boxes"
-          trend={{ value: 3.2, isPositive: true, text: "from last month" }}
-          iconBgColor="bg-primary-100"
-          iconColor="text-primary"
-        />
-        
-        <StatCard
-          label="Pending Transfers"
-          value={statsLoading ? "Loading..." : displayStats.pendingTransfers}
-          icon="fa-exchange-alt"
-          trend={{ value: 8.1, isPositive: false, text: "from last week" }}
-          iconBgColor="bg-yellow-100"
-          iconColor="text-yellow-500"
-        />
-        
-        <StatCard
-          label="Completed Today"
-          value={statsLoading ? "Loading..." : displayStats.completedToday}
-          icon="fa-check-circle"
-          trend={{ value: 12.4, isPositive: true, text: "from yesterday" }}
-          iconBgColor="bg-green-100"
-          iconColor="text-green-500"
-        />
-        
-        <StatCard
-          label="Shell Balance"
-          value={`${displayStats.shellBalance} SHL`}
-          icon="fa-coins"
-          iconBgColor="bg-indigo-100"
-          iconColor="text-indigo-500"
-          trend={undefined}
-        />
-      </div>
-
-      {/* Recent Transfer Requests & Activity */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <TransferRequestsList 
-          requests={transferRequests}
-        />
-        
-        <ActivityTimeline 
-          activities={activities}
-        />
-      </div>
-
-      {/* Low Stock & Latest Transactions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-1">
-          <LowStockItems 
-            items={lowStockItems}
-            onReorder={handleReorderItem}
+      <div className="grid grid-flow-row gap-0">
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
+          <StatCard
+            label="Total Inventory"
+            value={statsLoading ? "Loading..." : displayStats.totalInventory}
+            icon="fa-boxes"
+            trend={{ value: 3.2, isPositive: true, text: "from last month" }}
+            iconBgColor="bg-primary-100"
+            iconColor="text-primary"
+          />
+          
+          <StatCard
+            label="Pending Transfers"
+            value={statsLoading ? "Loading..." : displayStats.pendingTransfers}
+            icon="fa-exchange-alt"
+            trend={{ value: 8.1, isPositive: false, text: "from last week" }}
+            iconBgColor="bg-yellow-100"
+            iconColor="text-yellow-500"
+          />
+          
+          <StatCard
+            label="Completed Today"
+            value={statsLoading ? "Loading..." : displayStats.completedToday}
+            icon="fa-check-circle"
+            trend={{ value: 12.4, isPositive: true, text: "from yesterday" }}
+            iconBgColor="bg-green-100"
+            iconColor="text-green-500"
+          />
+          
+          <StatCard
+            label="Shell Balance"
+            value={`${displayStats.shellBalance} SHL`}
+            icon="fa-coins"
+            iconBgColor="bg-indigo-100"
+            iconColor="text-indigo-500"
+            trend={undefined}
           />
         </div>
-        
-        <div className="lg:col-span-2">
-          <TransactionsTable 
-            transactions={mockTransactions}
+
+        {/* Recent Transfer Requests & Activity */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-2">
+          <TransferRequestsList 
+            requests={transferRequests}
           />
+          
+          <ActivityTimeline 
+            activities={activities}
+          />
+        </div>
+
+        {/* Low Stock & Latest Transactions */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+          <div className="lg:col-span-1">
+            <LowStockItems 
+              items={lowStockItems}
+              onReorder={handleReorderItem}
+            />
+          </div>
+          
+          <div className="lg:col-span-2">
+            <TransactionsTable 
+              transactions={mockTransactions}
+            />
+          </div>
         </div>
       </div>
 

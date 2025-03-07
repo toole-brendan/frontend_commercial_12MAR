@@ -207,12 +207,41 @@
   
   /* Apply standardized background in dark mode */
   .dark .main-content {
-    background-color: hsl(var(--page-background));
+    background-color: hsl(var(--background));
+  }
+  
+  /* Ensure dark mode has no gaps between sections */
+  .dark .page-container {
+    background-color: hsl(var(--background));
   }
   
   .main-content.sidebar-collapsed {
     margin-left: var(--sidebar-collapsed-width);
     max-width: calc(100% - var(--sidebar-collapsed-width));
+  }
+  
+  /* Fix for card components to ensure they have background in dark mode */
+  .dark .card, 
+  .dark [class*="bg-gray-800"],
+  .dark .bg-white {
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+  
+  /* Ensure cards have coherent styling in dark mode */
+  .dark .standard-page,
+  .dark .page-container {
+    background-color: hsl(var(--background));
+  }
+  
+  /* Fix for nested components in dark mode */
+  .dark [class*="dark:bg-gray-800"] {
+    background-color: hsl(var(--card));
+  }
+  
+  /* Ensure all dashboard cards have the same style and no gaps */
+  .dashboard-card {
+    @apply border rounded-md overflow-hidden;
   }
   
   /* Button styles with square corners */
