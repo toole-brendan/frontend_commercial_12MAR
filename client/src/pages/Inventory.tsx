@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
+import { PageHeader } from '@/components/ui/page-header';
 import { inventoryItems as mockInventoryItems } from '@/lib/mockData';
 
 export default function Inventory() {
@@ -55,27 +56,32 @@ export default function Inventory() {
     });
   };
 
+  const actionButtons = (
+    <div className="flex flex-col sm:flex-row gap-2">
+      <button 
+        className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm"
+        onClick={handleAddItem}
+      >
+        <i className="fas fa-plus"></i>
+        <span>Add Item</span>
+      </button>
+      <button 
+        className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm"
+        onClick={handleExportCSV}
+      >
+        <i className="fas fa-file-export"></i>
+        <span>Export CSV</span>
+      </button>
+    </div>
+  );
+
   return (
     <div className="p-4 md:p-6 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-2xl font-semibold text-gray-800">Inventory Management</h1>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <button 
-            className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm"
-            onClick={handleAddItem}
-          >
-            <i className="fas fa-plus"></i>
-            <span>Add Item</span>
-          </button>
-          <button 
-            className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg flex items-center justify-center space-x-2 text-sm"
-            onClick={handleExportCSV}
-          >
-            <i className="fas fa-file-export"></i>
-            <span>Export CSV</span>
-          </button>
-        </div>
-      </div>
+      <PageHeader 
+        title="Inventory Management" 
+        description="Manage and track your inventory items across all locations"
+        actions={actionButtons}
+      />
 
       {/* Filter and Search */}
       <div className="bg-white rounded-lg shadow p-4">

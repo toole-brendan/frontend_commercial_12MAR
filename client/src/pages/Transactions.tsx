@@ -58,8 +58,25 @@ const Transactions: React.FC = () => {
     }
   };
   
+  const actionButtons = (
+    <div className="flex items-center space-x-2">
+      <button className="flex items-center px-4 py-2 bg-primary text-white border border-transparent font-display">
+        <span className="material-icons mr-2">add</span>
+        <span>New Transaction</span>
+      </button>
+      <button className="flex items-center px-4 py-2 bg-white border border-gray-300 text-gray-700 font-display">
+        <span className="material-icons mr-2">file_download</span>
+        <span>Export</span>
+      </button>
+    </div>
+  );
+
   return (
-    <PageContainer title="Transactions">
+    <PageContainer 
+      title="Transactions" 
+      description="Manage and track all transaction records across the system"
+      actions={actionButtons}
+    >
       {/* Tabs */}
       <div className="bg-white shadow-sm mb-6 overflow-hidden">
         <div className="flex border-b border-gray-200">
