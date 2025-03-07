@@ -75,7 +75,7 @@ export default function Analytics() {
   );
 
   return (
-    <div className="container mx-auto p-6 dark:bg-gray-900">
+    <div className="container mx-auto p-6">
       <PageHeader 
         title="Analytics" 
         description="Supply chain performance and insights"

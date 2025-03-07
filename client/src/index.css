@@ -130,14 +130,26 @@
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.2);
     --shadow-lg: 0 1px 3px rgba(0, 0, 0, 0.2);
+    
+    /* Standardized dark mode background values */
+    --page-background: 210 30% 8%;
+    --card-background: 210 30% 10%;
+    --input-background: 210 30% 12%;
+    --hover-background: 210 25% 15%;
   }
 }
 
 /* Custom Components */
 @layer components {
   .card {
-    @apply bg-white border border-border shadow-none dark:bg-gray-900 dark:border-gray-700;
+    @apply bg-white border border-border shadow-none;
     border-radius: var(--card-border-radius);
+  }
+  
+  /* Apply standardized card background in dark mode */
+  .dark .card {
+    background-color: hsl(var(--card-background));
+    border-color: hsl(var(--border-primary));
   }
   
   .sidebar {
@@ -187,8 +199,14 @@
   
   /* Main content area that adjusts based on sidebar state */
   .main-content {
-    @apply transition-all duration-300 ease-in-out min-h-screen bg-white dark:bg-gray-900;
+    @apply transition-all duration-300 ease-in-out min-h-screen bg-white;
+    background-color: white;
     margin-left: var(--sidebar-width);
+  }
+  
+  /* Apply standardized background in dark mode */
+  .dark .main-content {
+    background-color: hsl(var(--page-background));
   }
   
   .main-content.sidebar-collapsed {
@@ -206,13 +224,30 @@
   }
   
   .btn-secondary {
-    @apply bg-gray-200 border-gray-300 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200;
+    @apply bg-gray-200 border-gray-300 text-gray-800 hover:bg-gray-300;
+  }
+  
+  /* Apply standardized button colors in dark mode */
+  .dark .btn-secondary {
+    background-color: hsl(var(--input-background));
+    border-color: hsl(var(--border-primary));
+    color: hsl(var(--text-primary));
+  }
+  
+  .dark .btn-secondary:hover {
+    background-color: hsl(var(--hover-background));
   }
   
   /* Input fields with square corners */
   .input {
-    @apply px-3 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800;
+    @apply px-3 py-2 border border-gray-300 bg-white;
     border-radius: 0;
+  }
+  
+  /* Apply standardized input background in dark mode */
+  .dark .input {
+    background-color: hsl(var(--input-background));
+    border-color: hsl(var(--border-primary));
   }
   
   /* For mobile views */

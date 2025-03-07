@@ -50,7 +50,7 @@ export default function Suppliers() {
   );
 
   return (
-    <div className="container mx-auto p-6 dark:bg-gray-900">
+    <div className="container mx-auto p-6">
       <PageHeader 
         title="Suppliers" 
         description="Manage your supplier relationships and contracts"
