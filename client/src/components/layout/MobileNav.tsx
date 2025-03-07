@@ -45,16 +45,16 @@ export default function MobileNav({ openQRScanner }: MobileNavProps) {
         <QrCode className="h-6 w-6" />
       </div>
       <Link href="/transfers">
-        <a className={`flex flex-col items-center justify-center ${isActive('/transfers') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/transfers') ? 'text-blue-300' : 'text-gray-300'}`}>
           <Send className="h-5 w-5" />
           <span className="text-xs mt-1">Transfers</span>
-        </a>
+        </div>
       </Link>
       <Link href="/transactions">
-        <a className={`flex flex-col items-center justify-center ${isActive('/transactions') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/transactions') ? 'text-blue-300' : 'text-gray-300'}`}>
           <Wallet className="h-5 w-5" />
           <span className="text-xs mt-1">Money</span>
-        </a>
+        </div>
       </Link>
     </nav>
   );
