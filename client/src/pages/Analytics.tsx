@@ -75,7 +75,7 @@ export default function Analytics() {
   );
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 dark:bg-gray-900">
       <PageHeader 
         title="Analytics" 
         description="Supply chain performance and insights"
@@ -91,7 +91,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.fulfillmentRate}%</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 2.1%
               </Badge>
@@ -107,7 +107,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.avgProcessingTime} days</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
                 <ArrowDownRight className="h-3 w-3 mr-1" />
                 0.3 days
               </Badge>
@@ -123,7 +123,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.orderAccuracy}%</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 0.5%
               </Badge>
@@ -139,7 +139,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.onTimePayment}%</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100">
+              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 1.2%
               </Badge>
@@ -155,7 +155,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.inventoryTurnover}</div>
-              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100">
+              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900 dark:text-amber-100 dark:hover:bg-amber-900">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 0.1
               </Badge>
@@ -171,7 +171,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.supplierReliability}%</div>
-              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100">
+              <Badge className="ml-2 bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900 dark:text-amber-100 dark:hover:bg-amber-900">
                 <ArrowDownRight className="h-3 w-3 mr-1" />
                 0.8%
               </Badge>
@@ -510,8 +510,8 @@ export default function Analytics() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-start space-x-3">
-              <div className="bg-green-100 p-2 rounded-full">
-                <ArrowUpRight className="h-5 w-5 text-green-600" />
+              <div className="bg-green-100 p-2 rounded-full dark:bg-green-900">
+                <ArrowUpRight className="h-5 w-5 text-green-600 dark:text-green-300" />
               </div>
               <div>
                 <h3 className="font-medium text-sm">Increased Efficiency</h3>
