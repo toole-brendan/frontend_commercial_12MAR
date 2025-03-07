@@ -70,10 +70,10 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
   };
 
   return (
-    <div className="bg-white rounded-lg shadow">
+    <div className="bg-white border shadow-sm">
       <div className="p-5 border-b border-gray-200">
         <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-gray-800">Recent Transfer Requests</h2>
+          <h2 className="font-semibold text-gray-800 font-display">Recent Transfer Requests</h2>
           <a href="/transfers" className="text-primary text-sm hover:underline">View All</a>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
               return (
                 <li key={request.id} className={`p-4 ${processed.status === 'accepted' ? 'bg-green-50' : 'bg-red-50'}`}>
                   <div className="flex items-center space-x-3">
-                    <div className={`${processed.status === 'accepted' ? 'bg-green-100 p-2 rounded-lg' : 'bg-red-100 p-2 rounded-lg'}`}>
+                    <div className={`${processed.status === 'accepted' ? 'bg-green-100 p-2' : 'bg-red-100 p-2'}`}>
                       <i className={`${processed.status === 'accepted' ? 'fas fa-check-circle text-green-500' : 'fas fa-times-circle text-red-500'}`}></i>
                     </div>
                     <div>
@@ -108,7 +108,7 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
               <li key={request.id} className="p-4 hover:bg-gray-50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="bg-primary-50 p-2 rounded-lg">
+                    <div className="bg-primary-50 p-2">
                       <i className={`fas fa-arrow-${request.type === 'incoming' ? 'right' : 'left'} text-primary`}></i>
                     </div>
                     <div>
@@ -122,13 +122,13 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                     request.type === 'incoming' ? (
                       <div className="flex space-x-2">
                         <button 
-                          className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-xs"
+                          className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 text-xs font-display action-button"
                           onClick={() => handleAccept(request.id)}
                         >
                           Accept
                         </button>
                         <button 
-                          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded text-xs"
+                          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 text-xs font-display action-button"
                           onClick={() => handleDecline(request.id)}
                         >
                           Decline
@@ -136,7 +136,7 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                       </div>
                     ) : (
                       <div>
-                        <span className="bg-yellow-100 text-yellow-500 px-2 py-1 rounded text-xs">Pending</span>
+                        <span className="bg-yellow-100 text-yellow-500 px-2 py-1 text-xs status-tag">Pending</span>
                       </div>
                     )
                   ) : (
@@ -145,7 +145,7 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                         request.status === 'completed' 
                           ? 'bg-green-100 text-green-500' 
                           : 'bg-gray-100 text-gray-500'
-                      } px-2 py-1 rounded text-xs`}>
+                      } px-2 py-1 text-xs status-tag`}>
                         {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
                       </span>
                     </div>

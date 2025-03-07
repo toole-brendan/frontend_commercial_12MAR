@@ -38,20 +38,20 @@ const TopNavigation: React.FC = () => {
       {/* Mobile Logo */}
       <div className="lg:hidden flex items-center">
         <span className="material-icons text-primary mr-1">change_history</span>
-        <h1 className="text-lg font-bold text-primary">HandReceipt</h1>
+        <h1 className="text-lg font-bold text-primary font-display">HandReceipt</h1>
       </div>
       
       {/* Desktop Header Text */}
-      <h1 className="hidden lg:block text-xl font-semibold">{getPageTitle()}</h1>
+      <h1 className="hidden lg:block text-xl font-semibold font-display">{getPageTitle()}</h1>
       
       {/* Right Actions */}
       <div className="flex items-center space-x-4">
         <button 
-          className="bg-primary text-white px-3 py-2 rounded-full flex items-center shadow-sm hover:bg-blue-600 lg:w-auto"
+          className="bg-primary text-white px-3 py-2 flex items-center shadow-sm hover:bg-blue-600 lg:w-auto action-button"
           onClick={toggleScanner}
         >
           <span className="material-icons mr-1">qr_code_scanner</span>
-          <span className="hidden sm:inline">Scan</span>
+          <span className="hidden sm:inline font-display">Scan</span>
         </button>
         <button className="text-gray-700">
           <span className="material-icons">notifications</span>
