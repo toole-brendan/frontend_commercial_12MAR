@@ -86,13 +86,13 @@ export default function Sidebar({
             </div>
           ) : (
             <Link key={item.path} href={item.path}>
-              <a 
+              <div 
                 onClick={handleLinkClick}
                 className={`sidebar-item ${isActive(item.path) ? "active" : ""}`}
               >
                 {item.icon}
                 <span>{item.label}</span>
-              </a>
+              </div>
             </Link>
           )
         )}
@@ -150,12 +150,12 @@ export default function Sidebar({
             </div>
           ) : (
             <Link key={item.path} href={item.path}>
-              <a
+              <div
                 className={`sidebar-item ${isActive(item.path) ? "active" : ""}`}
               >
                 {item.icon}
                 {!sidebarCollapsed && <span>{item.label}</span>}
-              </a>
+              </div>
             </Link>
           )
         )}

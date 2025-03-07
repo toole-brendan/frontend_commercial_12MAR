@@ -1,6 +1,28 @@
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'D-DIN Condensed';
+  src: url('/fonts/D-DINCondensed.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'D-DIN Condensed';
+  src: url('/fonts/D-DINCondensed-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 
 @layer base {
   :root {
@@ -8,75 +30,87 @@
     --sidebar-collapsed-width: 70px;
     --header-height: 64px;
     --mobile-nav-height: 56px;
-    --card-border-radius: theme('borderRadius.md');
+    --card-border-radius: 0px;
     --transition-speed: 0.3s;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'D-DIN Condensed', 'Inter', system-ui, sans-serif;
   }
 
   * {
     @apply border-border;
   }
 
+  html {
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
 
-  /* Light Theme - Palantir/Anduril Inspired */
+  /* Light Theme - Clean, Precise, Bright */
   .light-theme {
-    --bg-primary: 210 100% 98%;
-    --bg-secondary: 210 40% 96%;
-    --bg-accent: 210 100% 35%;
-    --bg-accent-hover: 210 100% 30%;
-    --bg-sidebar: 210 30% 15%;
+    --bg-primary: 0 0% 100%;
+    --bg-secondary: 210 40% 98%;
+    --bg-accent: 210 100% 50%;
+    --bg-accent-hover: 210 100% 45%;
+    --bg-sidebar: 210 100% 15%;
     
     --text-primary: 210 50% 10%;
     --text-secondary: 210 20% 40%;
-    --text-accent: 210 100% 35%;
+    --text-accent: 210 100% 50%;
     --text-inverse: 0 0% 100%;
-    --text-sidebar: 210 15% 90%;
+    --text-sidebar: 0 0% 100%;
     
-    --border-primary: 210 30% 85%;
-    --border-accent: 210 100% 35%;
-    --border-sidebar: 210 30% 20%;
+    --border-primary: 210 30% 92%;
+    --border-accent: 210 100% 50%;
+    --border-sidebar: 210 50% 20%;
     
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
-  /* Dark Theme - Palantir/Anduril Inspired */
+  /* Dark Theme - Sharp, Precise, Professional */
   .dark-theme {
-    --bg-primary: 210 30% 10%;
-    --bg-secondary: 210 30% 8%;
-    --bg-accent: 210 100% 40%;
-    --bg-accent-hover: 210 100% 45%;
-    --bg-sidebar: 210 30% 7%;
+    --bg-primary: 210 30% 8%;
+    --bg-secondary: 210 30% 6%;
+    --bg-accent: 210 100% 50%;
+    --bg-accent-hover: 210 100% 55%;
+    --bg-sidebar: 210 50% 5%;
     
-    --text-primary: 210 15% 90%;
+    --text-primary: 0 0% 100%;
     --text-secondary: 210 15% 65%;
     --text-accent: 210 100% 75%;
     --text-inverse: 210 50% 10%;
-    --text-sidebar: 210 15% 85%;
+    --text-sidebar: 0 0% 100%;
     
     --border-primary: 210 30% 20%;
-    --border-accent: 210 100% 40%;
-    --border-sidebar: 210 30% 12%;
+    --border-accent: 210 100% 50%;
+    --border-sidebar: 210 30% 10%;
     
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.15);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 }
 
 /* Custom Components */
 @layer components {
   .card {
-    @apply bg-white rounded-md border border-border shadow-sm dark:bg-gray-800 dark:border-gray-700;
+    @apply bg-white border border-border shadow-none dark:bg-gray-800 dark:border-gray-700;
+    border-radius: var(--card-border-radius);
   }
   
   .sidebar {
     @apply fixed top-0 left-0 z-30 h-screen 
            transition-all duration-300 ease-in-out
-           bg-gradient-to-b from-sky-950 to-blue-950 text-white
+           bg-blue-900 text-white
            border-r border-gray-800;
     width: var(--sidebar-width);
   }
@@ -87,12 +121,14 @@
   
   .sidebar-item {
     @apply flex items-center px-4 py-3 text-gray-200 
-           hover:bg-blue-900/50 rounded-md transition-colors 
+           hover:bg-blue-800 transition-colors
            whitespace-nowrap overflow-hidden;
+    border-radius: 0;
   }
   
   .sidebar-item.active {
-    @apply bg-blue-900/70 text-white font-medium;
+    @apply bg-blue-800 text-white font-medium;
+    border-left: 3px solid white;
   }
   
   .sidebar-item-icon {
@@ -101,12 +137,32 @@
   
   /* Main content area that adjusts based on sidebar state */
   .main-content {
-    @apply transition-all duration-300 ease-in-out min-h-screen bg-gray-50 dark:bg-gray-900;
+    @apply transition-all duration-300 ease-in-out min-h-screen bg-white dark:bg-gray-900;
     margin-left: var(--sidebar-width);
   }
   
   .main-content.sidebar-collapsed {
     margin-left: var(--sidebar-collapsed-width);
+  }
+  
+  /* Button styles with square corners */
+  .btn {
+    @apply px-4 py-2 border transition-colors font-medium;
+    border-radius: 0;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 border-blue-600 text-white hover:bg-blue-700;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 border-gray-300 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200;
+  }
+  
+  /* Input fields with square corners */
+  .input {
+    @apply px-3 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800;
+    border-radius: 0;
   }
   
   /* For mobile views */

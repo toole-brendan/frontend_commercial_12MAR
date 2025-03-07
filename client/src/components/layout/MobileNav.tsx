@@ -25,16 +25,16 @@ export default function MobileNav({ openQRScanner }: MobileNavProps) {
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-sky-900 to-blue-900 border-t border-gray-700/50 flex justify-around p-3 z-10 shadow-lg">
       <Link href="/">
-        <a className={`flex flex-col items-center justify-center ${isActive('/') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/') ? 'text-blue-300' : 'text-gray-300'}`}>
           <LayoutDashboard className="h-5 w-5" />
           <span className="text-xs mt-1">Dashboard</span>
-        </a>
+        </div>
       </Link>
       <Link href="/inventory">
-        <a className={`flex flex-col items-center justify-center ${isActive('/inventory') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/inventory') ? 'text-blue-300' : 'text-gray-300'}`}>
           <Package className="h-5 w-5" />
           <span className="text-xs mt-1">Inventory</span>
-        </a>
+        </div>
       </Link>
       <div 
         className={`flex flex-col items-center justify-center text-gray-300 cursor-pointer 
