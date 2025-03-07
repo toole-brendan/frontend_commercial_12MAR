@@ -50,7 +50,7 @@ export default function Suppliers() {
   );
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 dark:bg-gray-900">
       <PageHeader 
         title="Suppliers" 
         description="Manage your supplier relationships and contracts"
@@ -109,7 +109,7 @@ export default function Suppliers() {
           
           <div className="flex items-center space-x-2">
             <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
               <Input
                 type="search"
                 placeholder="Search suppliers..."
@@ -155,7 +155,7 @@ export default function Suppliers() {
                         <TableRow key={supplier.id}>
                           <TableCell>
                             <div className="font-medium">{supplier.name}</div>
-                            <div className="text-xs text-gray-500">{supplier.contactPerson}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
                           </TableCell>
                           <TableCell>{supplier.category}</TableCell>
                           <TableCell>{supplier.paymentTerms}</TableCell>
@@ -168,8 +168,8 @@ export default function Suppliers() {
                           <TableCell>
                             <Badge className={
                               supplier.status === "Active" 
-                                ? "bg-green-100 text-green-800 hover:bg-green-100" 
-                                : "bg-gray-100 text-gray-800 hover:bg-gray-100"
+                                ? "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900" 
+                                : "bg-gray-100 text-gray-800 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-700"
                             }>
                               {supplier.status}
                             </Badge>
@@ -220,35 +220,35 @@ export default function Suppliers() {
           
           <div className="grid grid-cols-2 gap-4 py-4">
             <div className="col-span-2">
-              <label className="text-sm font-medium">Company Name</label>
+              <label className="text-sm font-medium dark:text-gray-200">Company Name</label>
               <Input className="mt-1" />
             </div>
             <div>
-              <label className="text-sm font-medium">Contact Person</label>
+              <label className="text-sm font-medium dark:text-gray-200">Contact Person</label>
               <Input className="mt-1" />
             </div>
             <div>
-              <label className="text-sm font-medium">Email</label>
+              <label className="text-sm font-medium dark:text-gray-200">Email</label>
               <Input className="mt-1" type="email" />
             </div>
             <div>
-              <label className="text-sm font-medium">Phone</label>
+              <label className="text-sm font-medium dark:text-gray-200">Phone</label>
               <Input className="mt-1" type="tel" />
             </div>
             <div>
-              <label className="text-sm font-medium">Category</label>
+              <label className="text-sm font-medium dark:text-gray-200">Category</label>
               <Input className="mt-1" />
             </div>
             <div className="col-span-2">
-              <label className="text-sm font-medium">Address</label>
+              <label className="text-sm font-medium dark:text-gray-200">Address</label>
               <Input className="mt-1" />
             </div>
             <div>
-              <label className="text-sm font-medium">Payment Terms</label>
+              <label className="text-sm font-medium dark:text-gray-200">Payment Terms</label>
               <Input className="mt-1" placeholder="e.g. Net 30" />
             </div>
             <div>
-              <label className="text-sm font-medium">Preferred Payment</label>
+              <label className="text-sm font-medium dark:text-gray-200">Preferred Payment</label>
               <Input className="mt-1" placeholder="USDC, Shells, Traditional" />
             </div>
           </div>
@@ -277,83 +277,83 @@ export default function Suppliers() {
             
             <div className="grid grid-cols-2 gap-6 py-4">
               <div>
-                <h3 className="font-medium mb-2">Contact Information</h3>
+                <h3 className="font-medium mb-2 dark:text-gray-200">Contact Information</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Contact Person:</span>
-                    <span>{selectedSupplier.contactPerson}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Contact Person:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.contactPerson}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Email:</span>
-                    <span>{selectedSupplier.email}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Email:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.email}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Phone:</span>
-                    <span>{selectedSupplier.phone}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Phone:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.phone}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Address:</span>
-                    <span className="text-right">{selectedSupplier.address}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Address:</span>
+                    <span className="text-right dark:text-gray-300">{selectedSupplier.address}</span>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h3 className="font-medium mb-2">Supplier Details</h3>
+                <h3 className="font-medium mb-2 dark:text-gray-200">Supplier Details</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Category:</span>
-                    <span>{selectedSupplier.category}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Category:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.category}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Status:</span>
+                    <span className="text-gray-500 dark:text-gray-400">Status:</span>
                     <Badge className={
                       selectedSupplier.status === "Active" 
-                        ? "bg-green-100 text-green-800 hover:bg-green-100" 
-                        : "bg-gray-100 text-gray-800 hover:bg-gray-100"
+                        ? "bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900" 
+                        : "bg-gray-100 text-gray-800 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-700"
                     }>
                       {selectedSupplier.status}
                     </Badge>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Rating:</span>
-                    <div className="flex items-center">
+                    <span className="text-gray-500 dark:text-gray-400">Rating:</span>
+                    <div className="flex items-center dark:text-gray-300">
                       {selectedSupplier.rating}
                       <Star className="h-3 w-3 ml-1 text-yellow-400" />
                     </div>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Onboarded:</span>
-                    <span>{format(selectedSupplier.onboarded, 'MMM d, yyyy')}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Onboarded:</span>
+                    <span className="dark:text-gray-300">{format(selectedSupplier.onboarded, 'MMM d, yyyy')}</span>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h3 className="font-medium mb-2">Payment Information</h3>
+                <h3 className="font-medium mb-2 dark:text-gray-200">Payment Information</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Payment Terms:</span>
-                    <span>{selectedSupplier.paymentTerms}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Payment Terms:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.paymentTerms}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Preferred Payment:</span>
-                    <span>{selectedSupplier.preferredPayment}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Preferred Payment:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.preferredPayment}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Contract ID:</span>
-                    <span>{selectedSupplier.contractId || 'No contract'}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Contract ID:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.contractId || 'No contract'}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Total Orders:</span>
-                    <span>{selectedSupplier.totalOrders}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Total Orders:</span>
+                    <span className="dark:text-gray-300">{selectedSupplier.totalOrders}</span>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h3 className="font-medium mb-2">Notes</h3>
-                <p className="text-sm">{selectedSupplier.notes}</p>
+                <h3 className="font-medium mb-2 dark:text-gray-200">Notes</h3>
+                <p className="text-sm dark:text-gray-400">{selectedSupplier.notes}</p>
               </div>
             </div>
             
