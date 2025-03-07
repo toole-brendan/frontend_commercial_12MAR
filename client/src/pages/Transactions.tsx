@@ -8,15 +8,15 @@ const Transactions: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'completed':
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-green-100 text-green-800 font-display">Completed</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 font-display">Completed</span>;
       case 'pending':
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-amber-100 text-amber-800 font-display">Pending</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-amber-100 dark:bg-amber-900/20 text-amber-800 dark:text-amber-400 font-display">Pending</span>;
       case 'in_transit':
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-blue-100 text-blue-800 font-display">In Transit</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-400 font-display">In Transit</span>;
       case 'processing':
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-purple-100 text-purple-800 font-display">Processing</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-purple-100 dark:bg-purple-900/20 text-purple-800 dark:text-purple-400 font-display">Processing</span>;
       default:
-        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-gray-100 text-gray-800 font-display">{status}</span>;
+        return <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-400 font-display">{status}</span>;
     }
   };
   
@@ -64,7 +64,7 @@ const Transactions: React.FC = () => {
         <span className="material-icons mr-2">add</span>
         <span>New Transaction</span>
       </button>
-      <button className="flex items-center px-4 py-2 bg-white border border-gray-300 text-gray-700 font-display">
+      <button className="flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-display">
         <span className="material-icons mr-2">file_download</span>
         <span>Export</span>
       </button>
@@ -135,11 +135,11 @@ const Transactions: React.FC = () => {
             <input 
               type="text" 
               placeholder="Search transactions..." 
-              className="pl-10 pr-4 py-2 border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-display"
+              className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-display"
             />
           </div>
           
-          <button className="flex items-center px-4 py-2 bg-white border border-gray-300 text-gray-700 font-display">
+          <button className="flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-display">
             <span className="material-icons mr-2">file_download</span>
             <span>Export</span>
           </button>

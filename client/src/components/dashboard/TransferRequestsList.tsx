@@ -128,7 +128,7 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                           Accept
                         </button>
                         <button 
-                          className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 text-xs font-display action-button"
+                          className="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-300 px-3 py-1 text-xs font-display action-button"
                           onClick={() => handleDecline(request.id)}
                         >
                           Decline
@@ -136,15 +136,15 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                       </div>
                     ) : (
                       <div>
-                        <span className="bg-yellow-100 text-yellow-500 px-2 py-1 text-xs status-tag">Pending</span>
+                        <span className="bg-yellow-100 dark:bg-yellow-900/20 text-yellow-500 dark:text-yellow-400 px-2 py-1 text-xs status-tag">Pending</span>
                       </div>
                     )
                   ) : (
                     <div>
                       <span className={`${
                         request.status === 'completed' 
-                          ? 'bg-green-100 text-green-500' 
-                          : 'bg-gray-100 text-gray-500'
+                          ? 'bg-green-100 dark:bg-green-900/20 text-green-500 dark:text-green-400' 
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400'
                       } px-2 py-1 text-xs status-tag`}>
                         {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
                       </span>
