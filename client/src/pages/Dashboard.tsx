@@ -8,6 +8,7 @@ import ActivityTimeline from '@/components/dashboard/ActivityTimeline';
 import LowStockItems from '@/components/dashboard/LowStockItems';
 import TransactionsTable from '@/components/dashboard/TransactionsTable';
 import QRScannerModal from '@/components/shared/QRScannerModal';
+import { PageHeader } from '@/components/ui/page-header';
 
 // Import mock data for initial development
 import { 
@@ -56,27 +57,32 @@ export default function Dashboard() {
     });
   };
 
+  const actionButtons = (
+    <div className="flex space-x-2">
+      <button 
+        className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 text-sm"
+        onClick={handleScanQRCode}
+      >
+        <i className="fas fa-qrcode"></i>
+        <span className="hidden sm:inline">Scan QR Code</span>
+      </button>
+      <button 
+        className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 text-sm"
+        onClick={handleNewTransfer}
+      >
+        <i className="fas fa-plus"></i>
+        <span className="hidden sm:inline">New Transfer</span>
+      </button>
+    </div>
+  );
+
   return (
     <div className="p-4 md:p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-gray-800">Dashboard</h1>
-        <div className="flex space-x-2">
-          <button 
-            className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 text-sm"
-            onClick={handleScanQRCode}
-          >
-            <i className="fas fa-qrcode"></i>
-            <span className="hidden sm:inline">Scan QR Code</span>
-          </button>
-          <button 
-            className="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 text-sm"
-            onClick={handleNewTransfer}
-          >
-            <i className="fas fa-plus"></i>
-            <span className="hidden sm:inline">New Transfer</span>
-          </button>
-        </div>
-      </div>
+      <PageHeader 
+        title="Dashboard" 
+        description="Overview of your inventory, transfers, and transactions"
+        actions={actionButtons}
+      />
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
