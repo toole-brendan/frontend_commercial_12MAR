@@ -94,7 +94,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.fulfillmentRate}%</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 2.1%
               </Badge>
@@ -110,7 +110,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.avgProcessingTime} days</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowDownRight className="h-3 w-3 mr-1" />
                 0.3 days
               </Badge>
@@ -126,7 +126,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.orderAccuracy}%</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 0.5%
               </Badge>
@@ -142,7 +142,7 @@ export default function Analytics() {
           <CardContent className="py-0">
             <div className="flex items-center">
               <div className="text-2xl font-bold">{data.kpis.onTimePayment}%</div>
-              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-100 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-900">
+              <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/30">
                 <ArrowUpRight className="h-3 w-3 mr-1" />
                 1.2%
               </Badge>
