@@ -171,13 +171,13 @@ export default function Sidebar({
             </div>
           </div>
         ) : (
-          <div className="mx-auto w-5 h-5">
+          <div className="flex items-center justify-center h-5">
             {/* Empty div to maintain spacing in collapsed mode */}
           </div>
         )}
       </div>
       
-      <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+      <nav className={`flex-1 p-4 space-y-1 overflow-y-auto ${sidebarCollapsed ? 'collapsed' : ''}`}>
         {navItems.map((item) => 
           item.onClick ? (
             <div 
@@ -201,7 +201,7 @@ export default function Sidebar({
         )}
       </nav>
       
-      <div className="p-4 border-t border-gray-700/50 dark:border-border-primary">
+      <div className={`p-4 border-t border-gray-700/50 dark:border-border-primary ${sidebarCollapsed ? 'collapsed' : ''}`}>
         {!sidebarCollapsed && (
           <>
             <div className="flex items-center justify-between mb-4">

@@ -173,6 +173,7 @@
            whitespace-nowrap overflow-hidden;
     border-radius: 0;
     color: hsl(var(--text-sidebar));
+    position: relative;
   }
   
   .sidebar-item:hover {
@@ -186,7 +187,16 @@
   .sidebar-item.active {
     @apply font-medium;
     background-color: rgba(0, 0, 0, 0.1);
-    border-left: 3px solid hsl(var(--bg-accent));
+  }
+  
+  .sidebar-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: hsl(var(--bg-accent));
   }
   
   .dark .sidebar-item.active {
@@ -194,7 +204,24 @@
   }
   
   .sidebar-item-icon {
-    @apply flex-shrink-0 w-5 h-5 mr-3;
+    @apply flex-shrink-0 w-5 h-5;
+    margin-right: 12px;
+  }
+  
+  .collapsed .sidebar-item {
+    @apply justify-center;
+  }
+  
+  .collapsed .sidebar-item-icon {
+    margin-right: 0;
+  }
+  
+  /* Collapsed footer styles */
+  .collapsed.p-4 {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   /* Main content area that adjusts based on sidebar state */
