@@ -23,8 +23,8 @@ export function ActionButton({
   const baseStyles = "flex items-center justify-center space-x-2 font-medium";
   
   const variantStyles = {
-    primary: "bg-primary hover:bg-primary-600 text-white border-transparent",
-    secondary: "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
+    primary: "bg-primary hover:bg-primary-600 text-white border-transparent dark:bg-primary dark:hover:bg-primary-600",
+    secondary: "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
   };
   
   const sizeStyles = {

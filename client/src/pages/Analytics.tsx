@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
 import { 
   PieChart, 
   Pie, 
@@ -51,34 +52,35 @@ export default function Analytics() {
     return <div className="p-8">Loading analytics data...</div>;
   }
 
+  const actionButtons = (
+    <div className="flex items-center space-x-2">
+      <Select defaultValue="6m" onValueChange={(val) => setTimeRange(val)}>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select time range" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="1m">Last 30 days</SelectItem>
+          <SelectItem value="3m">Last 3 months</SelectItem>
+          <SelectItem value="6m">Last 6 months</SelectItem>
+          <SelectItem value="1y">Last year</SelectItem>
+          <SelectItem value="all">All time</SelectItem>
+        </SelectContent>
+      </Select>
+      
+      <Button variant="outline" className="flex items-center">
+        <Download className="mr-2 h-4 w-4" />
+        Export
+      </Button>
+    </div>
+  );
+
   return (
     <div className="container mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">Analytics</h1>
-          <p className="text-sm text-gray-500">Supply chain performance and insights</p>
-        </div>
-        
-        <div className="flex items-center space-x-2">
-          <Select defaultValue="6m" onValueChange={(val) => setTimeRange(val)}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select time range" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1m">Last 30 days</SelectItem>
-              <SelectItem value="3m">Last 3 months</SelectItem>
-              <SelectItem value="6m">Last 6 months</SelectItem>
-              <SelectItem value="1y">Last year</SelectItem>
-              <SelectItem value="all">All time</SelectItem>
-            </SelectContent>
-          </Select>
-          
-          <Button variant="outline" className="flex items-center">
-            <Download className="mr-2 h-4 w-4" />
-            Export
-          </Button>
-        </div>
-      </div>
+      <PageHeader 
+        title="Analytics" 
+        description="Supply chain performance and insights"
+        actions={actionButtons}
+      />
       
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
