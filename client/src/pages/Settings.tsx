@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { currentUser } from '@/lib/mockData';
 import { PageHeader } from '@/components/ui/page-header';
-import { StandardPageLayout } from '@/components/layout/StandardPageLayout';
-import { usePageLayout } from '@/hooks/use-page-layout';
+import PageWrapper from '@/components/layout/PageWrapper';
 import { cn } from '@/lib/utils';
 import { Camera, Building2, DollarSign, KeyRound, BellRing, ShieldCheck, Workflow, User, Key } from 'lucide-react';
 
@@ -33,10 +32,6 @@ export default function Settings() {
     webhookUrl: 'https://api.yourcompany.com/handreceipt/webhook',
   });
   const { toast } = useToast();
-  const { layoutClasses } = usePageLayout({
-    width: 'default',
-    basePadding: 'p-4 md:p-6 lg:p-8'
-  });
 
   const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -142,7 +137,7 @@ export default function Settings() {
   };
 
   return (
-    <StandardPageLayout
+    <PageWrapper
       title="Settings"
       description="Manage your account preferences and application settings"
       className="space-y-6"
@@ -657,6 +652,6 @@ export default function Settings() {
           )}
         </div>
       </div>
-    </StandardPageLayout>
+    </PageWrapper>
   );
 }
