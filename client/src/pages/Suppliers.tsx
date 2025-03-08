@@ -187,8 +187,8 @@ export default function Suppliers() {
                             <Building size={18} className="text-purple-600 dark:text-purple-400" />
                           </div>
                           <div className="ml-3">
-                            <div className="text-sm font-normal text-gray-900 dark:text-white font-mono">{supplier.name}</div>
-                            <div className="text-xs font-light text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
+                            <div className="text-sm font-normal text-gray-900 dark:text-white">{supplier.name}</div>
+                            <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">{supplier.contactPerson}</div>
                           </div>
                         </div>
                       </td>
