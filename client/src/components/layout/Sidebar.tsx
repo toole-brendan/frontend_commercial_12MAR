@@ -98,16 +98,6 @@ export default function Sidebar({
   if (isMobile) {
     return (
       <nav className="flex-1 p-4 flex flex-col min-h-full">
-        {/* Mobile Logo */}
-        <div 
-          className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity mb-4"
-          onClick={handleLogoClick}
-        >
-          <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
-            <h1 className="text-lg font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
-          </div>
-        </div>
-        
         {/* Mobile User Profile */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-800 mb-4">
           <div className="flex items-center space-x-3">
