@@ -1,10 +1,10 @@
 import React from 'react';
-import PageContainer from '@/components/layout/PageContainer';
+import PageWrapper from '@/components/layout/PageWrapper';
 import IntegrationCard from '@/components/shared/IntegrationCard';
 import { useToast } from '@/hooks/use-toast';
-import { ExternalLink, Settings, Layers, CheckCircle } from 'lucide-react';
+import { ExternalLink, Settings, Layers, CheckCircle, Plus, PlusCircle } from 'lucide-react';
 
-const Integrations: React.FC = () => {
+export default function Integrations() {
   const { toast } = useToast();
   
   const handleConnect = () => {
@@ -21,17 +21,48 @@ const Integrations: React.FC = () => {
     });
   };
   
+  const handleAddIntegration = () => {
+    toast({
+      title: "Add Custom Integration",
+      description: "Opening form to configure a custom integration.",
+    });
+  };
+  
+  // 8VC style action buttons
+  const actionButtons = (
+    <div className="flex flex-col sm:flex-row gap-3">
+      <button 
+        className="btn-8vc-primary flex items-center space-x-2 py-1.5 px-3 text-sm"
+        onClick={handleAddIntegration}
+      >
+        <Plus className="h-4 w-4 mr-1" />
+        <span>Add Integration</span>
+      </button>
+    </div>
+  );
+  
   return (
-    <PageContainer title="Integrations" description="Connect and manage external services and data sources">
+    <PageWrapper
+      className="space-y-6 pt-4"
+      actions={actionButtons}
+    >
+      {/* 8VC Style Section Header */}
+      <div className="mb-4">
+        <div className="category-tag mb-1.5">Integration Hub</div>
+        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">External Service Connections</h2>
+        <p className="text-gray-500 dark:text-gray-400 mb-2">Connect and manage external services and data sources for your supply chain</p>
+        <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
+      </div>
+      
       {/* Introduction Card - 8VC Style */}
       <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6 mb-6">
         <div className="flex items-start">
-          <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center mr-4 bg-primary/10 text-primary dark:text-purple-400">
+          <div className="h-10 w-10 flex-shrink-0 flex items-center justify-center mr-4 bg-purple-500/10 text-purple-600 dark:text-purple-400">
             <Layers className="h-5 w-5" />
           </div>
           <div>
-            <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">Enterprise Ready</div>
-            <h2 className="heading-medium mb-2 text-gray-900 dark:text-white text-xl font-medium font-display">Commercial Integrations</h2>
+            <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-gray-500 dark:text-gray-400">Enterprise Ready</div>
+            <h2 className="heading-medium mb-2 text-gray-900 dark:text-white text-xl font-medium">Commercial Integrations</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 font-light">
               HandReceipt's commercial version integrates with enterprise systems, payment networks, and blockchain infrastructure to streamline
               your supply chain operations. Connect your existing systems below.
@@ -45,23 +76,23 @@ const Integrations: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-indigo-600/30 dark:from-purple-900/30 dark:to-indigo-900/30 opacity-10 pointer-events-none"></div>
         <div className="md:flex items-start gap-8 relative z-10">
           <div className="md:w-3/5 mb-6 md:mb-0">
-            <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-primary dark:text-purple-400">Featured Integration</div>
-            <h3 className="heading-medium mb-2 text-gray-900 dark:text-white text-xl font-medium font-display">USDC Stablecoin Integration</h3>
+            <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-purple-600 dark:text-purple-400">Featured Integration</div>
+            <h3 className="heading-medium mb-2 text-gray-900 dark:text-white text-xl font-medium">USDC Stablecoin Integration</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-light">
               HandReceipt's commercial version features deep integration with Circle's USDC infrastructure, enabling instant settlements, 
               automated payments via smart contracts, and immutable payment records on the blockchain.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="inline-flex items-center px-4 py-2 border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5 text-sm font-medium text-gray-800 dark:text-white transition-colors">
-                <ExternalLink className="h-4 w-4 mr-2" /> Documentation
+              <button className="btn-8vc flex items-center space-x-2 py-1.5 px-3 text-sm">
+                <ExternalLink className="h-4 w-4 mr-1" /> Documentation
               </button>
-              <button className="inline-flex items-center px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary dark:text-purple-400 border border-primary/20 dark:border-primary/30 hover:bg-primary/20 dark:hover:bg-primary/30 text-sm font-medium transition-colors">
-                <Settings className="h-4 w-4 mr-2" /> Configure Settings
+              <button className="btn-8vc-primary flex items-center space-x-2 py-1.5 px-3 text-sm">
+                <Settings className="h-4 w-4 mr-1" /> Configure Settings
               </button>
             </div>
           </div>
           <div className="md:w-2/5">
-            <div className="border border-primary/20 dark:border-primary/30 p-4">
+            <div className="border border-purple-500/20 dark:border-purple-500/30 p-4">
               <h4 className="text-gray-900 dark:text-white font-medium mb-3 flex items-center text-sm">
                 <CheckCircle className="h-4 w-4 mr-2 text-green-500" /> Integration Benefits
               </h4>
@@ -90,10 +121,10 @@ const Integrations: React.FC = () => {
     
       {/* ERP Systems - 8VC Style */}
       <div className="mb-8">
-        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">Enterprise Resource Planning</div>
-        <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium font-display">ERP Systems</h3>
+        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-gray-500 dark:text-gray-400">Enterprise Resource Planning</div>
+        <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium">ERP Systems</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="h-full">
             <IntegrationCard
               title="SAP"
@@ -142,10 +173,10 @@ const Integrations: React.FC = () => {
       
       {/* Warehouse Management - 8VC Style */}
       <div className="mb-8">
-        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">Physical Assets</div>
-        <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium font-display">Warehouse Management</h3>
+        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-gray-500 dark:text-gray-400">Physical Assets</div>
+        <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium">Warehouse Management</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="h-full">
             <IntegrationCard
               title="RFID Systems"
@@ -193,10 +224,10 @@ const Integrations: React.FC = () => {
       
       {/* Payment & Blockchain - 8VC Style */}
       <div className="mb-8">
-        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">Financial Infrastructure</div>
-        <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium font-display">Payment & Blockchain</h3>
+        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-gray-500 dark:text-gray-400">Financial Infrastructure</div>
+        <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium">Payment & Blockchain</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="h-full">
             <IntegrationCard
               title="USDC Payment Gateway"
@@ -242,8 +273,20 @@ const Integrations: React.FC = () => {
           </div>
         </div>
       </div>
-    </PageContainer>
+      
+      {/* Additional Custom Integration Section */}
+      <div className="mb-8">
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 border-dashed p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:border-purple-500/30 dark:hover:border-purple-500/50 transition-colors"
+             onClick={handleAddIntegration}>
+          <div className="h-12 w-12 flex-shrink-0 flex items-center justify-center mb-4 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-full">
+            <PlusCircle className="h-6 w-6" />
+          </div>
+          <h3 className="heading-medium mb-2 text-gray-900 dark:text-white text-lg font-medium">Add Custom Integration</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 font-light max-w-md">
+            Connect to any service with a REST API or webhook support. Our flexible integration platform allows for customized data flows.
+          </p>
+        </div>
+      </div>
+    </PageWrapper>
   );
-};
-
-export default Integrations;
+}
