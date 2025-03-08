@@ -153,10 +153,10 @@ export default function Settings() {
         <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
       </div>
 
-      <div className="card overflow-hidden">
-        <div className="sm:hidden p-4 border-b border-border">
+      <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 overflow-hidden">
+        <div className="sm:hidden p-4 border-b border-gray-200 dark:border-white/10">
           <select
-            className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+            className="w-full rounded-md border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
             value={activeTab}
             onChange={(e) => setActiveTab(e.target.value)}
           >
@@ -167,7 +167,7 @@ export default function Settings() {
           </select>
         </div>
 
-        <div className="hidden sm:block border-b border-border">
+        <div className="hidden sm:block border-b border-gray-200 dark:border-white/10">
           <nav className="flex -mb-px overflow-x-auto" aria-label="Settings tabs">
             <button 
               className={cn(
@@ -236,8 +236,13 @@ export default function Settings() {
           {/* Profile Settings */}
           {activeTab === 'profile' && (
             <form onSubmit={handleSaveProfile} className="space-y-8">
+              <div className="mb-4">
+                <div className="category-tag mb-1.5">Account Information</div>
+                <h3 className="heading-medium mb-3 text-gray-900 dark:text-white">User Profile</h3>
+              </div>
+              
               <div className="split-layout">
-                <div className="split-layout-left flex flex-col items-center space-y-6 md:border-r border-border">
+                <div className="split-layout-left flex flex-col items-center space-y-6 md:border-r border-gray-200 dark:border-white/10">
                   <div className="relative">
                     <div 
                       className="w-32 h-32 rounded-full bg-purple-600 dark:bg-purple-800 flex items-center justify-center text-white text-4xl font-light tracking-wide"
@@ -246,7 +251,7 @@ export default function Settings() {
                     </div>
                     <button 
                       type="button"
-                      className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-2 shadow-md border border-border"
+                      className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-2 shadow-md border border-gray-200 dark:border-white/10"
                       onClick={() => toast({
                         title: "Photo Upload",
                         description: "This would open a file picker dialog"
@@ -272,7 +277,7 @@ export default function Settings() {
                         type="text"
                         id="name"
                         name="name"
-                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.name}
                         onChange={handleProfileChange}
                       />
