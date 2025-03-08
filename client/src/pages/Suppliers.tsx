@@ -8,9 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Search, Filter, Star, MessageSquare, FileText, ExternalLink, Edit, Trash2 } from "lucide-react";
-import { PageHeader } from "@/components/ui/page-header";
-import { ActionButton } from "@/components/ui/action-button";
+import { Plus, Search, Filter, Star, MessageSquare, FileText, ExternalLink, Edit, Trash2, Building } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
 import { format } from "date-fns";
 
@@ -19,6 +17,7 @@ export default function Suppliers() {
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState<any | null>(null);
+  const [activeTab, setActiveTab] = useState("all");
   
   // Simulate API fetch with mock data
   const { data: suppliers = [], isLoading } = useQuery({
@@ -40,90 +39,91 @@ export default function Suppliers() {
     setSelectedSupplier(supplier);
   }
 
+  // 8VC style action buttons
   const actionButtons = (
-    <ActionButton 
-      variant="primary"
+    <button 
+      className="btn-8vc-primary flex items-center space-x-2 py-1.5 px-3 text-sm"
       onClick={() => setIsAddDialogOpen(true)}
-      icon={<Plus className="h-4 w-4" />}
     >
-      Add Supplier
-    </ActionButton>
+      <Plus className="h-4 w-4 mr-1" />
+      <span>Add Supplier</span>
+    </button>
   );
 
   return (
     <PageWrapper
-      title="Suppliers" 
-      description="Manage your supplier relationships and contracts"
+      className="space-y-4 pt-4"
       actions={actionButtons}
-      className="space-y-6"
     >
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium dark:text-gray-100">Total Suppliers</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold dark:text-gray-100">{suppliers.length}</div>
-            <p className="text-xs text-muted-foreground dark:text-gray-400">
-              {suppliers.filter(s => s.status === "Active").length} active
-            </p>
-          </CardContent>
-        </Card>
-        
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium dark:text-gray-100">Smart Contracts</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold dark:text-gray-100">
-              {suppliers.filter(s => s.contractId).length}
-            </div>
-            <p className="text-xs text-muted-foreground dark:text-gray-400">
-              {Math.round((suppliers.filter(s => s.contractId).length / suppliers.length) * 100)}% of suppliers
-            </p>
-          </CardContent>
-        </Card>
-        
-        <Card className="border dark:border-gray-700 dark:bg-gray-800">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium dark:text-gray-100">Avg. Supplier Rating</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold flex items-center dark:text-gray-100">
-              {(suppliers.reduce((acc, supplier) => acc + supplier.rating, 0) / suppliers.length).toFixed(1)}
-              <Star className="h-4 w-4 text-amber-500 dark:text-amber-400 ml-1" />
-            </div>
-            <p className="text-xs text-muted-foreground dark:text-gray-400">Based on performance history</p>
-          </CardContent>
-        </Card>
+      <div className="flex items-center mb-8">
+        <div className="mr-4">
+          <h1 className="text-2xl font-semibold tracking-tight">Suppliers</h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Manage your supplier relationships and contracts
+          </p>
+        </div>
+        <div className="ml-auto">
+          <span className="uppercase text-xs tracking-wide px-2 py-1 border border-purple-200 text-purple-600 dark:text-purple-400 dark:border-purple-800/50 bg-purple-50 dark:bg-purple-900/20 rounded-sm">
+            Partner Ecosystem
+          </span>
+        </div>
       </div>
       
-      <Tabs defaultValue="all" className="w-full mb-6">
-        <div className="flex justify-between items-center mb-4">
-          <TabsList className="bg-gray-100 dark:bg-gray-800">
-            <TabsTrigger 
-              value="all" 
+      <div className="w-full h-px bg-border mb-6" />
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="flex flex-col p-5 rounded-sm border border-gray-200 dark:border-gray-700/60 bg-background dark:bg-black">
+          <h4 className="text-sm font-medium text-muted-foreground dark:text-gray-400 uppercase tracking-wide mb-2">Total Suppliers</h4>
+          <div className="text-3xl font-bold dark:text-white">{suppliers.length}</div>
+          <div className="text-xs font-medium text-muted-foreground dark:text-gray-400 mt-1">
+            {suppliers.filter(s => s.status === "Active").length} active
+          </div>
+        </div>
+        
+        <div className="flex flex-col p-5 rounded-sm border border-gray-200 dark:border-gray-700/60 bg-background dark:bg-black">
+          <h4 className="text-sm font-medium text-muted-foreground dark:text-gray-400 uppercase tracking-wide mb-2">Smart Contracts</h4>
+          <div className="text-3xl font-bold dark:text-white">
+            {suppliers.filter(s => s.contractId).length}
+          </div>
+          <div className="text-xs font-medium text-muted-foreground dark:text-gray-400 mt-1">
+            {Math.round((suppliers.filter(s => s.contractId).length / suppliers.length) * 100)}% of suppliers
+          </div>
+        </div>
+        
+        <div className="flex flex-col p-5 rounded-sm border border-gray-200 dark:border-gray-700/60 bg-background dark:bg-black">
+          <h4 className="text-sm font-medium text-muted-foreground dark:text-gray-400 uppercase tracking-wide mb-2">Avg. Supplier Rating</h4>
+          <div className="text-3xl font-bold flex items-center dark:text-white">
+            {(suppliers.reduce((acc, supplier) => acc + supplier.rating, 0) / suppliers.length).toFixed(1)}
+            <Star className="h-5 w-5 text-amber-500 dark:text-amber-400 ml-1" />
+          </div>
+          <div className="text-xs font-medium text-muted-foreground dark:text-gray-400 mt-1">
+            Based on performance history
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex flex-col mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <button 
               onClick={() => setFilterStatus(null)}
-              className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
+              className={`px-3 py-1.5 text-sm font-medium ${!filterStatus ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400' : 'bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
             >
               All
-            </TabsTrigger>
-            <TabsTrigger 
-              value="active" 
+            </button>
+            <button 
               onClick={() => setFilterStatus("Active")}
-              className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
+              className={`px-3 py-1.5 text-sm font-medium ${filterStatus === "Active" ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400' : 'bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
             >
               Active
-            </TabsTrigger>
-            <TabsTrigger 
-              value="inactive" 
+            </button>
+            <button 
               onClick={() => setFilterStatus("Inactive")}
-              className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
+              className={`px-3 py-1.5 text-sm font-medium ${filterStatus === "Inactive" ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400' : 'bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
             >
               Inactive
-            </TabsTrigger>
-          </TabsList>
+            </button>
+          </div>
           
           <div className="flex items-center space-x-2">
             <div className="relative">
@@ -131,106 +131,94 @@ export default function Suppliers() {
               <Input
                 type="search"
                 placeholder="Search suppliers..."
-                className="pl-8 w-[250px] bg-white dark:bg-gray-800 border dark:border-gray-700"
+                className="pl-8 w-[250px] rounded-sm bg-white dark:bg-black border border-gray-200 dark:border-gray-800"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             
-            <Button variant="outline" size="icon" className="h-10 w-10 dark:bg-gray-800 dark:border-gray-700">
-              <Filter className="h-4 w-4" />
-            </Button>
+            <button className="inline-flex items-center justify-center rounded-sm border border-gray-200 dark:border-gray-800 h-10 w-10 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-900">
+              <Filter className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            </button>
           </div>
         </div>
         
-        <TabsContent value="all" className="mt-0">
-          <Card className="border dark:border-gray-700 dark:bg-gray-800">
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-50 dark:bg-gray-700">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Supplier</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Category</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Payment Terms</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Rating</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Last Order</th>
-                      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+        <div className="border border-gray-200 dark:border-gray-800 rounded-sm bg-white dark:bg-black overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead>
+                <tr className="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Supplier</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Payment Terms</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rating</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Last Order</th>
+                  <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                {isLoading ? (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-5 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Loading suppliers...</td>
+                  </tr>
+                ) : filteredSuppliers.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-5 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">No suppliers found</td>
+                  </tr>
+                ) : (
+                  filteredSuppliers.map((supplier) => (
+                    <tr key={supplier.id} className="hover:bg-gray-50 dark:hover:bg-gray-900/10">
+                      <td className="px-6 py-5 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0 h-9 w-9 bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/50 text-purple-500 dark:text-purple-400 rounded-sm flex items-center justify-center">
+                            <Building className="h-4 w-4" />
+                          </div>
+                          <div className="ml-3">
+                            <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{supplier.name}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-5 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.category}</td>
+                      <td className="px-6 py-5 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.paymentTerms}</td>
+                      <td className="px-6 py-5 whitespace-nowrap">
+                        <div className="flex items-center text-sm text-gray-900 dark:text-gray-100">
+                          {supplier.rating}
+                          <Star className="h-4 w-4 ml-1 text-amber-500 dark:text-amber-400" />
+                        </div>
+                      </td>
+                      <td className="px-6 py-5 whitespace-nowrap">
+                        <span className={`px-2 py-1 inline-flex text-xs leading-none font-medium border ${
+                          supplier.status === "Active" 
+                            ? "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800/50" 
+                            : "bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-900/30 dark:text-gray-400 dark:border-gray-700"
+                        }`}>
+                          {supplier.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-5 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {format(supplier.lastOrder, 'MMM d, yyyy')}
+                      </td>
+                      <td className="px-6 py-5 whitespace-nowrap text-right text-sm font-medium">
+                        <button 
+                          className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 mr-3"
+                          onClick={() => handleViewDetails(supplier)}
+                        >
+                          <ExternalLink className="h-4 w-4 inline" />
+                        </button>
+                        <button className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300">
+                          <Edit className="h-4 w-4 inline" />
+                        </button>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                    {isLoading ? (
-                      <tr>
-                        <td colSpan={7} className="px-6 py-4 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Loading suppliers...</td>
-                      </tr>
-                    ) : filteredSuppliers.length === 0 ? (
-                      <tr>
-                        <td colSpan={7} className="px-6 py-4 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">No suppliers found</td>
-                      </tr>
-                    ) : (
-                      filteredSuppliers.map((supplier) => (
-                        <tr key={supplier.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="flex-shrink-0 h-10 w-10 bg-gray-100 dark:bg-gray-600 rounded-full flex items-center justify-center">
-                                <i className="fas fa-building text-gray-500 dark:text-gray-300"></i>
-                              </div>
-                              <div className="ml-4">
-                                <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{supplier.name}</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.category}</td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.paymentTerms}</td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center text-sm text-gray-900 dark:text-gray-100">
-                              {supplier.rating}
-                              <Star className="h-3 w-3 ml-1 text-amber-500 dark:text-amber-400" />
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                              supplier.status === "Active" 
-                                ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300" 
-                                : "bg-gray-100 text-gray-800 dark:bg-gray-800/30 dark:text-gray-300"
-                            }`}>
-                              {supplier.status}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                            {format(supplier.lastOrder, 'MMM d, yyyy')}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <button 
-                              className="text-primary hover:text-primary-dark mr-3"
-                              onClick={() => handleViewDetails(supplier)}
-                            >
-                              <ExternalLink className="h-4 w-4 inline" />
-                            </button>
-                            <button className="text-primary hover:text-primary-dark">
-                              <Edit className="h-4 w-4 inline" />
-                            </button>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="active" className="mt-0">
-          {/* Same content but filtered for active suppliers */}
-        </TabsContent>
-        
-        <TabsContent value="inactive" className="mt-0">
-          {/* Same content but filtered for inactive suppliers */}
-        </TabsContent>
-      </Tabs>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
       
       {/* Add Supplier Dialog */}
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
