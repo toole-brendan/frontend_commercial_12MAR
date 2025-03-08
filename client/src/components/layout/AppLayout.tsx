@@ -71,12 +71,12 @@ export default function AppLayout({ children }: AppLayoutProps) {
       {/* Mobile menu - 8VC Style */}
       {isMobileMenuOpen && (
         <div className="fixed inset-y-0 left-0 w-64 bg-white dark:bg-black z-50 md:hidden">
-          <div className="p-4 border-b border-gray-200 dark:border-white/10 flex justify-between items-center">
+          <div className="p-3 border-b border-gray-200 dark:border-white/10 flex justify-between items-center">
             <div 
               className="flex items-center cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => window.location.href = '/'}
             >
-              <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
+              <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1">
                 <h1 className="text-lg font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
               </div>
             </div>

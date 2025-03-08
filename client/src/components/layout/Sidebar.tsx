@@ -97,9 +97,9 @@ export default function Sidebar({
 
   if (isMobile) {
     return (
-      <nav className="flex-1 p-4 flex flex-col min-h-full">
+      <nav className="flex-1 p-2 flex flex-col min-h-full">
         {/* Mobile User Profile */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-800 mb-4">
+        <div className="py-2 px-3 border-b border-gray-200 dark:border-gray-800 mb-2">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-800 dark:text-white text-xs tracking-wider uppercase">
               {user.profileImage}
