@@ -96,60 +96,62 @@ export default function Sidebar({
 
   if (isMobile) {
     return (
-      <nav className="flex-1 p-4 space-y-1">
-        {/* Mobile Logo */}
+      <nav className="flex-1 p-4 space-y-3">
+        {/* Mobile Logo - 8VC Style */}
         <div 
-          className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity mb-4"
+          className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity mb-8"
           onClick={handleLogoClick}
         >
-          <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
-            <h1 className="text-lg font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
+          <div className="border border-white/30 px-4 py-1.5">
+            <h1 className="text-lg font-light tracking-widest text-white m-0">HandReceipt</h1>
           </div>
         </div>
         
-        {navItems.map((item) => 
+        {/* 8VC Style Navigation */}
+        <div className="category-tag mb-2 px-2">Main</div>
+        {navItems.map((item, index) => 
           item.onClick ? (
             <div 
               key={item.path}
               onClick={item.onClick}
-              className={`sidebar-item ${isActive(item.path) ? "active" : ""}`}
+              className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
             >
               {item.icon}
-              <span>{item.label}</span>
+              <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>
             </div>
           ) : (
             <Link key={item.path} href={item.path}>
               <div 
                 onClick={handleLinkClick}
-                className={`sidebar-item ${isActive(item.path) ? "active" : ""}`}
+                className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
               >
                 {item.icon}
-                <span>{item.label}</span>
+                <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>
               </div>
             </Link>
           )
         )}
         
-        <div className="mt-8 pt-4 border-t border-gray-700">
+        <div className="mt-8 pt-4 border-t border-white/10">
           <div className="flex items-center justify-between px-4 py-3 mb-4">
             <button 
               onClick={toggleTheme}
-              className="p-2 rounded-md hover:bg-blue-900/50 transition-colors"
+              className="p-2 hover:text-purple-400 transition-colors"
               title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {theme === 'light' ? 
-                <Moon className="h-5 w-5 text-gray-800 dark:text-gray-200" /> : 
-                <Sun className="h-5 w-5 text-gray-800 dark:text-gray-200" />
+                <Moon className="h-5 w-5 text-gray-400" /> : 
+                <Sun className="h-5 w-5 text-gray-400" />
               }
             </button>
             
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-medium">
+              <div className="w-10 h-10 border border-white/20 flex items-center justify-center text-white text-xs tracking-wider uppercase">
                 {user.profileImage}
               </div>
               <div>
-                <p className="text-sm font-medium profile-name">{user.name}</p>
-                <p className="text-xs profile-role">{user.role}</p>
+                <p className="text-xs uppercase tracking-wider text-white">{user.name}</p>
+                <p className="text-xs text-gray-400 font-light">{user.role}</p>
               </div>
             </div>
           </div>
@@ -160,14 +162,15 @@ export default function Sidebar({
 
   return (
     <aside className={`sidebar hidden md:flex flex-col ${sidebarCollapsed ? 'collapsed' : ''}`}>
-      <div className="p-4 border-b border-gray-700/50 dark:border-border-primary">
+      {/* 8VC Style Header */}
+      <div className="p-6 border-b border-white/10">
         {!sidebarCollapsed ? (
           <div 
             className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
             onClick={handleLogoClick}
           >
-            <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
-              <h1 className="text-lg font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
+            <div className="border border-white/30 px-4 py-1.5">
+              <h1 className="text-lg font-light tracking-widest text-white m-0">HandReceipt</h1>
             </div>
           </div>
         ) : (
@@ -177,77 +180,81 @@ export default function Sidebar({
         )}
       </div>
       
-      <nav className={`flex-1 px-2 py-4 space-y-1 overflow-y-auto ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      {/* 8VC Style Navigation */}
+      <nav className={`flex-1 px-6 py-6 space-y-6 overflow-y-auto ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        {!sidebarCollapsed && <div className="category-tag mb-2">Main Navigation</div>}
+        
         {navItems.map((item) => 
           item.onClick ? (
             <div 
               key={item.path}
               onClick={item.onClick}
-              className={`sidebar-item ${isActive(item.path) ? "active" : ""}`}
+              className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
             >
               {item.icon}
-              {!sidebarCollapsed && <span>{item.label}</span>}
+              {!sidebarCollapsed && <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>}
             </div>
           ) : (
             <Link key={item.path} href={item.path}>
               <div
-                className={`sidebar-item ${isActive(item.path) ? "active" : ""}`}
+                className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
               >
                 {item.icon}
-                {!sidebarCollapsed && <span>{item.label}</span>}
+                {!sidebarCollapsed && <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>}
               </div>
             </Link>
           )
         )}
       </nav>
       
-      <div className={`p-4 border-t border-gray-700/50 dark:border-border-primary ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      {/* 8VC Style Footer */}
+      <div className={`p-6 border-t border-white/10 ${sidebarCollapsed ? 'collapsed' : ''}`}>
         {!sidebarCollapsed && (
           <>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-6">
               <button 
                 onClick={toggleTheme}
-                className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-blue-900/50 transition-colors"
+                className="p-2 hover:text-purple-400 transition-colors"
                 title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
               >
                 {theme === 'light' ? 
-                  <Moon className="h-5 w-5 text-gray-800 dark:text-gray-200" /> : 
-                  <Sun className="h-5 w-5 text-gray-800 dark:text-gray-200" />
+                  <Moon className="h-5 w-5 text-gray-400" /> : 
+                  <Sun className="h-5 w-5 text-gray-400" />
                 }
               </button>
               
               <button 
                 onClick={toggleSidebar}
-                className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+                className="p-2 hover:text-purple-400 transition-colors"
                 title="Collapse sidebar"
               >
-                <ChevronLeft className="h-5 w-5 text-black dark:text-white" />
+                <ChevronLeft className="h-5 w-5 text-gray-400" />
               </button>
             </div>
             
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-medium">
+              <div className="w-10 h-10 border border-white/20 flex items-center justify-center text-white text-xs tracking-wider uppercase">
                 {user.profileImage}
               </div>
               <div>
-                <p className="text-sm font-medium profile-name">{user.name}</p>
-                <p className="text-xs profile-role">{user.role}</p>
+                <p className="text-xs uppercase tracking-wider text-white">{user.name}</p>
+                <p className="text-xs text-gray-400 font-light">{user.role}</p>
               </div>
             </div>
           </>
         )}
         
         {sidebarCollapsed && (
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-6">
             <button 
               onClick={toggleSidebar}
-              className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 hover:text-purple-400 transition-colors"
               title="Expand sidebar"
             >
-              <ChevronRight className="h-5 w-5 text-black dark:text-white" />
+              <ChevronRight className="h-5 w-5 text-gray-400" />
             </button>
             
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-medium">
+            <div className="w-10 h-10 border border-white/20 flex items-center justify-center text-white text-xs tracking-wider uppercase">
               {user.profileImage}
             </div>
           </div>
