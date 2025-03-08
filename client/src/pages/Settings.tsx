@@ -290,7 +290,7 @@ export default function Settings() {
                         type="email"
                         id="email"
                         name="email"
-                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.email}
                         onChange={handleProfileChange}
                       />
@@ -303,7 +303,7 @@ export default function Settings() {
                         type="text"
                         id="role"
                         name="role"
-                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.role}
                         onChange={handleProfileChange}
                       />
@@ -316,7 +316,7 @@ export default function Settings() {
                         type="text"
                         id="department"
                         name="department"
-                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.department}
                         onChange={handleProfileChange}
                       />
@@ -329,7 +329,7 @@ export default function Settings() {
                         type="tel"
                         id="phone"
                         name="phone"
-                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                        className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.phone}
                         onChange={handleProfileChange}
                       />
@@ -352,9 +352,14 @@ export default function Settings() {
           {/* Notification Settings */}
           {activeTab === 'notifications' && (
             <form onSubmit={handleSaveNotifications} className="space-y-8">
-              <div className="border-b border-border pb-6">
+              <div className="mb-4">
+                <div className="category-tag mb-1.5">Notification Preferences</div>
+                <h3 className="heading-medium mb-3 text-gray-900 dark:text-white">Communication Settings</h3>
+              </div>
+              
+              <div className="border-b border-gray-200 dark:border-white/10 pb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="heading-medium text-purple-600 dark:text-purple-400">Email Notifications</h3>
+                  <h3 className="text-base font-semibold text-purple-600 dark:text-purple-400">Email Notifications</h3>
                   <div className="flex items-center">
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -374,7 +379,7 @@ export default function Settings() {
               <div className="space-y-6">
                 <h3 className="category-tag">Notification Types</h3>
                 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-white/10">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Transfer Requests</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Get notified when you receive a new transfer request</p>
@@ -391,7 +396,7 @@ export default function Settings() {
                   </label>
                 </div>
                 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-white/10">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Inventory Alerts</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Receive alerts when inventory items are running low</p>
@@ -408,7 +413,7 @@ export default function Settings() {
                   </label>
                 </div>
                 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-white/10">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Payment Confirmations</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Get notified when payments are processed or received</p>
@@ -425,7 +430,7 @@ export default function Settings() {
                   </label>
                 </div>
                 
-                <div className="flex items-center justify-between py-2 border-b border-border">
+                <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-white/10">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">System Updates</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Receive notifications about system updates and maintenance</p>
@@ -459,8 +464,13 @@ export default function Settings() {
           {/* Security Settings */}
           {activeTab === 'security' && (
             <form onSubmit={handleSaveSecurity} className="space-y-8">
+              <div className="mb-4">
+                <div className="category-tag mb-1.5">Account Security</div>
+                <h3 className="heading-medium mb-3 text-gray-900 dark:text-white">Security Settings</h3>
+              </div>
+              
               <div>
-                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">Change Password</h3>
+                <h3 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-6">Change Password</h3>
                 <div className="space-y-4">
                   <div>
                     <label htmlFor="currentPassword" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -470,7 +480,7 @@ export default function Settings() {
                       type="password"
                       id="currentPassword"
                       name="currentPassword"
-                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                       value={securityForm.currentPassword}
                       onChange={handleSecurityChange}
                       required
@@ -484,7 +494,7 @@ export default function Settings() {
                       type="password"
                       id="newPassword"
                       name="newPassword"
-                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                       value={securityForm.newPassword}
                       onChange={handleSecurityChange}
                       required
@@ -501,7 +511,7 @@ export default function Settings() {
                       type="password"
                       id="confirmPassword"
                       name="confirmPassword"
-                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                       value={securityForm.confirmPassword}
                       onChange={handleSecurityChange}
                       required
@@ -513,7 +523,7 @@ export default function Settings() {
               <div className="horizontal-divider"></div>
               
               <div>
-                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">Two-Factor Authentication</h3>
+                <h3 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-6">Two-Factor Authentication</h3>
                 <div className="flex items-center justify-between">
                   <div className="max-w-2xl">
                     <p className="text-sm text-gray-500 dark:text-gray-400">Two-factor authentication adds an extra layer of security to your account by requiring more than just a password to sign in.</p>
@@ -547,8 +557,13 @@ export default function Settings() {
           {/* Integration Settings */}
           {activeTab === 'integrations' && (
             <form onSubmit={handleSaveIntegration} className="space-y-8">
+              <div className="mb-4">
+                <div className="category-tag mb-1.5">External Services</div>
+                <h3 className="heading-medium mb-3 text-gray-900 dark:text-white">Integration Settings</h3>
+              </div>
+            
               <div>
-                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">API Keys</h3>
+                <h3 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-6">API Keys</h3>
                 <div className="space-y-6">
                   <div>
                     <label htmlFor="apiKey" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -559,7 +574,7 @@ export default function Settings() {
                         type="password"
                         id="apiKey"
                         name="apiKey"
-                        className="flex-grow px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                        className="flex-grow px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={integrationKeys.apiKey}
                         onChange={handleIntegrationChange}
                         readOnly
@@ -588,7 +603,7 @@ export default function Settings() {
                       type="text"
                       id="webhookUrl"
                       name="webhookUrl"
-                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      className="w-full px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                       value={integrationKeys.webhookUrl}
                       onChange={handleIntegrationChange}
                     />
@@ -602,13 +617,13 @@ export default function Settings() {
               <div className="horizontal-divider"></div>
               
               <div>
-                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">Connected Services</h3>
+                <h3 className="text-base font-semibold text-purple-600 dark:text-purple-400 mb-6">Connected Services</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
                   Connect your account with these third-party services to enable additional features.
                 </p>
                 
                 <div className="space-y-6">
-                  <div className="flex items-center justify-between py-2 border-b border-border">
+                  <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-white/10">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
                         <Building2 size={20} className="text-blue-600 dark:text-blue-300" />
@@ -630,7 +645,7 @@ export default function Settings() {
                     </button>
                   </div>
                   
-                  <div className="flex items-center justify-between py-2 border-b border-border">
+                  <div className="flex items-center justify-between py-2 border-b border-gray-200 dark:border-white/10">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
                         <DollarSign size={20} className="text-green-600 dark:text-green-300" />
