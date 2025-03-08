@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { currentUser } from '@/lib/mockData';
 import { PageHeader } from '@/components/ui/page-header';
-import PageWrapper from '@/components/layout/PageWrapper';
+import { StandardPageLayout } from '@/components/layout/StandardPageLayout';
+import { usePageLayout } from '@/hooks/use-page-layout';
+import { cn } from '@/lib/utils';
+import { Camera, Building2, DollarSign, KeyRound, BellRing, ShieldCheck, Workflow, User, Key } from 'lucide-react';
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('profile');
@@ -30,6 +33,10 @@ export default function Settings() {
     webhookUrl: 'https://api.yourcompany.com/handreceipt/webhook',
   });
   const { toast } = useToast();
+  const { layoutClasses } = usePageLayout({
+    width: 'default',
+    basePadding: 'p-4 md:p-6 lg:p-8'
+  });
 
   const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -135,16 +142,15 @@ export default function Settings() {
   };
 
   return (
-    <PageWrapper 
-      title="Settings" 
+    <StandardPageLayout
+      title="Settings"
       description="Manage your account preferences and application settings"
       className="space-y-6"
     >
-
-      <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow">
-        <div className="sm:hidden p-4">
+      <div className="card overflow-hidden">
+        <div className="sm:hidden p-4 border-b border-border">
           <select
-            className="block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 py-2 pl-3 pr-10 text-base focus:border-primary focus:outline-none focus:ring-primary"
+            className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
             value={activeTab}
             onChange={(e) => setActiveTab(e.target.value)}
           >
@@ -155,47 +161,67 @@ export default function Settings() {
           </select>
         </div>
 
-        <div className="hidden sm:block border-b border-gray-200 dark:border-gray-700">
-          <nav className="flex -mb-px overflow-x-auto">
+        <div className="hidden sm:block border-b border-border">
+          <nav className="flex -mb-px overflow-x-auto" aria-label="Settings tabs">
             <button 
-              className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
+              className={cn(
+                "whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm uppercase tracking-wider transition-colors",
                 activeTab === 'profile' 
-                  ? 'border-primary text-primary dark:text-blue-400' 
+                  ? 'border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400' 
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
-              }`}
+              )}
               onClick={() => setActiveTab('profile')}
+              aria-current={activeTab === 'profile' ? 'page' : undefined}
             >
-              Profile
+              <div className="flex items-center gap-2">
+                <User size={16} />
+                <span>Profile</span>
+              </div>
             </button>
             <button 
-              className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
+              className={cn(
+                "whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm uppercase tracking-wider transition-colors",
                 activeTab === 'notifications' 
-                  ? 'border-primary text-primary dark:text-blue-400' 
+                  ? 'border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400' 
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
-              }`}
+              )}
               onClick={() => setActiveTab('notifications')}
+              aria-current={activeTab === 'notifications' ? 'page' : undefined}
             >
-              Notifications
+              <div className="flex items-center gap-2">
+                <BellRing size={16} />
+                <span>Notifications</span>
+              </div>
             </button>
             <button 
-              className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
+              className={cn(
+                "whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm uppercase tracking-wider transition-colors",
                 activeTab === 'security' 
-                  ? 'border-primary text-primary dark:text-blue-400' 
+                  ? 'border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400' 
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
-              }`}
+              )}
               onClick={() => setActiveTab('security')}
+              aria-current={activeTab === 'security' ? 'page' : undefined}
             >
-              Security
+              <div className="flex items-center gap-2">
+                <ShieldCheck size={16} />
+                <span>Security</span>
+              </div>
             </button>
             <button 
-              className={`whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm ${
+              className={cn(
+                "whitespace-nowrap py-4 px-6 border-b-2 font-medium text-sm uppercase tracking-wider transition-colors",
                 activeTab === 'integrations' 
-                  ? 'border-primary text-primary dark:text-blue-400' 
+                  ? 'border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400' 
                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
-              }`}
+              )}
               onClick={() => setActiveTab('integrations')}
+              aria-current={activeTab === 'integrations' ? 'page' : undefined}
             >
-              Integrations
+              <div className="flex items-center gap-2">
+                <Workflow size={16} />
+                <span>Integrations</span>
+              </div>
             </button>
           </nav>
         </div>
@@ -203,98 +229,96 @@ export default function Settings() {
         <div className="p-6">
           {/* Profile Settings */}
           {activeTab === 'profile' && (
-            <form onSubmit={handleSaveProfile} className="space-y-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="md:w-1/4">
-                  <div className="flex flex-col items-center space-y-3">
-                    <div className="relative">
-                      <div 
-                        className="w-32 h-32 rounded-full bg-primary flex items-center justify-center text-white text-4xl font-medium"
-                      >
-                        {currentUser.profileImage}
-                      </div>
-                      <button 
-                        type="button"
-                        className="absolute bottom-0 right-0 bg-white dark:bg-gray-700 rounded-full p-2 shadow-md border border-gray-200 dark:border-gray-600"
-                        onClick={() => toast({
-                          title: "Photo Upload",
-                          description: "This would open a file picker dialog"
-                        })}
-                      >
-                        <i className="fas fa-camera text-gray-600 dark:text-gray-300"></i>
-                      </button>
+            <form onSubmit={handleSaveProfile} className="space-y-8">
+              <div className="split-layout">
+                <div className="split-layout-left flex flex-col items-center space-y-6 md:border-r border-border">
+                  <div className="relative">
+                    <div 
+                      className="w-32 h-32 rounded-full bg-purple-600 dark:bg-purple-800 flex items-center justify-center text-white text-4xl font-light tracking-wide"
+                    >
+                      {currentUser.profileImage}
                     </div>
                     <button 
                       type="button"
-                      className="text-primary hover:text-primary-dark dark:text-blue-400 dark:hover:text-blue-300 text-sm"
+                      className="absolute bottom-0 right-0 bg-white dark:bg-gray-800 rounded-full p-2 shadow-md border border-border"
+                      onClick={() => toast({
+                        title: "Photo Upload",
+                        description: "This would open a file picker dialog"
+                      })}
                     >
-                      Change Photo
+                      <Camera size={16} className="text-gray-600 dark:text-gray-300" />
                     </button>
                   </div>
+                  <button 
+                    type="button"
+                    className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 text-sm uppercase tracking-wider font-medium transition-colors"
+                  >
+                    Change Photo
+                  </button>
                 </div>
-                <div className="md:w-3/4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="split-layout-right">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <label htmlFor="name" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Full Name
                       </label>
                       <input
                         type="text"
                         id="name"
                         name="name"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.name}
                         onChange={handleProfileChange}
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <label htmlFor="email" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Email Address
                       </label>
                       <input
                         type="email"
                         id="email"
                         name="email"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.email}
                         onChange={handleProfileChange}
                       />
                     </div>
                     <div>
-                      <label htmlFor="role" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <label htmlFor="role" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Job Title
                       </label>
                       <input
                         type="text"
                         id="role"
                         name="role"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.role}
                         onChange={handleProfileChange}
                       />
                     </div>
                     <div>
-                      <label htmlFor="department" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <label htmlFor="department" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Department
                       </label>
                       <input
                         type="text"
                         id="department"
                         name="department"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.department}
                         onChange={handleProfileChange}
                       />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <label htmlFor="phone" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Phone Number
                       </label>
                       <input
                         type="tel"
                         id="phone"
                         name="phone"
-                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                        className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                         value={profileForm.phone}
                         onChange={handleProfileChange}
                       />
@@ -302,10 +326,11 @@ export default function Settings() {
                   </div>
                 </div>
               </div>
+              <div className="horizontal-divider"></div>
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark"
+                  className="btn-8vc-primary"
                 >
                   Save Changes
                 </button>
@@ -315,10 +340,10 @@ export default function Settings() {
 
           {/* Notification Settings */}
           {activeTab === 'notifications' && (
-            <form onSubmit={handleSaveNotifications} className="space-y-6">
-              <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
+            <form onSubmit={handleSaveNotifications} className="space-y-8">
+              <div className="border-b border-border pb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Email Notifications</h3>
+                  <h3 className="heading-medium text-purple-600 dark:text-purple-400">Email Notifications</h3>
                   <div className="flex items-center">
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input 
@@ -328,17 +353,17 @@ export default function Settings() {
                         checked={notificationSettings.emailNotifications}
                         onChange={handleNotificationChange}
                       />
-                      <div className="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                      <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-600 dark:peer-focus:ring-purple-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600 dark:peer-checked:bg-purple-400"></div>
                     </label>
                   </div>
                 </div>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Enable or disable all email notifications. Individual settings below will be ignored if email notifications are turned off.</p>
               </div>
               
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Notification Types</h3>
+              <div className="space-y-6">
+                <h3 className="category-tag">Notification Types</h3>
                 
-                <div className="flex items-center justify-between py-2">
+                <div className="flex items-center justify-between py-2 border-b border-border">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Transfer Requests</p>
                     <p className="text-xs text-gray-500 dark:text-gray-400">Get notified when you receive a new transfer request</p>
@@ -351,14 +376,14 @@ export default function Settings() {
                       checked={notificationSettings.transferRequests}
                       onChange={handleNotificationChange}
                     />
-                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-600 dark:peer-focus:ring-purple-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600 dark:peer-checked:bg-purple-400"></div>
                   </label>
                 </div>
                 
-                <div className="flex items-center justify-between py-2">
+                <div className="flex items-center justify-between py-2 border-b border-border">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Inventory Alerts</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Get notified when inventory items are running low</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Receive alerts when inventory items are running low</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input 
@@ -368,14 +393,14 @@ export default function Settings() {
                       checked={notificationSettings.inventoryAlerts}
                       onChange={handleNotificationChange}
                     />
-                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-600 dark:peer-focus:ring-purple-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600 dark:peer-checked:bg-purple-400"></div>
                   </label>
                 </div>
                 
-                <div className="flex items-center justify-between py-2">
+                <div className="flex items-center justify-between py-2 border-b border-border">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Payment Confirmations</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Get notified when payments are sent or received</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Get notified when payments are processed or received</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input 
@@ -385,14 +410,14 @@ export default function Settings() {
                       checked={notificationSettings.paymentConfirmations}
                       onChange={handleNotificationChange}
                     />
-                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-600 dark:peer-focus:ring-purple-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600 dark:peer-checked:bg-purple-400"></div>
                   </label>
                 </div>
                 
-                <div className="flex items-center justify-between py-2">
+                <div className="flex items-center justify-between py-2 border-b border-border">
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">System Updates</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Get notified about HandReceipt platform updates</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Receive notifications about system updates and maintenance</p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input 
@@ -402,15 +427,17 @@ export default function Settings() {
                       checked={notificationSettings.systemUpdates}
                       onChange={handleNotificationChange}
                     />
-                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-600 dark:peer-focus:ring-purple-400 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600 dark:peer-checked:bg-purple-400"></div>
                   </label>
                 </div>
               </div>
               
-              <div className="flex justify-end">
+              <div className="horizontal-divider"></div>
+              
+              <div className="flex justify-end pt-4">
                 <button
                   type="submit"
-                  className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark"
+                  className="btn-8vc-primary"
                 >
                   Save Preferences
                 </button>
@@ -420,91 +447,85 @@ export default function Settings() {
 
           {/* Security Settings */}
           {activeTab === 'security' && (
-            <form onSubmit={handleSaveSecurity} className="space-y-6">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Change Password</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Current Password
-                  </label>
-                  <input
-                    type="password"
-                    id="currentPassword"
-                    name="currentPassword"
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    value={securityForm.currentPassword}
-                    onChange={handleSecurityChange}
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    New Password
-                  </label>
-                  <input
-                    type="password"
-                    id="newPassword"
-                    name="newPassword"
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    value={securityForm.newPassword}
-                    onChange={handleSecurityChange}
-                    required
-                    minLength={8}
-                  />
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Password must be at least a 8 characters long and include upper and lowercase letters, numbers, and symbols.</p>
-                </div>
-                
-                <div>
-                  <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Confirm New Password
-                  </label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    value={securityForm.confirmPassword}
-                    onChange={handleSecurityChange}
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Two-Factor Authentication</h3>
-                
-                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md p-4 mb-4">
-                  <div className="flex">
-                    <div className="flex-shrink-0">
-                      <i className="fas fa-shield-alt text-yellow-600 dark:text-yellow-400"></i>
-                    </div>
-                    <div className="ml-3">
-                      <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-300">Not enabled</h3>
-                      <div className="mt-2 text-sm text-yellow-700 dark:text-yellow-400">
-                        <p>Two-factor authentication adds an extra layer of security to your account.</p>
-                      </div>
-                    </div>
+            <form onSubmit={handleSaveSecurity} className="space-y-8">
+              <div>
+                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">Change Password</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="currentPassword" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Current Password
+                    </label>
+                    <input
+                      type="password"
+                      id="currentPassword"
+                      name="currentPassword"
+                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      value={securityForm.currentPassword}
+                      onChange={handleSecurityChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="newPassword" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      New Password
+                    </label>
+                    <input
+                      type="password"
+                      id="newPassword"
+                      name="newPassword"
+                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      value={securityForm.newPassword}
+                      onChange={handleSecurityChange}
+                      required
+                    />
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      Password must be at least 8 characters long and include a mix of letters, numbers, and symbols.
+                    </p>
+                  </div>
+                  <div>
+                    <label htmlFor="confirmPassword" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Confirm New Password
+                    </label>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      value={securityForm.confirmPassword}
+                      onChange={handleSecurityChange}
+                      required
+                    />
                   </div>
                 </div>
-                
-                <button
-                  type="button"
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                  onClick={() => toast({
-                    title: "2FA Setup",
-                    description: "This would start the two-factor authentication setup process"
-                  })}
-                >
-                  Enable Two-Factor Authentication
-                </button>
               </div>
               
-              <div className="flex justify-end">
+              <div className="horizontal-divider"></div>
+              
+              <div>
+                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">Two-Factor Authentication</h3>
+                <div className="flex items-center justify-between">
+                  <div className="max-w-2xl">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Two-factor authentication adds an extra layer of security to your account by requiring more than just a password to sign in.</p>
+                  </div>
+                  <button
+                    type="button"
+                    className="btn-8vc"
+                    onClick={() => toast({
+                      title: "Setup 2FA",
+                      description: "This would initiate the 2FA setup process"
+                    })}
+                  >
+                    Enable 2FA
+                  </button>
+                </div>
+              </div>
+              
+              <div className="horizontal-divider"></div>
+              
+              <div className="flex justify-end pt-4">
                 <button
                   type="submit"
-                  className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark"
+                  className="btn-8vc-primary"
                 >
                   Update Password
                 </button>
@@ -514,103 +535,120 @@ export default function Settings() {
 
           {/* Integration Settings */}
           {activeTab === 'integrations' && (
-            <form onSubmit={handleSaveIntegration} className="space-y-6">
-              <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">API Access</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Connect your existing systems with HandReceipt using our API</p>
-              </div>
-              
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    API Key
-                  </label>
-                  <div className="flex">
+            <form onSubmit={handleSaveIntegration} className="space-y-8">
+              <div>
+                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">API Keys</h3>
+                <div className="space-y-6">
+                  <div>
+                    <label htmlFor="apiKey" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      API Key
+                    </label>
+                    <div className="flex space-x-2">
+                      <input
+                        type="password"
+                        id="apiKey"
+                        name="apiKey"
+                        className="flex-grow px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                        value={integrationKeys.apiKey}
+                        onChange={handleIntegrationChange}
+                        readOnly
+                      />
+                      <button
+                        type="button"
+                        className="btn-8vc"
+                        onClick={generateNewApiKey}
+                      >
+                        <div className="flex items-center gap-2">
+                          <Key size={16} />
+                          <span>Generate New</span>
+                        </div>
+                      </button>
+                    </div>
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      Your API key provides full access to your account. Keep it secure and never share it publicly.
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="webhookUrl" className="block text-sm uppercase tracking-wider font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Webhook URL
+                    </label>
                     <input
                       type="text"
-                      id="apiKey"
-                      name="apiKey"
-                      className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-l-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                      value={integrationKeys.apiKey}
+                      id="webhookUrl"
+                      name="webhookUrl"
+                      className="w-full px-3 py-2 border border-border bg-input-background dark:bg-input-background text-gray-900 dark:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+                      value={integrationKeys.webhookUrl}
                       onChange={handleIntegrationChange}
-                      readOnly
                     />
-                    <button
-                      type="button"
-                      className="px-4 py-2 border border-gray-300 dark:border-gray-600 border-l-0 rounded-r-md bg-gray-50 dark:bg-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-500"
-                      onClick={() => {
-                        navigator.clipboard.writeText(integrationKeys.apiKey);
-                        toast({
-                          title: "Copied!",
-                          description: "API key copied to clipboard"
-                        });
-                      }}
-                    >
-                      Copy
-                    </button>
-                  </div>
-                  <div className="flex justify-end mt-2">
-                    <button
-                      type="button"
-                      className="text-primary hover:text-primary-dark dark:text-blue-400 dark:hover:text-blue-300 text-sm"
-                      onClick={generateNewApiKey}
-                    >
-                      Generate New Key
-                    </button>
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="webhookUrl" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Webhook URL
-                  </label>
-                  <input
-                    type="url"
-                    id="webhookUrl"
-                    name="webhookUrl"
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                    value={integrationKeys.webhookUrl}
-                    onChange={handleIntegrationChange}
-                    placeholder="https://your-company.com/api/webhook"
-                  />
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Enter the URL where HandReceipt should send event notifications</p>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Available Integrations</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 hover:border-primary dark:hover:border-primary-dark hover:shadow-sm cursor-pointer">
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-medium text-gray-800 dark:text-gray-200">ERP Systems</h4>
-                      <i className="fas fa-plug text-gray-500 dark:text-gray-400"></i>
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Connect with your existing ERP systems like SAP, Oracle, or NetSuite</p>
-                  </div>
-                  
-                  <div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 hover:border-primary dark:hover:border-primary-dark hover:shadow-sm cursor-pointer">
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-medium text-gray-800 dark:text-gray-200">Warehouse Management</h4>
-                      <i className="fas fa-warehouse text-gray-500 dark:text-gray-400"></i>
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Integrate with WMS systems to sync inventory levels automatically</p>
-                  </div>
-                  
-                  <div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 hover:border-primary dark:hover:border-primary-dark hover:shadow-sm cursor-pointer">
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-medium text-gray-800 dark:text-gray-200">Payment Gateways</h4>
-                      <i className="fas fa-credit-card text-gray-500 dark:text-gray-400"></i>
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Connect with payment processors for fiat currency transactions</p>
+                    <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      We'll send event notifications to this URL.
+                    </p>
                   </div>
                 </div>
               </div>
               
-              <div className="flex justify-end">
+              <div className="horizontal-divider"></div>
+              
+              <div>
+                <h3 className="heading-medium text-purple-600 dark:text-purple-400 mb-6">Connected Services</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                  Connect your account with these third-party services to enable additional features.
+                </p>
+                
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between py-2 border-b border-border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                        <Building2 size={20} className="text-blue-600 dark:text-blue-300" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">ERP System</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Not connected</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-8vc"
+                      onClick={() => toast({
+                        title: "Connect ERP",
+                        description: "This would initiate the ERP connection process"
+                      })}
+                    >
+                      Connect
+                    </button>
+                  </div>
+                  
+                  <div className="flex items-center justify-between py-2 border-b border-border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                        <DollarSign size={20} className="text-green-600 dark:text-green-300" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Payment Gateway</p>
+                        <p className="text-xs text-green-600 dark:text-green-400">Connected</p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      className="btn-8vc"
+                      onClick={() => toast({
+                        title: "Payment Gateway",
+                        description: "This would open the payment gateway settings"
+                      })}
+                    >
+                      Configure
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="horizontal-divider"></div>
+              
+              <div className="flex justify-end pt-4">
                 <button
                   type="submit"
-                  className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark"
+                  className="btn-8vc-primary"
                 >
                   Save Integration Settings
                 </button>
@@ -619,6 +657,6 @@ export default function Settings() {
           )}
         </div>
       </div>
-    </PageWrapper>
+    </StandardPageLayout>
   );
 }
