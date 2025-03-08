@@ -31,26 +31,26 @@ export default function StatCard({ label, value, icon, trend, iconBgColor, iconC
   };
 
   return (
-    <div className="bg-black dark:bg-black border border-white/10 p-6">
+    <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
       <div className="flex justify-between items-start">
         <div>
           <p className="category-tag mb-2">{label}</p>
-          <p className="text-2xl text-white font-light">{value}</p>
+          <p className="text-2xl text-gray-900 dark:text-white font-light">{value}</p>
         </div>
-        <div className={`${iconBgColor} ${iconColor} p-2.5 border border-white/10`}>
+        <div className={`${iconBgColor} ${iconColor} p-2.5 border border-gray-200 dark:border-white/10`}>
           {getIcon()}
         </div>
       </div>
       {trend && (
         <div className="mt-4 flex items-center">
-          <span className={`${trend.isPositive ? 'text-green-400' : 'text-red-400'} text-sm flex items-center`}>
+          <span className={`${trend.isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'} text-sm flex items-center`}>
             {trend.isPositive ? 
               <ArrowUpRight className="h-4 w-4 mr-1" /> : 
               <ArrowDownRight className="h-4 w-4 mr-1" />
             } 
             {Math.abs(trend.value)}%
           </span>
-          <span className="text-xs text-gray-400 ml-2">{trend.text}</span>
+          <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">{trend.text}</span>
         </div>
       )}
     </div>

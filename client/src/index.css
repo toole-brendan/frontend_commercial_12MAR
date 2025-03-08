@@ -191,7 +191,7 @@
   
   /* 8VC Style Button */
   .btn-8vc {
-    @apply px-6 py-3 border border-gray-300 dark:border-gray-700 text-sm uppercase tracking-wider font-medium transition-all duration-300;
+    @apply px-6 py-3 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-300 text-sm uppercase tracking-wider font-medium transition-all duration-300;
     letter-spacing: 0.1em;
   }
   
@@ -205,7 +205,7 @@
   }
   
   .btn-8vc-primary:hover {
-    @apply bg-purple-600 text-white;
+    @apply bg-purple-600 text-white dark:bg-purple-400 dark:text-black;
   }
   
   /* 8VC Colored Text */

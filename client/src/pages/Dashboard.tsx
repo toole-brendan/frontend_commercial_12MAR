@@ -128,28 +128,6 @@ export default function Dashboard() {
 
   return (
     <>
-      {/* Hero Section - 8VC Style */}
-      <div className="w-full bg-black dark:bg-black text-white py-16 px-8 md:px-16">
-        <div className="split-layout">
-          <div className="split-layout-left">
-            <h1 className="display-heading mb-4">
-              Blockchain powered
-              <br />
-              <span className="display-heading-italic text-purple-highlight">inventory management.</span>
-            </h1>
-            <p className="text-gray-400 mb-8 max-w-xl">
-              HandReceipt provides transparent, immutable supply chain tracking with blockchain verification
-              for complete accountability and traceability.
-            </p>
-          </div>
-          <div className="split-layout-right flex items-center justify-center">
-            {/* This would ideally be a custom SVG illustration like in the 8VC site */}
-            <div className="w-48 h-48 border border-white/20 rounded-full flex items-center justify-center">
-              <ArrowUpDown className="h-12 w-12 text-purple-400" />
-            </div>
-          </div>
-        </div>
-      </div>
       
       {/* Main Dashboard Content */}
       <PageWrapper
@@ -159,8 +137,8 @@ export default function Dashboard() {
         {/* 8VC Style Section Header */}
         <div className="mb-8">
           <div className="category-tag mb-2">Dashboard Overview</div>
-          <h2 className="heading-large mb-2">Real-time inventory metrics</h2>
-          <div className="horizontal-divider"></div>
+          <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Real-time inventory metrics</h2>
+          <div className="horizontal-divider border-gray-200 dark:border-gray-800"></div>
         </div>
       
         <div className="grid grid-flow-row gap-8">
@@ -204,18 +182,18 @@ export default function Dashboard() {
           </div>
 
           {/* Recent Transfer Requests & Activity - 8VC Style */}
-          <div className="grid-8vc">
-            <div className="info-card-8vc">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
               <div className="category-tag mb-4">Active Transfers</div>
-              <h3 className="heading-medium mb-6">Recent transfer requests</h3>
+              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Recent transfer requests</h3>
               <TransferRequestsList 
                 requests={transferRequests}
               />
             </div>
             
-            <div className="info-card-8vc">
+            <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
               <div className="category-tag mb-4">Activity Log</div>
-              <h3 className="heading-medium mb-6">Recent blockchain activity</h3>
+              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Recent blockchain activity</h3>
               <ActivityTimeline 
                 activities={activities}
               />
@@ -225,24 +203,24 @@ export default function Dashboard() {
           {/* 8VC Style Section Header */}
           <div className="mt-8 mb-8">
             <div className="category-tag mb-2">Operations</div>
-            <h2 className="heading-large mb-2">Inventory & transactions</h2>
-            <div className="horizontal-divider"></div>
+            <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Inventory & transactions</h2>
+            <div className="horizontal-divider border-gray-200 dark:border-gray-800"></div>
           </div>
           
           {/* Low Stock & Latest Transactions - 8VC Style */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-white/10">
-            <div className="lg:col-span-1 p-8 border-r border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
               <div className="category-tag mb-4">Inventory Alert</div>
-              <h3 className="heading-medium mb-6">Low stock items</h3>
+              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Low stock items</h3>
               <LowStockItems 
                 items={lowStockItems}
                 onReorder={handleReorderItem}
               />
             </div>
             
-            <div className="lg:col-span-2 p-8">
+            <div className="lg:col-span-2 bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
               <div className="category-tag mb-4">Financial</div>
-              <h3 className="heading-medium mb-6">Latest transactions</h3>
+              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Latest transactions</h3>
               <TransactionsTable 
                 transactions={mockTransactions}
               />

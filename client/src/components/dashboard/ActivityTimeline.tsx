@@ -19,14 +19,11 @@ export default function ActivityTimeline({ activities }: ActivityTimelineProps) 
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow border dark:border-gray-700">
-      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-gray-800 dark:text-gray-100">Recent Activity</h2>
-          <a href="/transaction-history" className="text-primary dark:text-primary-400 text-sm hover:underline">View All</a>
-        </div>
+    <div>
+      <div className="flex justify-end mb-2">
+        <a href="/transaction-history" className="text-purple-600 dark:text-purple-400 text-xs uppercase tracking-wider hover:underline">View All</a>
       </div>
-      <div className="p-5">
+      <div className="p-0">
         <div className="relative">
           {/* Timeline line */}
           <div className="absolute h-full w-0.5 bg-gray-200 dark:bg-gray-700 left-1.5"></div>
@@ -35,10 +32,10 @@ export default function ActivityTimeline({ activities }: ActivityTimelineProps) 
           <div className="space-y-6">
             {activities.map((activity) => (
               <div key={activity.id} className="relative pl-8">
-                <div className="absolute left-0 rounded-full bg-white dark:bg-gray-800 border-2 border-primary dark:border-primary-400 w-3.5 h-3.5"></div>
+                <div className="absolute left-0 rounded-full bg-white dark:bg-black border-2 border-purple-600 dark:border-purple-400 w-3.5 h-3.5"></div>
                 <div className="flex flex-col">
                   <div className="flex items-center justify-between">
-                    <p className="text-sm font-medium text-gray-800 dark:text-gray-100">{activity.description}</p>
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">{activity.description}</p>
                     <span className="text-xs text-gray-500 dark:text-gray-400" title={format(activity.timestamp, 'PPpp')}>
                       {formatTimeAgo(activity.timestamp)}
                     </span>
@@ -46,7 +43,7 @@ export default function ActivityTimeline({ activities }: ActivityTimelineProps) 
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{activity.details}</p>
                   {activity.blockchainVerified && (
                     <div className="flex items-center mt-2">
-                      <span className="text-xs font-medium bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 px-2 py-0.5 rounded">
+                      <span className="text-xs uppercase tracking-wider bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 px-2 py-0.5 border border-green-200 dark:border-green-800">
                         Verified on blockchain
                       </span>
                     </div>
