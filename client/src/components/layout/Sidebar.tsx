@@ -129,26 +129,26 @@ export default function Sidebar({
           )
         )}
         
-        <div className="mt-8 pt-4 border-t border-white/10">
+        <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-800">
           <div className="flex items-center justify-between px-4 py-3 mb-4">
             <button 
               onClick={toggleTheme}
-              className="p-2 hover:text-purple-400 transition-colors"
+              className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
             >
               {theme === 'light' ? 
-                <Moon className="h-5 w-5 text-gray-400" /> : 
-                <Sun className="h-5 w-5 text-gray-400" />
+                <Moon className="h-5 w-5 text-gray-600 dark:text-gray-400" /> : 
+                <Sun className="h-5 w-5 text-gray-600 dark:text-gray-400" />
               }
             </button>
             
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 border border-white/20 flex items-center justify-center text-white text-xs tracking-wider uppercase">
+              <div className="w-10 h-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-800 dark:text-white text-xs tracking-wider uppercase">
                 {user.profileImage}
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-white">{user.name}</p>
-                <p className="text-xs text-gray-400 font-light">{user.role}</p>
+                <p className="text-xs uppercase tracking-wider text-gray-900 dark:text-white">{user.name}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-light">{user.role}</p>
               </div>
             </div>
           </div>
@@ -200,38 +200,38 @@ export default function Sidebar({
         )}
       </nav>
       
-      {/* 8VC Style Footer */}
-      <div className={`p-6 border-t border-white/10 ${sidebarCollapsed ? 'collapsed' : ''}`}>
+      {/* Footer */}
+      <div className={`p-6 border-t border-gray-200 dark:border-gray-800 ${sidebarCollapsed ? 'collapsed' : ''}`}>
         {!sidebarCollapsed && (
           <>
             <div className="flex items-center justify-between mb-6">
               <button 
                 onClick={toggleTheme}
-                className="p-2 hover:text-purple-400 transition-colors"
+                className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                 title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
               >
                 {theme === 'light' ? 
-                  <Moon className="h-5 w-5 text-gray-400" /> : 
-                  <Sun className="h-5 w-5 text-gray-400" />
+                  <Moon className="h-5 w-5 text-gray-600 dark:text-gray-400" /> : 
+                  <Sun className="h-5 w-5 text-gray-600 dark:text-gray-400" />
                 }
               </button>
               
               <button 
                 onClick={toggleSidebar}
-                className="p-2 hover:text-purple-400 transition-colors"
+                className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                 title="Collapse sidebar"
               >
-                <ChevronLeft className="h-5 w-5 text-gray-400" />
+                <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-400" />
               </button>
             </div>
             
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 border border-white/20 flex items-center justify-center text-white text-xs tracking-wider uppercase">
+              <div className="w-10 h-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-800 dark:text-white text-xs tracking-wider uppercase">
                 {user.profileImage}
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-white">{user.name}</p>
-                <p className="text-xs text-gray-400 font-light">{user.role}</p>
+                <p className="text-xs uppercase tracking-wider text-gray-900 dark:text-white">{user.name}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 font-light">{user.role}</p>
               </div>
             </div>
           </>
@@ -241,13 +241,13 @@ export default function Sidebar({
           <div className="flex flex-col items-center gap-6">
             <button 
               onClick={toggleSidebar}
-              className="p-2 hover:text-purple-400 transition-colors"
+              className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               title="Expand sidebar"
             >
-              <ChevronRight className="h-5 w-5 text-gray-400" />
+              <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
             </button>
             
-            <div className="w-10 h-10 border border-white/20 flex items-center justify-center text-white text-xs tracking-wider uppercase">
+            <div className="w-10 h-10 border border-gray-200 dark:border-gray-700 flex items-center justify-center text-gray-800 dark:text-white text-xs tracking-wider uppercase">
               {user.profileImage}
             </div>
           </div>

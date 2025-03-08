@@ -184,16 +184,16 @@ export default function Dashboard() {
           {/* Recent Transfer Requests & Activity - 8VC Style */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
-              <div className="category-tag mb-4">Active Transfers</div>
-              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Recent transfer requests</h3>
+              <div className="category-tag mb-2">Active Transfers</div>
+              <h3 className="heading-medium mb-4 text-gray-900 dark:text-white">Recent transfer requests</h3>
               <TransferRequestsList 
                 requests={transferRequests}
               />
             </div>
             
             <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
-              <div className="category-tag mb-4">Activity Log</div>
-              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Recent blockchain activity</h3>
+              <div className="category-tag mb-2">Activity Log</div>
+              <h3 className="heading-medium mb-4 text-gray-900 dark:text-white">Recent blockchain activity</h3>
               <ActivityTimeline 
                 activities={activities}
               />
@@ -210,8 +210,8 @@ export default function Dashboard() {
           {/* Low Stock & Latest Transactions - 8VC Style */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
-              <div className="category-tag mb-4">Inventory Alert</div>
-              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Low stock items</h3>
+              <div className="category-tag mb-2">Inventory Alert</div>
+              <h3 className="heading-medium mb-4 text-gray-900 dark:text-white">Low stock items</h3>
               <LowStockItems 
                 items={lowStockItems}
                 onReorder={handleReorderItem}
@@ -219,8 +219,8 @@ export default function Dashboard() {
             </div>
             
             <div className="lg:col-span-2 bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
-              <div className="category-tag mb-4">Financial</div>
-              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Latest transactions</h3>
+              <div className="category-tag mb-2">Financial</div>
+              <h3 className="heading-medium mb-4 text-gray-900 dark:text-white">Latest transactions</h3>
               <TransactionsTable 
                 transactions={mockTransactions}
               />
