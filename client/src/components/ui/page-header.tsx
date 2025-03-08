@@ -16,24 +16,24 @@ export function PageHeader({
 }: PageHeaderProps) {
   return (
     <div className={cn(
-      "flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6",
+      "flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-gray-200 dark:border-white/10",
       className
     )}>
       <div>
-        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">
+        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-purple-600 dark:text-purple-400">
           {title.includes(' ') ? title.split(' ')[0] : 'Overview'}
         </div>
-        <h1 className="heading-medium text-xl md:text-2xl font-medium text-gray-900 dark:text-white font-display tracking-tight">
+        <h1 className="heading-large text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white tracking-tight">
           {title}
         </h1>
         {description && (
-          <p className="mt-1.5 text-sm text-gray-500 dark:text-gray-400 max-w-2xl font-light">
+          <p className="mt-2 text-base text-gray-600 dark:text-gray-300 max-w-2xl">
             {description}
           </p>
         )}
       </div>
       {actions && (
-        <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
+        <div className="flex flex-wrap items-center gap-3 mt-3 sm:mt-0">
           {actions}
         </div>
       )}

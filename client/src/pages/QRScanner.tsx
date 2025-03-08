@@ -126,14 +126,22 @@ export default function QRScanner() {
   };
 
   const actionButtons = (
-    <select
-      className="border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
-      value={cameraSelection}
-      onChange={handleCameraChange}
-    >
-      <option value="default">Default Camera</option>
-      <option value="front">Front Camera</option>
-    </select>
+    <div className="flex gap-2 items-center">
+      <select
+        className="border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
+        value={cameraSelection}
+        onChange={handleCameraChange}
+      >
+        <option value="default">Default Camera</option>
+        <option value="front">Front Camera</option>
+      </select>
+      <button 
+        className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-600"
+        onClick={isScanning ? handleStopScan : handleStartScan}
+      >
+        {isScanning ? 'Stop Camera' : 'Start Camera'}
+      </button>
+    </div>
   );
 
   return (
@@ -278,7 +286,7 @@ export default function QRScanner() {
                     </div>
                     <div>
                       {scan.status === 'success' && (
-                        <button className="text-primary hover:text-primary-dark text-sm">
+                        <button className="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 text-sm font-medium">
                           View Item
                         </button>
                       )}
@@ -288,7 +296,7 @@ export default function QRScanner() {
                         </div>
                       )}
                       {scan.status === 'failed' && (
-                        <button className="text-primary hover:text-primary-dark text-sm">
+                        <button className="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 text-sm font-medium">
                           Retry
                         </button>
                       )}
