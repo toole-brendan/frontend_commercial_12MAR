@@ -252,14 +252,14 @@ export default function AddItemModal({
             <button
               type="button"
               onClick={onClose}
-              className="btn-8vc"
+              className="btn-8vc py-1.5 px-3 text-sm"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-8vc-primary flex items-center"
+              className="btn-8vc-primary flex items-center py-1.5 px-3 text-sm"
             >
               {isSubmitting ? (
                 <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] mr-2"></span>

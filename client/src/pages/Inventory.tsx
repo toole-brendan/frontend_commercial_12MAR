@@ -142,24 +142,24 @@ export default function Inventory() {
   const actionButtons = (
     <div className="flex flex-col sm:flex-row gap-3">
       <button 
-        className="btn-8vc-primary flex items-center space-x-2"
+        className="btn-8vc-primary flex items-center space-x-2 py-1.5 px-3 text-sm"
         onClick={handleAddItem}
       >
-        <Plus className="h-4 w-4 mr-2" />
+        <Plus className="h-4 w-4 mr-1" />
         <span>Add Item</span>
       </button>
       <button 
-        className="btn-8vc flex items-center space-x-2"
+        className="btn-8vc flex items-center space-x-2 py-1.5 px-3 text-sm"
         onClick={handleExportCSV}
       >
-        <Download className="h-4 w-4 mr-2" />
+        <Download className="h-4 w-4 mr-1" />
         <span>Export CSV</span>
       </button>
       <button 
-        className="btn-8vc flex items-center space-x-2"
+        className="btn-8vc flex items-center space-x-2 py-1.5 px-3 text-sm"
         onClick={handleImportCSV}
       >
-        <Upload className="h-4 w-4 mr-2" />
+        <Upload className="h-4 w-4 mr-1" />
         <span>Import CSV</span>
       </button>
     </div>
