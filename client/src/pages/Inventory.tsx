@@ -130,79 +130,88 @@ export default function Inventory() {
       </div>
 
       {/* Inventory Table */}
-      <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 overflow-hidden mt-2">
+      <div className="w-full mt-2">
         {isLoading ? (
-          <div className="p-8 text-center">
+          <div className="p-6 text-center bg-white dark:bg-black border border-gray-200 dark:border-white/10">
             <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-purple-600 border-r-transparent dark:border-purple-400 dark:border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] mb-2"></div>
             <p className="text-gray-500 dark:text-gray-400">Loading inventory data...</p>
           </div>
         ) : filteredItems.length === 0 ? (
-          <div className="p-8 text-center">
+          <div className="p-6 text-center bg-white dark:bg-black border border-gray-200 dark:border-white/10">
             <Box className="h-6 w-6 text-gray-400 mx-auto mb-2" />
             <p className="text-gray-500 dark:text-gray-400">No inventory items found matching your criteria</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full data-table">
-              <thead>
-                <tr className="border-b border-gray-300 dark:border-white/10">
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Item</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Code</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Location</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Quantity</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-white/10">
-                {filteredItems.map((item) => (
-                  <tr key={item.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150 cursor-pointer" onClick={() => handleItemClick(item.id!)}>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="flex-shrink-0 h-8 w-8 bg-gray-100/50 dark:bg-white/5 flex items-center justify-center">
-                          <Box className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                        </div>
-                        <div className="ml-3">
-                          <div className="text-sm font-normal text-gray-900 dark:text-white">{item.name}</div>
-                          <div className="text-xs font-light text-gray-500 dark:text-gray-400 max-w-xs truncate">{item.description}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400 font-mono">{item.itemCode}</td>
-                    <td className="py-3 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">{item.location}</td>
-                    <td className="py-3 px-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-medium font-mono">{item.quantity}</td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-purple-500/30 text-purple-600 dark:text-purple-400">
-                        {item.category}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      {item.blockchainHash ? (
-                        <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-green-500/30 text-green-600 dark:text-green-400">
-                          Verified
-                        </span>
-                      ) : (
-                        <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-yellow-500/30 text-yellow-600 dark:text-yellow-400">
-                          Pending
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 mr-3" onClick={(e) => { e.stopPropagation(); }}>
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 mr-3" onClick={(e) => { e.stopPropagation(); }}>
-                        <ArrowLeftRight className="h-4 w-4" />
-                      </button>
-                      <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
-                        <QrCode className="h-4 w-4" />
-                      </button>
-                    </td>
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5">
+            <div className="overflow-x-auto">
+              <table className="min-w-full data-table">
+                <thead>
+                  <tr className="border-b border-gray-300 dark:border-white/10">
+                    <th scope="col" className="py-2 pr-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Item</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Code</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Location</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Quantity</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                    <th scope="col" className="py-2 pl-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-white/10">
+                  {filteredItems.map((item) => (
+                    <tr key={item.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150 cursor-pointer" onClick={() => handleItemClick(item.id!)}>
+                      <td className="py-2.5 pr-4 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/20">
+                            <Box size={18} className="text-blue-600 dark:text-blue-400" />
+                          </div>
+                          <div className="ml-3">
+                            <div className="text-sm font-normal text-gray-900 dark:text-white">{item.name}</div>
+                            <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">{item.description?.substring(0, 40)}{item.description?.length > 40 ? '...' : ''}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400 font-mono">{item.itemCode}</td>
+                      <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">{item.location}</td>
+                      <td className="py-2.5 px-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white font-mono">{item.quantity}</div>
+                        {item.unit && (
+                          <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">{item.unit}</div>
+                        )}
+                      </td>
+                      <td className="py-2.5 px-4 whitespace-nowrap">
+                        <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-purple-500/30 text-purple-600 dark:text-purple-400">
+                          {item.category}
+                        </span>
+                      </td>
+                      <td className="py-2.5 px-4 whitespace-nowrap">
+                        {item.blockchainHash ? (
+                          <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-green-500/30 text-green-600 dark:text-green-400">
+                            Verified
+                          </span>
+                        ) : (
+                          <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-yellow-500/30 text-yellow-600 dark:text-yellow-400">
+                            Pending
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-2.5 pl-4 whitespace-nowrap text-right">
+                        <div className="flex items-center space-x-3">
+                          <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
+                            <Edit className="h-4 w-4" />
+                          </button>
+                          <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
+                            <ArrowLeftRight className="h-4 w-4" />
+                          </button>
+                          <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
+                            <QrCode className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
