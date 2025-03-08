@@ -229,6 +229,11 @@
     letter-spacing: 0.15em;
   }
   
+  /* 8VC Heading Medium */
+  .heading-medium {
+    @apply text-lg font-medium text-gray-900 dark:text-white font-display tracking-tight;
+  }
+  
   /* 8VC Date Tag */
   .date-tag {
     @apply text-sm text-gray-500 dark:text-gray-400 font-normal;
