@@ -14,10 +14,10 @@ import PageWrapper from '@/components/layout/PageWrapper';
 // Import mock data for initial development
 import { 
   dashboardStats, 
-  transferRequests, 
-  activities, 
+  transferRequests as mockTransferRequests, 
+  activities as mockActivities, 
   lowStockItems, 
-  mockTransactions 
+  mockTransactions as rawTransactions 
 } from '@/lib/mockData';
 
 // Define interfaces to match our component props
@@ -50,6 +50,23 @@ interface Transaction {
   currency: string;
   status: string;
 }
+
+// Cast the mock data to match our interfaces
+const transferRequests = mockTransferRequests.map(item => ({
+  ...item,
+  type: item.type as 'incoming' | 'outgoing'
+})) as TransferRequest[];
+
+const activities = mockActivities.map(item => ({
+  ...item,
+  type: item.type as 'contract' | 'receipt' | 'transfer' | 'inventory'
+})) as Activity[];
+
+const mockTransactions = rawTransactions.map(item => ({
+  ...item,
+  id: typeof item.id === 'string' ? parseInt(item.id.replace('TR-', '')) : item.id,
+  type: item.type as 'incoming' | 'outgoing' | 'transfer'
+})) as Transaction[];
 
 export default function Dashboard() {
   const [isQRScannerOpen, setIsQRScannerOpen] = useState(false);
