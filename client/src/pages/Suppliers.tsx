@@ -2,11 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { mockSuppliers } from "@/lib/mockData";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Plus, Search, Filter, Star, MessageSquare, FileText, ExternalLink, Edit, Trash2, Building } from "lucide-react";
 import PageWrapper from "@/components/layout/PageWrapper";
@@ -111,136 +107,136 @@ export default function Suppliers() {
       
 
       
-      {/* 8VC Style Table */}
-      <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 mt-3">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-5 border-b border-gray-200 dark:border-white/10">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 w-full sm:w-auto mb-3 sm:mb-0">
-            <select 
-              className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1 px-3 text-gray-600 dark:text-white w-full sm:w-auto"
-              onChange={(e) => setFilterStatus(e.target.value === "all" ? null : e.target.value)}
-            >
-              <option value="all">All Suppliers</option>
-              <option value="Active">Active Only</option>
-              <option value="Inactive">Inactive Only</option>
-            </select>
-            
-            <div className="relative w-full sm:w-auto">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-gray-400" />
+      {/* 8VC Style Table with Filter Controls */}
+      <div className="w-full mt-3">
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5 mb-3">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+              <select 
+                className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1 px-3 text-gray-600 dark:text-white w-full sm:w-auto"
+                onChange={(e) => setFilterStatus(e.target.value === "all" ? null : e.target.value)}
+              >
+                <option value="all">All Suppliers</option>
+                <option value="Active">Active Only</option>
+                <option value="Inactive">Inactive Only</option>
+              </select>
+              
+              <div className="relative w-full sm:w-auto">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-4 w-4 text-gray-400" />
+                </div>
+                <input
+                  type="search"
+                  placeholder="Search suppliers..."
+                  className="block w-full sm:w-[240px] pl-10 pr-3 py-1 border border-gray-300 dark:border-white/10 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:border-purple-500"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
               </div>
-              <input
-                type="search"
-                placeholder="Search suppliers..."
-                className="block w-full sm:w-[240px] pl-10 pr-3 py-1 border border-gray-300 dark:border-white/10 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:border-purple-500"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
             </div>
-          </div>
-          
-          <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto">
-            <div className="text-xs uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400 mr-2">
-              {filteredSuppliers.length} suppliers shown
+            
+            <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto">
+              <div className="text-xs uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400 mr-3">
+                {filteredSuppliers.length} suppliers shown
+              </div>
+              <button 
+                className="btn-8vc-primary flex items-center space-x-2 py-1.5 px-3 text-xs"
+                onClick={() => setIsAddDialogOpen(true)}
+              >
+                <Plus className="h-3.5 w-3.5 mr-1" />
+                <span>Add</span>
+              </button>
             </div>
-            <button 
-              className="btn-8vc flex items-center space-x-2 py-1.5 px-3 text-xs"
-              onClick={() => setIsAddDialogOpen(true)}
-            >
-              <Plus className="h-3.5 w-3.5 mr-1" />
-              <span>Add</span>
-            </button>
           </div>
         </div>
         
-        <div className="overflow-x-auto">
-          <table className="min-w-full data-table">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-white/10">
-                <th scope="col" className="py-2 pr-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider pl-5">Supplier</th>
-                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
-                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Payment Terms</th>
-                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rating</th>
-                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
-                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Last Order</th>
-                <th scope="col" className="py-2 pl-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider pr-5">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-white/10">
-              {isLoading ? (
-                <tr>
-                  <td colSpan={7} className="py-8 px-4 text-center">
-                    <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-purple-600 border-r-transparent dark:border-purple-400 dark:border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] mr-2"></div>
-                    <span className="text-sm font-light text-gray-500 dark:text-gray-400">Loading suppliers...</span>
-                  </td>
-                </tr>
-              ) : filteredSuppliers.length === 0 ? (
-                <tr>
-                  <td colSpan={7} className="py-16 px-4 text-center">
-                    <Building className="h-8 w-8 text-gray-400 mx-auto mb-3" />
-                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">No suppliers found</p>
-                    <p className="text-xs text-gray-400 dark:text-gray-500">Try adjusting your search or filter criteria</p>
-                  </td>
-                </tr>
-              ) : (
-                filteredSuppliers.map((supplier) => (
-                  <tr key={supplier.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150 cursor-pointer" onClick={() => handleViewDetails(supplier)}>
-                    <td className="py-2.5 pr-4 whitespace-nowrap pl-5">
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 flex items-center justify-center bg-purple-500/10 dark:bg-purple-500/20">
-                          <Building size={18} className="text-purple-600 dark:text-purple-400" />
-                        </div>
-                        <div className="ml-3">
-                          <div className="text-sm font-normal text-gray-900 dark:text-white">{supplier.name}</div>
-                          <div className="text-xs font-light text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-4 whitespace-nowrap">
-                      <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-purple-500/30 text-purple-600 dark:text-purple-400">
-                        {supplier.category}
-                      </span>
-                    </td>
-                    <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400 font-mono">{supplier.paymentTerms}</td>
-                    <td className="py-2.5 px-4 whitespace-nowrap">
-                      <div className="flex items-center text-sm font-medium text-gray-900 dark:text-white">
-                        {supplier.rating}
-                        <Star className="h-4 w-4 ml-1 text-amber-500 dark:text-amber-400" />
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-4 whitespace-nowrap">
-                      <span className={`px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border ${
-                        supplier.status === "Active" 
-                          ? "border-green-500/30 text-green-600 dark:text-green-400" 
-                          : "border-gray-500/30 text-gray-600 dark:text-gray-400"
-                      }`}>
-                        {supplier.status}
-                      </span>
-                    </td>
-                    <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400 font-mono">
-                      {format(supplier.lastOrder, 'MMM d, yyyy')}
-                    </td>
-                    <td className="py-2.5 pl-4 whitespace-nowrap text-right pr-5">
-                      <div className="flex items-center space-x-3 justify-end">
-                        <button 
-                          className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400"
-                          onClick={(e) => { e.stopPropagation(); handleViewDetails(supplier); }}
-                        >
-                          <ExternalLink className="h-4 w-4" />
-                        </button>
-                        <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
-                          <Edit className="h-4 w-4" />
-                        </button>
-                        <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
-                          <FileText className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </td>
+        {isLoading ? (
+          <div className="p-6 text-center bg-white dark:bg-black border border-gray-200 dark:border-white/10">
+            <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-purple-600 border-r-transparent dark:border-purple-400 dark:border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] mb-2"></div>
+            <p className="text-gray-500 dark:text-gray-400">Loading suppliers data...</p>
+          </div>
+        ) : filteredSuppliers.length === 0 ? (
+          <div className="p-6 text-center bg-white dark:bg-black border border-gray-200 dark:border-white/10">
+            <Building className="h-8 w-8 text-gray-400 mx-auto mb-3" />
+            <p className="text-gray-500 dark:text-gray-400 mb-1">No suppliers found</p>
+            <p className="text-sm text-gray-400 dark:text-gray-500">Try adjusting your search or filter criteria</p>
+          </div>
+        ) : (
+          <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5">
+            <div className="overflow-x-auto">
+              <table className="min-w-full data-table">
+                <thead>
+                  <tr className="border-b border-gray-300 dark:border-white/10">
+                    <th scope="col" className="py-2 pr-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Supplier</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Payment Terms</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rating</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Last Order</th>
+                    <th scope="col" className="py-2 pl-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider pr-5">Actions</th>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-white/10">
+                  {filteredSuppliers.map((supplier) => (
+                    <tr key={supplier.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150 cursor-pointer" onClick={() => handleViewDetails(supplier)}>
+                      <td className="py-2.5 pr-4 whitespace-nowrap">
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 flex items-center justify-center bg-purple-500/10 dark:bg-purple-500/20">
+                            <Building size={18} className="text-purple-600 dark:text-purple-400" />
+                          </div>
+                          <div className="ml-3">
+                            <div className="text-sm font-normal text-gray-900 dark:text-white">{supplier.name}</div>
+                            <div className="text-xs font-light text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-4 whitespace-nowrap">
+                        <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-purple-500/30 text-purple-600 dark:text-purple-400">
+                          {supplier.category}
+                        </span>
+                      </td>
+                      <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400 font-mono">{supplier.paymentTerms}</td>
+                      <td className="py-2.5 px-4 whitespace-nowrap">
+                        <div className="flex items-center text-sm font-medium text-gray-900 dark:text-white">
+                          {supplier.rating}
+                          <Star className="h-4 w-4 ml-1 text-amber-500 dark:text-amber-400" />
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-4 whitespace-nowrap">
+                        <span className={`px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border ${
+                          supplier.status === "Active" 
+                            ? "border-green-500/30 text-green-600 dark:text-green-400" 
+                            : "border-gray-500/30 text-gray-600 dark:text-gray-400"
+                        }`}>
+                          {supplier.status}
+                        </span>
+                      </td>
+                      <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400 font-mono">
+                        {format(supplier.lastOrder, 'MMM d, yyyy')}
+                      </td>
+                      <td className="py-2.5 pl-4 whitespace-nowrap text-right pr-5">
+                        <div className="flex items-center space-x-3 justify-end">
+                          <button 
+                            className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400"
+                            onClick={(e) => { e.stopPropagation(); handleViewDetails(supplier); }}
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                          </button>
+                          <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
+                            <Edit className="h-4 w-4" />
+                          </button>
+                          <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
+                            <FileText className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
       </div>
       
       {/* Add Supplier Dialog */}
