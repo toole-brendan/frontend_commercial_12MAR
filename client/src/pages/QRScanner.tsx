@@ -127,7 +127,7 @@ export default function QRScanner() {
 
   const actionButtons = (
     <select
-      className="border border-gray-300 rounded-md py-2 px-3 text-sm"
+      className="border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
       value={cameraSelection}
       onChange={handleCameraChange}
     >
@@ -145,40 +145,41 @@ export default function QRScanner() {
       />
 
       {/* QR Scanner Area */}
-      <div className="bg-white rounded-lg shadow">
-        <div className="p-5 border-b border-gray-200">
-          <h2 className="font-semibold text-gray-800">Scan QR Code</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-white/10">
+        <div className="p-5 border-b border-gray-200 dark:border-white/10">
+          <div className="mb-1 category-tag">Scanning Tools</div>
+          <h2 className="heading-medium text-gray-900 dark:text-white">Scan QR Code</h2>
         </div>
         <div className="p-5">
           <div 
-            className="bg-gray-100 rounded-lg aspect-video max-h-96 flex flex-col items-center justify-center mx-auto"
+            className="bg-gray-100 dark:bg-gray-700 rounded-lg aspect-video max-h-96 flex flex-col items-center justify-center mx-auto border border-gray-200 dark:border-white/10"
             onClick={!isScanning ? handleStartScan : undefined}
           >
             {!isScanning ? (
               <div className="text-center cursor-pointer">
-                <i className="fas fa-camera text-4xl text-gray-400 mb-2"></i>
-                <p className="text-gray-500">Click to activate camera</p>
-                <p className="text-xs text-gray-400 mt-2">Make sure you've granted camera permissions</p>
+                <i className="fas fa-camera text-4xl text-gray-400 dark:text-gray-300 mb-2"></i>
+                <p className="text-gray-500 dark:text-gray-300">Click to activate camera</p>
+                <p className="text-xs text-gray-400 dark:text-gray-400 mt-2">Make sure you've granted camera permissions</p>
               </div>
             ) : (
               <div className="relative w-full h-full rounded-lg overflow-hidden">
                 {/* Mock camera feed */}
-                <div className="absolute inset-0 bg-gray-700 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gray-700 dark:bg-gray-800 flex items-center justify-center">
                   <p className="text-white">Camera feed simulation</p>
                 </div>
                 
                 {/* Scan target overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="border-2 border-primary w-1/2 h-1/2 rounded-lg relative">
+                  <div className="border-2 border-purple-600 dark:border-purple-400 w-1/2 h-1/2 rounded-lg relative">
                     {/* Corner markers */}
-                    <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-primary"></div>
-                    <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-primary"></div>
-                    <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-primary"></div>
-                    <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-primary"></div>
+                    <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-purple-600 dark:border-purple-400"></div>
+                    <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-purple-600 dark:border-purple-400"></div>
+                    <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-purple-600 dark:border-purple-400"></div>
+                    <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-purple-600 dark:border-purple-400"></div>
                     
                     {/* Scan line animation */}
                     <div className="absolute inset-0 overflow-hidden">
-                      <div className="h-0.5 bg-primary w-full absolute top-1/2 animate-pulse"></div>
+                      <div className="h-0.5 bg-purple-600 dark:bg-purple-400 w-full absolute top-1/2 animate-pulse"></div>
                     </div>
                   </div>
                 </div>
@@ -190,7 +191,7 @@ export default function QRScanner() {
             <div className="flex space-x-3">
               {isScanning ? (
                 <button 
-                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm flex items-center space-x-2"
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm flex items-center space-x-2"
                   onClick={handleStopScan}
                 >
                   <i className="fas fa-stop"></i>
@@ -198,7 +199,7 @@ export default function QRScanner() {
                 </button>
               ) : (
                 <button 
-                  className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm flex items-center space-x-2"
+                  className="btn-8vc-primary flex items-center space-x-2"
                   onClick={handleStartScan}
                 >
                   <i className="fas fa-play"></i>
@@ -206,7 +207,7 @@ export default function QRScanner() {
                 </button>
               )}
               <button 
-                className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg text-sm flex items-center space-x-2"
+                className="btn-8vc flex items-center space-x-2"
                 onClick={() => processScan(`ITEM-${Math.floor(Math.random() * 1000)}`)}
               >
                 <i className="fas fa-random"></i>
@@ -217,13 +218,13 @@ export default function QRScanner() {
             <div className="flex w-full md:w-auto mt-4 md:mt-0">
               <input
                 type="text"
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-primary focus:border-primary"
+                className="flex-1 px-3 py-2 border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-l-md focus:outline-none focus:ring-2 focus:ring-purple-600 dark:focus:ring-purple-400"
                 placeholder="Enter code manually"
                 value={mockScanResult}
                 onChange={(e) => setMockScanResult(e.target.value)}
               />
               <button 
-                className="bg-primary hover:bg-primary-600 text-white px-4 py-2 rounded-r-md text-sm"
+                className="bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-white px-4 py-2 rounded-r-md text-sm"
                 onClick={handleManualScan}
               >
                 Process
@@ -234,16 +235,17 @@ export default function QRScanner() {
       </div>
 
       {/* Recent Scans */}
-      <div className="bg-white rounded-lg shadow">
-        <div className="p-5 border-b border-gray-200">
-          <h2 className="font-semibold text-gray-800">Recent Scans</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-white/10">
+        <div className="p-5 border-b border-gray-200 dark:border-white/10">
+          <div className="mb-1 category-tag">Scan History</div>
+          <h2 className="heading-medium text-gray-900 dark:text-white">Recent Scans</h2>
         </div>
         <div className="p-0">
           {recentScans.length === 0 ? (
             <div className="p-8 text-center">
-              <i className="fas fa-qrcode text-gray-400 text-2xl mb-2"></i>
-              <p className="text-gray-600">No recent scans</p>
-              <p className="text-xs text-gray-500 mt-2">Scan a QR code to see its information here</p>
+              <i className="fas fa-qrcode text-gray-400 dark:text-gray-300 text-2xl mb-2"></i>
+              <p className="text-gray-600 dark:text-gray-300">No recent scans</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Scan a QR code to see its information here</p>
             </div>
           ) : (
             <ul className="divide-y divide-gray-200">
@@ -300,35 +302,39 @@ export default function QRScanner() {
       </div>
 
       {/* Instructions */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">How to Scan QR Codes</h2>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-white/10 p-6">
+        <div className="mb-4">
+          <div className="category-tag mb-1.5">Guide</div>
+          <h2 className="heading-medium text-gray-900 dark:text-white">How to Scan QR Codes</h2>
+        </div>
+        
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="border border-gray-200 rounded-lg p-4 text-center">
-            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span className="text-primary font-bold">1</span>
+          <div className="border border-gray-200 dark:border-white/10 rounded-lg p-4 text-center">
+            <div className="w-12 h-12 bg-purple-50 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span className="text-purple-600 dark:text-purple-400 font-bold">1</span>
             </div>
-            <h3 className="font-medium text-gray-800 mb-2">Position</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">Position</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Hold your device so the QR code appears in the scanning area
             </p>
           </div>
           
-          <div className="border border-gray-200 rounded-lg p-4 text-center">
-            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span className="text-primary font-bold">2</span>
+          <div className="border border-gray-200 dark:border-white/10 rounded-lg p-4 text-center">
+            <div className="w-12 h-12 bg-purple-50 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span className="text-purple-600 dark:text-purple-400 font-bold">2</span>
             </div>
-            <h3 className="font-medium text-gray-800 mb-2">Steady</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">Steady</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Keep your device steady until the code is recognized
             </p>
           </div>
           
-          <div className="border border-gray-200 rounded-lg p-4 text-center">
-            <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center mx-auto mb-3">
-              <span className="text-primary font-bold">3</span>
+          <div className="border border-gray-200 dark:border-white/10 rounded-lg p-4 text-center">
+            <div className="w-12 h-12 bg-purple-50 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span className="text-purple-600 dark:text-purple-400 font-bold">3</span>
             </div>
-            <h3 className="font-medium text-gray-800 mb-2">Process</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-medium text-gray-800 dark:text-gray-200 mb-2">Process</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Once scanned, the system will automatically process the code
             </p>
           </div>
