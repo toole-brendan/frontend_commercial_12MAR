@@ -40,18 +40,18 @@ export default function AppLayout({ children }: AppLayoutProps) {
       />
 
       {/* Mobile header - 8VC Style */}
-      <div className="md:hidden bg-black dark:bg-black text-white p-4">
+      <div className="md:hidden bg-white dark:bg-black p-4 border-b border-gray-200 dark:border-white/10">
         <div className="flex items-center justify-between">
           <div 
             className="flex items-center cursor-pointer hover:opacity-90 transition-opacity"
             onClick={() => window.location.href = '/'}
           >
-            <div className="border border-white/30 px-4 py-1.5">
-              <h1 className="text-base font-light tracking-widest text-white m-0">HandReceipt</h1>
+            <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
+              <h1 className="text-lg font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
             </div>
           </div>
           <button 
-            className="text-white hover:text-purple-400 p-2 transition-colors focus:outline-none"
+            className="text-gray-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 p-2 transition-colors focus:outline-none"
             onClick={toggleMobileMenu}
             aria-label="Open menu"
           >
@@ -70,18 +70,18 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
       {/* Mobile menu - 8VC Style */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-y-0 left-0 w-64 bg-black text-white z-50 md:hidden">
-          <div className="p-4 border-b border-white/10 flex justify-between items-center">
+        <div className="fixed inset-y-0 left-0 w-64 bg-white dark:bg-black z-50 md:hidden">
+          <div className="p-4 border-b border-gray-200 dark:border-white/10 flex justify-between items-center">
             <div 
               className="flex items-center cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => window.location.href = '/'}
             >
-              <div className="border border-white/30 px-4 py-1.5">
-                <h1 className="text-base font-light tracking-widest text-white m-0">HandReceipt</h1>
+              <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
+                <h1 className="text-lg font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
               </div>
             </div>
             <button 
-              className="text-white hover:text-purple-400 p-2 transition-colors focus:outline-none"
+              className="text-gray-800 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 p-2 transition-colors focus:outline-none"
               onClick={toggleMobileMenu}
               aria-label="Close menu"
             >
