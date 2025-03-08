@@ -23,7 +23,7 @@ export default function MobileNav({ openQRScanner }: MobileNavProps) {
   };
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-black dark:bg-black border-t border-white/10 flex justify-around p-3 z-10">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-black border-t border-gray-200 dark:border-white/10 flex justify-around p-3 z-10">
       <Link href="/">
         <div className={`flex flex-col items-center justify-center ${isActive('/') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
           <LayoutDashboard className="h-5 w-5" />
@@ -39,7 +39,7 @@ export default function MobileNav({ openQRScanner }: MobileNavProps) {
       <div 
         className={`flex flex-col items-center justify-center cursor-pointer 
                    p-2 bg-purple-600 dark:bg-purple-600 rounded-full -mt-6 border-4 
-                   ${theme === 'dark' ? 'border-black' : 'border-black'}`}
+                   ${theme === 'dark' ? 'border-black' : 'border-white'}`}
         onClick={handleQRScanClick}
       >
         <QrCode className="h-6 w-6 text-white" />
