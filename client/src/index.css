@@ -321,27 +321,64 @@
     @apply text-white;
   }
   
+  /* Fix for theme toggle and collapse buttons */
+  .dark .sidebar button:hover svg {
+    @apply text-purple-400;
+  }
+  
+  /* Specific fix for the chevron and theme buttons */
+  .dark .sidebar button .h-5.w-5 {
+    @apply text-white;
+  }
+  
   .sidebar-item-icon {
     @apply flex-shrink-0 w-5 h-5;
     margin-right: 12px;
   }
   
   .collapsed .sidebar-item {
-    @apply justify-center;
+    @apply justify-center items-center;
+    padding-left: 0;
+    padding-right: 0;
   }
   
   .collapsed .sidebar-item-icon {
     margin-right: 0;
+    @apply mx-auto;
+  }
+  
+  .collapsed .sidebar svg {
+    @apply mx-auto;
+  }
+  
+  /* Ensure any content in sidebar is centered when collapsed */
+  .collapsed .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Center profile avatar when collapsed */
+  .sidebar.collapsed .avatar,
+  .sidebar.collapsed button {
+    @apply mx-auto my-0;
   }
   
   /* Collapsed footer styles */
   .collapsed.p-4 {
-    padding: 1rem 0.5rem;
+    padding: 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .collapsed .sidebar-footer-icon {
+    @apply mx-auto;
   }
   
   /* Fix for profile color text */

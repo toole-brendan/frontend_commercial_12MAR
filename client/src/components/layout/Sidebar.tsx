@@ -330,7 +330,7 @@ export default function Sidebar({
                 className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                 title="Collapse sidebar"
               >
-                <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-white" />
               </button>
             </div>
           )}
@@ -353,7 +353,7 @@ export default function Sidebar({
                 className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                 title="Expand sidebar"
               >
-                <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                <ChevronRight className="h-5 w-5 text-gray-600 dark:text-white" />
               </button>
             </div>
           )}
