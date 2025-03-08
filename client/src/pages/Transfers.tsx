@@ -112,6 +112,17 @@ export default function Transfers() {
         return <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-gray-500/30 text-gray-600 dark:text-gray-400">{status}</span>;
     }
   };
+  
+  const getIconForTransferType = (type: string) => {
+    switch(type) {
+      case 'incoming':
+        return <div className="w-8 h-8 flex items-center justify-center bg-green-500/10 dark:bg-green-500/20"><ArrowDown size={18} className="text-green-600 dark:text-green-400" /></div>;
+      case 'outgoing':
+        return <div className="w-8 h-8 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/20"><ArrowUp size={18} className="text-blue-600 dark:text-blue-400" /></div>;
+      default:
+        return <div className="w-8 h-8 flex items-center justify-center bg-gray-500/10 dark:bg-gray-500/20"><ArrowDown size={18} className="text-gray-600 dark:text-gray-400" /></div>;
+    }
+  };
 
   // 8VC style action buttons
   const actionButtons = (
@@ -219,85 +230,96 @@ export default function Transfers() {
             <p className="text-gray-500 dark:text-gray-400">No transfers found</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="min-w-full data-table">
-              <thead>
-                <tr className="border-b border-gray-300 dark:border-white/10">
-                  <th scope="col" className="py-2 pr-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">ID/Item</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">From/To</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Quantity</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
-                  <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Blockchain</th>
-                  <th scope="col" className="py-2 pl-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-white/10">
-                {filteredTransfers.map((transfer) => (
-                  <tr key={transfer.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150">
-                    <td className="py-3 pr-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="w-8 h-8 flex items-center justify-center bg-gray-200 dark:bg-gray-800">
-                          {transfer.type === 'incoming' ? (
-                            <ArrowDown size={16} className="text-green-600 dark:text-green-400" />
-                          ) : (
-                            <ArrowUp size={16} className="text-blue-600 dark:text-blue-400" />
-                          )}
-                        </div>
-                        <div className="ml-3">
-                          <div className="text-sm font-normal text-gray-900 dark:text-white">#{transfer.id}</div>
-                          <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">{transfer.itemName}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">{transfer.type === 'incoming' ? 'From:' : 'To:'}</div>
-                      <div className="text-sm font-normal text-gray-900 dark:text-white">{transfer.type === 'incoming' ? transfer.fromParty : transfer.toParty}</div>
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900 dark:text-white font-mono">{transfer.quantity}</div>
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      {getStatusBadge(transfer.status)}
-                    </td>
-                    <td className="py-3 px-4 whitespace-nowrap">
-                      {transfer.blockchainVerified ? (
-                        <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-green-500/30 text-green-600 dark:text-green-400">
-                          <CheckCircle className="h-3 w-3 mr-1.5" /> Verified
-                        </span>
-                      ) : (
-                        <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-gray-500/30 text-gray-600 dark:text-gray-400">
-                          <Clock className="h-3 w-3 mr-1.5" /> Pending
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-3 pl-4 whitespace-nowrap text-sm font-medium">
-                      {transfer.status === 'pending' && transfer.type === 'incoming' && (
-                        <div className="flex space-x-2">
-                          <button 
-                            className="btn-8vc-primary py-1 px-3 text-xs"
-                            onClick={() => handleAcceptTransfer(transfer.id)}
-                          >
-                            Accept
-                          </button>
-                          <button 
-                            className="btn-8vc py-1 px-3 text-xs"
-                            onClick={() => handleDeclineTransfer(transfer.id)}
-                          >
-                            Decline
-                          </button>
-                        </div>
-                      )}
-                      {(transfer.status !== 'pending' || transfer.type !== 'incoming') && (
-                        <button className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 flex items-center">
-                          <Eye className="h-4 w-4 mr-1" /> 
-                          <span className="text-xs uppercase tracking-wider">Details</span>
-                        </button>
-                      )}
-                    </td>
+          <div className="p-5">
+            <div className="flex justify-between items-center mb-3">
+              <div>
+                <select 
+                  className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1 px-3 text-gray-600 dark:text-white"
+                  value={activeTab}
+                  onChange={(e) => setActiveTab(e.target.value)}
+                >
+                  <option value="all">All Transfers</option>
+                  <option value="incoming">Incoming</option>
+                  <option value="outgoing">Outgoing</option>
+                  <option value="pending">Pending</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full data-table">
+                <thead>
+                  <tr className="border-b border-gray-300 dark:border-white/10">
+                    <th scope="col" className="py-2 pr-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">ID/Item</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">From/To</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Quantity</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                    <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Blockchain</th>
+                    <th scope="col" className="py-2 pl-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-white/10">
+                  {filteredTransfers.map((transfer) => (
+                    <tr key={transfer.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150">
+                      <td className="py-3 pr-4 whitespace-nowrap">
+                        <div className="flex items-center">
+                          {getIconForTransferType(transfer.type)}
+                          <div className="ml-3">
+                            <div className="text-sm font-normal text-gray-900 dark:text-white">#{transfer.id}</div>
+                            <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">{transfer.itemName}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 whitespace-nowrap">
+                        <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">{transfer.type === 'incoming' ? 'From:' : 'To:'}</div>
+                        <div className="text-sm font-normal text-gray-900 dark:text-white">{transfer.type === 'incoming' ? transfer.fromParty : transfer.toParty}</div>
+                      </td>
+                      <td className="py-3 px-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white font-mono">{transfer.quantity}</div>
+                      </td>
+                      <td className="py-3 px-4 whitespace-nowrap">
+                        {getStatusBadge(transfer.status)}
+                      </td>
+                      <td className="py-3 px-4 whitespace-nowrap">
+                        {transfer.blockchainVerified ? (
+                          <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-green-500/30 text-green-600 dark:text-green-400">
+                            <CheckCircle className="h-3 w-3 mr-1.5" /> Verified
+                          </span>
+                        ) : (
+                          <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-gray-500/30 text-gray-600 dark:text-gray-400">
+                            <Clock className="h-3 w-3 mr-1.5" /> Pending
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-3 pl-4 whitespace-nowrap text-sm font-medium">
+                        {transfer.status === 'pending' && transfer.type === 'incoming' && (
+                          <div className="flex space-x-2">
+                            <button 
+                              className="btn-8vc-primary py-1 px-3 text-xs"
+                              onClick={() => handleAcceptTransfer(transfer.id)}
+                            >
+                              Accept
+                            </button>
+                            <button 
+                              className="btn-8vc py-1 px-3 text-xs"
+                              onClick={() => handleDeclineTransfer(transfer.id)}
+                            >
+                              Decline
+                            </button>
+                          </div>
+                        )}
+                        {(transfer.status !== 'pending' || transfer.type !== 'incoming') && (
+                          <button className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 flex items-center">
+                            <Eye className="h-4 w-4 mr-1" /> 
+                            <span className="text-xs uppercase tracking-wider">Details</span>
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
