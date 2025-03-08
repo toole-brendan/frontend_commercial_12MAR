@@ -252,14 +252,14 @@ export default function AddItemModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-sm"
+              className="btn-8vc"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-4 py-2 bg-purple-600 border border-purple-600 text-white hover:bg-purple-700 transition-colors text-sm flex items-center"
+              className="btn-8vc-primary flex items-center"
             >
               {isSubmitting ? (
                 <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] mr-2"></span>

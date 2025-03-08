@@ -142,21 +142,21 @@ export default function Inventory() {
   const actionButtons = (
     <div className="flex flex-col sm:flex-row gap-3">
       <button 
-        className="px-4 py-2 bg-purple-600 border border-purple-600 text-white hover:bg-purple-700 transition-colors text-sm flex items-center"
+        className="btn-8vc-primary flex items-center space-x-2"
         onClick={handleAddItem}
       >
         <Plus className="h-4 w-4 mr-2" />
         <span>Add Item</span>
       </button>
       <button 
-        className="px-4 py-2 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-sm flex items-center"
+        className="btn-8vc flex items-center space-x-2"
         onClick={handleExportCSV}
       >
         <Download className="h-4 w-4 mr-2" />
         <span>Export CSV</span>
       </button>
       <button 
-        className="px-4 py-2 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-sm flex items-center"
+        className="btn-8vc flex items-center space-x-2"
         onClick={handleImportCSV}
       >
         <Upload className="h-4 w-4 mr-2" />
