@@ -71,14 +71,8 @@ export default function AddItemModal({
         lastUpdated: new Date().toISOString()
       };
       
-      // Use the second parameter overload of apiRequest that accepts options
-      await apiRequest<any>('/api/inventory', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(inventoryItem)
-      } as RequestInit);
+      // Use the correct apiRequest signature (method, url, data)
+      await apiRequest('POST', '/api/inventory', inventoryItem);
       
       toast({
         title: 'Success',
