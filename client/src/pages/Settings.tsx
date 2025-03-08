@@ -143,10 +143,16 @@ export default function Settings() {
 
   return (
     <PageWrapper
-      title="Settings"
-      description="Manage your account preferences and application settings"
       className="space-y-6"
     >
+      {/* 8VC Style Section Header */}
+      <div className="mb-4">
+        <div className="category-tag mb-1.5">Settings</div>
+        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Account Settings</h2>
+        <p className="text-gray-500 dark:text-gray-400 mb-2">Manage your account preferences and application settings</p>
+        <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
+      </div>
+
       <div className="card overflow-hidden">
         <div className="sm:hidden p-4 border-b border-border">
           <select
