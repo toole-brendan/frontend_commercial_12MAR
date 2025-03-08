@@ -56,10 +56,10 @@ export default function TransactionsTable({ transactions, onFilterChange }: Tran
 
   return (
     <div className="w-full">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-3">
         <div>
           <select 
-            className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1.5 px-3 text-gray-600 dark:text-white"
+            className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1 px-3 text-gray-600 dark:text-white"
             onChange={handleFilterChange}
           >
             <option value="all">All Transactions</option>
@@ -72,28 +72,28 @@ export default function TransactionsTable({ transactions, onFilterChange }: Tran
         <table className="min-w-full data-table">
           <thead>
             <tr className="border-b border-gray-300 dark:border-white/10">
-              <th scope="col" className="py-3 pr-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Transaction</th>
-              <th scope="col" className="py-3 px-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date</th>
-              <th scope="col" className="py-3 px-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Amount</th>
-              <th scope="col" className="py-3 pl-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+              <th scope="col" className="py-2 pr-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Transaction</th>
+              <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date</th>
+              <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Amount</th>
+              <th scope="col" className="py-2 pl-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-white/10">
             {transactions.map((transaction) => (
               <tr key={transaction.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150">
-                <td className="py-4 pr-6 whitespace-nowrap">
+                <td className="py-2.5 pr-4 whitespace-nowrap">
                   <div className="flex items-center">
                     {getIconForTransactionType(transaction.type)}
-                    <div className="ml-4">
+                    <div className="ml-3">
                       <div className="text-sm font-normal text-gray-900 dark:text-white">{transaction.description}</div>
                       <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">{transaction.reference}</div>
                     </div>
                   </div>
                 </td>
-                <td className="py-4 px-6 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">
+                <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">
                   {format(transaction.date, 'MMM d, yyyy')}
                 </td>
-                <td className="py-4 px-6 whitespace-nowrap">
+                <td className="py-2.5 px-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-900 dark:text-white font-mono">
                     {transaction.currency === 'items' 
                       ? `${transaction.amount} items` 
@@ -106,7 +106,7 @@ export default function TransactionsTable({ transactions, onFilterChange }: Tran
                     <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">Value: ${transaction.amountUSD.toLocaleString()}</div>
                   )}
                 </td>
-                <td className="py-4 pl-6 whitespace-nowrap">
+                <td className="py-2.5 pl-4 whitespace-nowrap">
                   {getStatusBadge(transaction.status)}
                 </td>
               </tr>
