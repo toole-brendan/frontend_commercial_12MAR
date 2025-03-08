@@ -122,7 +122,7 @@
     --bg-secondary: 0 0% 7%;
     --bg-accent: 270 60% 50%; /* Purple accent color */
     --bg-accent-hover: 270 60% 55%;
-    --bg-sidebar: 0 0% 7%; /* Dark sidebar */
+    --bg-sidebar: 0 0% 0%; /* Black sidebar - updated as requested */
     
     --text-primary: 0 0% 100%;
     --text-secondary: 0 0% 70%;
@@ -303,6 +303,24 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
   
+  /* Make all sidebar text white in dark mode */
+  .dark .sidebar-item {
+    @apply text-white;
+  }
+  
+  .dark .sidebar-item:not(.active) {
+    @apply text-white;
+  }
+  
+  /* Make sidebar icons white in dark mode */
+  .dark .sidebar svg {
+    @apply text-white;
+  }
+  
+  .dark .sidebar button svg {
+    @apply text-white;
+  }
+  
   .sidebar-item-icon {
     @apply flex-shrink-0 w-5 h-5;
     margin-right: 12px;
@@ -328,11 +346,11 @@
   
   /* Fix for profile color text */
   .sidebar .profile-name {
-    @apply text-gray-800 dark:text-gray-200;
+    @apply text-gray-800 dark:text-white;
   }
   
   .sidebar .profile-role {
-    @apply text-gray-600 dark:text-gray-400;
+    @apply text-gray-600 dark:text-white;
   }
   
   /* Main content area that adjusts based on sidebar state */
