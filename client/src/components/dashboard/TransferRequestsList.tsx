@@ -71,30 +71,30 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
   };
 
   return (
-    <div className="bg-background dark:bg-black border-0">
-      <div className="flex justify-end mb-4">
+    <div>
+      <div className="flex justify-end mb-2">
         <a href="/transfers" className="text-purple-600 dark:text-purple-400 text-xs uppercase tracking-wider hover:underline">View All</a>
       </div>
-      <div className="p-0">
-        <ul className="divide-y divide-gray-200 dark:divide-white/10">
+      <div className="overflow-hidden">
+        <ul className="space-y-4 max-h-[500px] overflow-auto pr-1">
           {requests.map((request) => {
             const processed = processedRequests[request.id];
             
             if (processed) {
               return (
-                <li key={request.id} className="py-4 border-gray-200 dark:border-white/10">
+                <li key={request.id} className="py-3 border-b border-gray-200 dark:border-gray-700">
                   <div className="flex items-center space-x-4">
-                    <div className={`${processed.status === 'accepted' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                    <div className={`flex-shrink-0 ${processed.status === 'accepted' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                       {processed.status === 'accepted' ? 
                         <Check className="h-5 w-5" /> : 
                         <X className="h-5 w-5" />
                       }
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-900 dark:text-white">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                         {processed.status === 'accepted' ? 'Transfer accepted' : 'Transfer declined'}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">
                         {processed.status === 'accepted' 
                           ? 'The item has been added to your inventory' 
                           : 'The sender has been notified'}
@@ -106,25 +106,25 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
             }
 
             return (
-              <li key={request.id} className="py-4 border-gray-200 dark:border-white/10">
+              <li key={request.id} className="py-3 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="text-purple-600 dark:text-purple-400">
+                  <div className="flex items-center space-x-4 min-w-0 flex-1">
+                    <div className="flex-shrink-0 text-purple-600 dark:text-purple-400">
                       {request.type === 'incoming' ? 
                         <ArrowRight className="h-5 w-5" /> : 
                         <ArrowLeft className="h-5 w-5" />
                       }
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-900 dark:text-white">{request.itemName}</p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{request.itemName}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">
                         {request.type === 'incoming' ? `From: ${request.fromParty}` : `To: ${request.toParty}`}
                       </p>
                     </div>
                   </div>
                   {request.status === 'pending' ? (
                     request.type === 'incoming' ? (
-                      <div className="flex space-x-3">
+                      <div className="flex space-x-2 flex-shrink-0 ml-2">
                         <button 
                           className="btn-8vc-primary text-xs py-1 px-3"
                           onClick={() => handleAccept(request.id)}
@@ -139,12 +139,12 @@ export default function TransferRequestsList({ requests, onAccept, onDecline }: 
                         </button>
                       </div>
                     ) : (
-                      <div>
+                      <div className="flex-shrink-0 ml-2">
                         <span className="text-yellow-600 dark:text-yellow-400 text-xs uppercase tracking-wider">Pending</span>
                       </div>
                     )
                   ) : (
-                    <div>
+                    <div className="flex-shrink-0 ml-2">
                       <span className={`text-xs uppercase tracking-wider ${
                         request.status === 'completed' 
                           ? 'text-green-600 dark:text-green-400' 

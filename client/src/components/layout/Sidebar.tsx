@@ -97,24 +97,21 @@ export default function Sidebar({
   if (isMobile) {
     return (
       <nav className="flex-1 p-4 space-y-3">
-        {/* Mobile Logo - 8VC Style */}
+        {/* Mobile Logo */}
         <div 
           className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity mb-8"
           onClick={handleLogoClick}
         >
-          <div className="border border-white/30 px-4 py-1.5">
-            <h1 className="text-lg font-light tracking-widest text-white m-0">HandReceipt</h1>
-          </div>
+          <h1 className="text-xl font-semibold text-gray-900 dark:text-white">HandReceipt</h1>
         </div>
         
-        {/* 8VC Style Navigation */}
-        <div className="category-tag mb-2 px-2">Main</div>
+        {/* Navigation Items */}
         {navItems.map((item, index) => 
           item.onClick ? (
             <div 
               key={item.path}
               onClick={item.onClick}
-              className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
+              className={`sidebar-item ${isActive(item.path) ? "active text-purple-600 dark:text-purple-400" : "text-gray-900 dark:text-gray-400"} hover:text-purple-600 dark:hover:text-white`}
             >
               {item.icon}
               <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>
@@ -123,7 +120,7 @@ export default function Sidebar({
             <Link key={item.path} href={item.path}>
               <div 
                 onClick={handleLinkClick}
-                className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
+                className={`sidebar-item ${isActive(item.path) ? "active text-purple-600 dark:text-purple-400" : "text-gray-900 dark:text-gray-400"} hover:text-purple-600 dark:hover:text-white`}
               >
                 {item.icon}
                 <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>
@@ -162,16 +159,14 @@ export default function Sidebar({
 
   return (
     <aside className={`sidebar hidden md:flex flex-col ${sidebarCollapsed ? 'collapsed' : ''}`}>
-      {/* 8VC Style Header */}
-      <div className="p-6 border-b border-white/10">
+      {/* Header */}
+      <div className="p-6 border-b border-gray-200 dark:border-gray-800">
         {!sidebarCollapsed ? (
           <div 
             className="flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
             onClick={handleLogoClick}
           >
-            <div className="border border-white/30 px-4 py-1.5">
-              <h1 className="text-lg font-light tracking-widest text-white m-0">HandReceipt</h1>
-            </div>
+            <h1 className="text-xl font-semibold text-gray-900 dark:text-white">HandReceipt</h1>
           </div>
         ) : (
           <div className="flex items-center justify-center h-5">
@@ -180,16 +175,14 @@ export default function Sidebar({
         )}
       </div>
       
-      {/* 8VC Style Navigation */}
+      {/* Navigation */}
       <nav className={`flex-1 px-6 py-6 space-y-6 overflow-y-auto ${sidebarCollapsed ? 'collapsed' : ''}`}>
-        {!sidebarCollapsed && <div className="category-tag mb-2">Main Navigation</div>}
-        
         {navItems.map((item) => 
           item.onClick ? (
             <div 
               key={item.path}
               onClick={item.onClick}
-              className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
+              className={`sidebar-item ${isActive(item.path) ? "active text-purple-600 dark:text-purple-400" : "text-gray-900 dark:text-gray-400"} hover:text-purple-600 dark:hover:text-white`}
             >
               {item.icon}
               {!sidebarCollapsed && <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>}
@@ -197,7 +190,7 @@ export default function Sidebar({
           ) : (
             <Link key={item.path} href={item.path}>
               <div
-                className={`sidebar-item ${isActive(item.path) ? "active text-purple-400" : "text-gray-400"} hover:text-white`}
+                className={`sidebar-item ${isActive(item.path) ? "active text-purple-600 dark:text-purple-400" : "text-gray-900 dark:text-gray-400"} hover:text-purple-600 dark:hover:text-white`}
               >
                 {item.icon}
                 {!sidebarCollapsed && <span className="uppercase text-xs tracking-wider font-light">{item.label}</span>}
