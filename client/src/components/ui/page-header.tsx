@@ -20,11 +20,14 @@ export function PageHeader({
       className
     )}>
       <div>
-        <h1 className="text-2xl md:text-3xl font-display font-bold tracking-tight text-foreground dark:text-theme-text-primary">
+        <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">
+          {title.includes(' ') ? title.split(' ')[0] : 'Overview'}
+        </div>
+        <h1 className="heading-medium text-xl md:text-2xl font-medium text-gray-900 dark:text-white font-display tracking-tight">
           {title}
         </h1>
         {description && (
-          <p className="mt-1 text-sm text-muted-foreground dark:text-theme-text-secondary max-w-2xl">
+          <p className="mt-1.5 text-sm text-gray-500 dark:text-gray-400 max-w-2xl font-light">
             {description}
           </p>
         )}

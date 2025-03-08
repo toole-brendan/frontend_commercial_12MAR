@@ -93,42 +93,50 @@ const Integrations: React.FC = () => {
         <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">Enterprise Resource Planning</div>
         <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium font-display">ERP Systems</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <IntegrationCard
-            title="SAP"
-            description="Connect to your SAP ERP system to synchronize inventory, orders, and transfers."
-            icon="business"
-            status="available"
-            category="erp"
-            onConnect={handleConnect}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="h-full">
+            <IntegrationCard
+              title="SAP"
+              description="Connect to your SAP ERP system to synchronize inventory, orders, and transfers."
+              icon="business"
+              status="available"
+              category="erp"
+              onConnect={handleConnect}
+            />
+          </div>
           
-          <IntegrationCard
-            title="Oracle ERP Cloud"
-            description="Pull data from Oracle ERP Cloud for seamless inventory management."
-            icon="cloud"
-            status="connected"
-            category="erp"
-            onConfigure={handleConfigure}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="Oracle ERP Cloud"
+              description="Pull data from Oracle ERP Cloud for seamless inventory management."
+              icon="cloud"
+              status="connected"
+              category="erp"
+              onConfigure={handleConfigure}
+            />
+          </div>
           
-          <IntegrationCard
-            title="Microsoft Dynamics 365"
-            description="Integrate with Microsoft Dynamics 365 for comprehensive supply chain visibility."
-            icon="business"
-            status="available"
-            category="erp"
-            onConnect={handleConnect}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="Microsoft Dynamics 365"
+              description="Integrate with Microsoft Dynamics 365 for comprehensive supply chain visibility."
+              icon="business"
+              status="available"
+              category="erp"
+              onConnect={handleConnect}
+            />
+          </div>
           
-          <IntegrationCard
-            title="NetSuite"
-            description="Connect to NetSuite to centralize your ERP and inventory management."
-            icon="business"
-            status="available"
-            category="erp"
-            onConnect={handleConnect}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="NetSuite"
+              description="Connect to NetSuite to centralize your ERP and inventory management."
+              icon="business"
+              status="available"
+              category="erp"
+              onConnect={handleConnect}
+            />
+          </div>
         </div>
       </div>
       
@@ -137,41 +145,49 @@ const Integrations: React.FC = () => {
         <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">Physical Assets</div>
         <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium font-display">Warehouse Management</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <IntegrationCard
-            title="RFID Systems"
-            description="Connect your RFID scanning infrastructure to HandReceipt for automated tracking."
-            icon="warehouse"
-            status="connected"
-            category="warehouse"
-            onConfigure={handleConfigure}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="h-full">
+            <IntegrationCard
+              title="RFID Systems"
+              description="Connect your RFID scanning infrastructure to HandReceipt for automated tracking."
+              icon="warehouse"
+              status="connected"
+              category="warehouse"
+              onConfigure={handleConfigure}
+            />
+          </div>
           
-          <IntegrationCard
-            title="Barcode Scanners"
-            description="Use your existing barcode scanners with HandReceipt for physical inventory management."
-            icon="qr_code_scanner"
-            status="connected"
-            category="scanner"
-            onConfigure={handleConfigure}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="Barcode Scanners"
+              description="Use your existing barcode scanners with HandReceipt for physical inventory management."
+              icon="qr_code_scanner"
+              status="connected"
+              category="scanner"
+              onConfigure={handleConfigure}
+            />
+          </div>
           
-          <IntegrationCard
-            title="Warehouse Management System"
-            description="Integrate with your WMS for comprehensive warehouse operations."
-            icon="warehouse"
-            status="available"
-            category="warehouse"
-            onConnect={handleConnect}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="Warehouse Management System"
+              description="Integrate with your WMS for comprehensive warehouse operations."
+              icon="warehouse"
+              status="available"
+              category="warehouse"
+              onConnect={handleConnect}
+            />
+          </div>
           
-          <IntegrationCard
-            title="IoT Sensors"
-            description="Connect IoT sensors to track environmental conditions for sensitive inventory."
-            icon="sensors"
-            status="coming-soon"
-            category="warehouse"
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="IoT Sensors"
+              description="Connect IoT sensors to track environmental conditions for sensitive inventory."
+              icon="sensors"
+              status="coming-soon"
+              category="warehouse"
+            />
+          </div>
         </div>
       </div>
       
@@ -180,42 +196,50 @@ const Integrations: React.FC = () => {
         <div className="category-tag mb-1.5 uppercase text-xs tracking-wider font-medium text-muted-foreground dark:text-theme-text-secondary">Financial Infrastructure</div>
         <h3 className="heading-medium mb-4 text-gray-900 dark:text-white text-lg font-medium font-display">Payment & Blockchain</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <IntegrationCard
-            title="USDC Payment Gateway"
-            description="Connect to Circle's USDC infrastructure for stablecoin payments with 1:1 USD backing."
-            icon="payments"
-            status="connected"
-            category="payment"
-            onConfigure={handleConfigure}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="h-full">
+            <IntegrationCard
+              title="USDC Payment Gateway"
+              description="Connect to Circle's USDC infrastructure for stablecoin payments with 1:1 USD backing."
+              icon="payments"
+              status="connected"
+              category="payment"
+              onConfigure={handleConfigure}
+            />
+          </div>
           
-          <IntegrationCard
-            title="Traditional Banking API"
-            description="Connect to your bank for traditional wire transfers and reconciliation."
-            icon="account_balance"
-            status="available"
-            category="payment"
-            onConnect={handleConnect}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="Traditional Banking API"
+              description="Connect to your bank for traditional wire transfers and reconciliation."
+              icon="account_balance"
+              status="available"
+              category="payment"
+              onConnect={handleConnect}
+            />
+          </div>
           
-          <IntegrationCard
-            title="HandReceipt Shells (SHL)"
-            description="Use HandReceipt's native token for ecosystem payments with reduced transaction fees."
-            icon="toll"
-            status="connected"
-            category="blockchain"
-            onConfigure={handleConfigure}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="HandReceipt Shells (SHL)"
+              description="Use HandReceipt's native token for ecosystem payments with reduced transaction fees."
+              icon="toll"
+              status="connected"
+              category="blockchain"
+              onConfigure={handleConfigure}
+            />
+          </div>
           
-          <IntegrationCard
-            title="Solana Blockchain"
-            description="Leverage Solana's high-speed, low-cost blockchain for enterprise-grade smart contracts."
-            icon="lan"
-            status="connected"
-            category="blockchain"
-            onConfigure={handleConfigure}
-          />
+          <div className="h-full">
+            <IntegrationCard
+              title="Solana Blockchain"
+              description="Leverage Solana's high-speed, low-cost blockchain for enterprise-grade smart contracts."
+              icon="lan"
+              status="connected"
+              category="blockchain"
+              onConfigure={handleConfigure}
+            />
+          </div>
         </div>
       </div>
     </PageContainer>
