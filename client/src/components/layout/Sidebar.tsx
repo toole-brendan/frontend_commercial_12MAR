@@ -150,7 +150,7 @@ export default function Sidebar({
         {/* Bottom Section */}
         <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-800">
           {/* Bottom Navigation Items */}
-          <div className="space-y-4 mb-4">
+          <div className="space-y-3 mb-2">
             {/* QR Scanner Item - Renamed */}
             {navItems.find(item => item.path === '/qr-scanner') && (
               <div 
@@ -188,7 +188,7 @@ export default function Sidebar({
           </div>
           
           {/* Theme Toggle */}
-          <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-800">
+          <div className="py-3 px-4 border-t border-gray-200 dark:border-gray-800">
             <button 
               onClick={toggleTheme}
               className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
@@ -275,7 +275,7 @@ export default function Sidebar({
       {/* Bottom Section */}
       <div className="mt-auto border-t border-gray-200 dark:border-gray-800">
         {/* Bottom Navigation Items */}
-        <div className="px-6 py-6 space-y-6">
+        <div className="px-6 py-3 space-y-3">
           {/* QR Scanner Item - Renamed */}
           {navItems.find(item => item.path === '/qr-scanner') && (
             <div 
@@ -311,7 +311,7 @@ export default function Sidebar({
         </div>
       
         {/* Footer - Theme & Collapse Toggles */}
-        <div className={`p-6 border-t border-gray-200 dark:border-gray-800 ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        <div className={`py-3 px-4 border-t border-gray-200 dark:border-gray-800 ${sidebarCollapsed ? 'collapsed' : ''}`}>
           {!sidebarCollapsed && (
             <div className="flex items-center justify-between">
               <button 
@@ -336,7 +336,7 @@ export default function Sidebar({
           )}
           
           {sidebarCollapsed && (
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-3">
               <button 
                 onClick={toggleTheme}
                 className="p-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
