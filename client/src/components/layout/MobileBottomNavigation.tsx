@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useLocation, Link } from 'wouter';
 import { AppContext } from '@/context/AppContext';
+import { LayoutDashboard, Package, QrCode, Send, MoreHorizontal } from "lucide-react";
 
 const MobileBottomNavigation: React.FC = () => {
   const [location] = useLocation();
@@ -11,46 +12,46 @@ const MobileBottomNavigation: React.FC = () => {
   };
 
   return (
-    <nav className="lg:hidden flex items-center justify-around bg-background dark:bg-mobile-nav-bg-dark border-t border-border dark:border-border py-3">
+    <nav className="lg:hidden flex items-center justify-around bg-black dark:bg-black border-t border-white/10 py-3 z-10 fixed bottom-0 left-0 right-0">
       <Link href="/dashboard">
-        <a className={`flex flex-col items-center ${isActive('/dashboard') || isActive('/') ? 'text-primary' : 'text-muted-foreground dark:text-theme-text-secondary'}`}>
-          <span className="material-icons text-sm">dashboard</span>
-          <span className="text-xs mt-1">Dashboard</span>
-        </a>
+        <div className={`flex flex-col items-center ${isActive('/dashboard') || isActive('/') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
+          <LayoutDashboard className="h-5 w-5" />
+          <span className="text-xs uppercase tracking-wider font-light mt-1">Dashboard</span>
+        </div>
       </Link>
       <Link href="/inventory">
-        <a className={`flex flex-col items-center ${isActive('/inventory') ? 'text-primary' : 'text-muted-foreground dark:text-theme-text-secondary'}`}>
-          <span className="material-icons text-sm">inventory_2</span>
-          <span className="text-xs mt-1">Inventory</span>
-        </a>
+        <div className={`flex flex-col items-center ${isActive('/inventory') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
+          <Package className="h-5 w-5" />
+          <span className="text-xs uppercase tracking-wider font-light mt-1">Inventory</span>
+        </div>
       </Link>
-      <a 
-        className="flex flex-col items-center"
+      <div 
+        className="flex flex-col items-center cursor-pointer"
         onClick={(e) => {
           e.preventDefault();
           toggleScanner();
         }}
       >
-        <div className="bg-primary text-white p-3 rounded-full -mt-5 shadow-lg">
-          <span className="material-icons">qr_code_scanner</span>
+        <div className="p-2 bg-purple-600 dark:bg-purple-600 rounded-full -mt-6 border-4 border-black dark:border-black">
+          <QrCode className="h-6 w-6 text-white" />
         </div>
-        <span className="text-xs mt-1 text-foreground dark:text-theme-text-primary">Scan</span>
-      </a>
+        <span className="text-xs uppercase tracking-wider font-light mt-1 text-gray-500 dark:text-gray-400">Scan</span>
+      </div>
       <Link href="/transfers">
-        <a className={`flex flex-col items-center relative ${isActive('/transfers') ? 'text-primary' : 'text-muted-foreground dark:text-theme-text-secondary'}`}>
-          <span className="material-icons text-sm">swap_horiz</span>
-          <span className="text-xs mt-1">Transfers</span>
+        <div className={`flex flex-col items-center relative ${isActive('/transfers') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
+          <Send className="h-5 w-5" />
+          <span className="text-xs uppercase tracking-wider font-light mt-1">Transfers</span>
           {notifications > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+            <span className="absolute -top-1 -right-1 border border-purple-600 dark:border-purple-400 text-purple-600 dark:text-purple-400 text-xs w-4 h-4 flex items-center justify-center">
               {notifications}
             </span>
           )}
-        </a>
+        </div>
       </Link>
-      <a className="flex flex-col items-center text-muted-foreground dark:text-theme-text-secondary group">
-        <span className="material-icons text-sm group-hover:text-foreground dark:group-hover:text-theme-text-primary">more_horiz</span>
-        <span className="text-xs mt-1 group-hover:text-foreground dark:group-hover:text-theme-text-primary">More</span>
-      </a>
+      <div className="flex flex-col items-center text-gray-500 dark:text-gray-400 group cursor-pointer">
+        <MoreHorizontal className="h-5 w-5 group-hover:text-purple-600 dark:group-hover:text-purple-400" />
+        <span className="text-xs uppercase tracking-wider font-light mt-1 group-hover:text-purple-600 dark:group-hover:text-purple-400">More</span>
+      </div>
     </nav>
   );
 };

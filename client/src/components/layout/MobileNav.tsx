@@ -23,37 +23,37 @@ export default function MobileNav({ openQRScanner }: MobileNavProps) {
   };
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-sky-900 to-blue-900 border-t border-gray-700/50 flex justify-around p-3 z-10 shadow-lg">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-black dark:bg-black border-t border-white/10 flex justify-around p-3 z-10">
       <Link href="/">
-        <div className={`flex flex-col items-center justify-center ${isActive('/') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
           <LayoutDashboard className="h-5 w-5" />
-          <span className="text-xs mt-1">Dashboard</span>
+          <span className="text-xs uppercase tracking-wider font-light mt-1">Dashboard</span>
         </div>
       </Link>
       <Link href="/inventory">
-        <div className={`flex flex-col items-center justify-center ${isActive('/inventory') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/inventory') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
           <Package className="h-5 w-5" />
-          <span className="text-xs mt-1">Inventory</span>
+          <span className="text-xs uppercase tracking-wider font-light mt-1">Inventory</span>
         </div>
       </Link>
       <div 
-        className={`flex flex-col items-center justify-center text-gray-300 cursor-pointer 
-                   p-2 bg-blue-700 rounded-full -mt-5 shadow-md border-4 
-                   ${theme === 'dark' ? 'border-gray-900' : 'border-blue-800'}`}
+        className={`flex flex-col items-center justify-center cursor-pointer 
+                   p-2 bg-purple-600 dark:bg-purple-600 rounded-full -mt-6 border-4 
+                   ${theme === 'dark' ? 'border-black' : 'border-black'}`}
         onClick={handleQRScanClick}
       >
-        <QrCode className="h-6 w-6" />
+        <QrCode className="h-6 w-6 text-white" />
       </div>
       <Link href="/transfers">
-        <div className={`flex flex-col items-center justify-center ${isActive('/transfers') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/transfers') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
           <Send className="h-5 w-5" />
-          <span className="text-xs mt-1">Transfers</span>
+          <span className="text-xs uppercase tracking-wider font-light mt-1">Transfers</span>
         </div>
       </Link>
       <Link href="/transactions">
-        <div className={`flex flex-col items-center justify-center ${isActive('/transactions') ? 'text-blue-300' : 'text-gray-300'}`}>
+        <div className={`flex flex-col items-center justify-center ${isActive('/transactions') ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
           <Wallet className="h-5 w-5" />
-          <span className="text-xs mt-1">Money</span>
+          <span className="text-xs uppercase tracking-wider font-light mt-1">Money</span>
         </div>
       </Link>
     </nav>
