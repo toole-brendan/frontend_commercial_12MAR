@@ -111,6 +111,32 @@ Carefully calibrated spacing throughout the interface:
 - **Item Spacing**: `space-y-6` for main nav items, `space-y-3` for utility items
 - **Border Padding**: Consistent border styling with subtle color differences between themes
 
+## Table Design
+
+Tables follow a minimalist, elegant design approach with careful attention to typography and spacing:
+
+- **Structure**: No rounded corners, clean borders with `border-gray-200 dark:border-white/10`
+- **Headers**: Text-xs uppercase letters with `tracking-wider` and medium font weight for clear hierarchy
+- **Row Spacing**: Compact with minimalist padding (`py-2.5 px-4`) to maximize data density
+- **Row Borders**: Subtle dividers with `divide-y divide-gray-200 dark:divide-white/10`
+- **Row Hover**: Gentle hover effect using `hover:bg-gray-50/50 dark:hover:bg-white/5`
+- **Cell Typography**:
+  - Standard text: Font-light with dark:text-white for primary content
+  - Technical data: Font-mono for codes, quantities, and technical information
+  - Secondary data: Text-gray-500 dark:text-gray-400 for less critical information
+- **Icons**: 
+  - Sized at 18px or smaller within 32x32px containers
+  - Background treatment with translucent color fills (e.g., `bg-blue-500/10`)
+  - Icon colors matched to associated data types
+- **Status Badges**:
+  - Square design with border instead of background (`border border-color-500/30`)
+  - Uppercase, tracking-wider font styling
+  - Color-coded by status type (green for success, yellow for pending, etc.)
+- **Actions**:
+  - Right-aligned in the final column
+  - Subtle icons with hover states
+  - Consistent spacing between action buttons
+
 ## Theme Switching
 
 Implemented comprehensive light/dark theming:

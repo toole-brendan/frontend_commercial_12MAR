@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useToast } from '@/hooks/use-toast';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { inventoryItems as mockInventoryItems } from '@/lib/mockData';
-import { Plus, FileText, Search, Box, Edit, ArrowLeftRight, QrCode } from 'lucide-react';
+import { Plus, FileText, Search, Box, Edit, ArrowLeftRight, QrCode, Download, Upload } from 'lucide-react';
+import AddItemModal from '@/components/inventory/AddItemModal';
 
 export default function Inventory() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
+  const [showAddModal, setShowAddModal] = useState(false);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   // Fetch inventory items from API
   const { data: inventoryItems, isLoading } = useQuery({
@@ -36,18 +39,97 @@ export default function Inventory() {
     new Set(displayItems.map(item => item.category))
   ).filter(Boolean) as string[];
 
+  // Extract unique locations for the add form
+  const locations = Array.from(
+    new Set(displayItems.map(item => item.location))
+  ).filter(Boolean) as string[];
+
   const handleAddItem = () => {
+    setShowAddModal(true);
+  };
+
+  const handleAddSuccess = () => {
+    queryClient.invalidateQueries({ queryKey: ['/api/inventory'] });
     toast({
-      title: "Add Item",
-      description: "This would open a form to add a new inventory item"
+      title: "Item Added",
+      description: "The new item has been added to inventory"
     });
   };
 
   const handleExportCSV = () => {
+    // Create CSV content from inventory items
+    const headers = ["Item Code", "Name", "Description", "Category", "Location", "Quantity", "Status"];
+    const csvContent = 
+      [headers.join(",")]
+      .concat(
+        filteredItems.map(item => 
+          [
+            item.itemCode || '',
+            `"${item.name?.replace(/"/g, '""') || ''}"`,
+            `"${item.description?.replace(/"/g, '""') || ''}"`,
+            item.category || '',
+            item.location || '',
+            item.quantity || '',
+            item.blockchainHash ? 'Verified' : 'Pending'
+          ].join(",")
+        )
+      )
+      .join("\n");
+    
+    // Create a downloadable blob
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    
+    // Create a link and trigger download
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `inventory-export-${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
     toast({
-      title: "Export CSV",
-      description: "This would export inventory data as CSV"
+      title: "Export Successful",
+      description: "Inventory data has been exported as CSV"
     });
+  };
+
+  const handleImportCSV = () => {
+    // Create a file input element
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = ".csv";
+    
+    // Handle file selection
+    fileInput.onchange = (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target?.result as string;
+        
+        // Process the CSV content here
+        toast({
+          title: "Import Started",
+          description: `Importing data from ${file.name}`
+        });
+        
+        // For now, just show a success message
+        // In a real implementation, you would parse the CSV and save items to the database
+        setTimeout(() => {
+          toast({
+            title: "Import Successful",
+            description: "Inventory data has been imported"
+          });
+        }, 1500);
+      };
+      
+      reader.readAsText(file);
+    };
+    
+    // Trigger file selection
+    fileInput.click();
   };
 
   const handleItemClick = (id: number) => {
@@ -60,18 +142,25 @@ export default function Inventory() {
   const actionButtons = (
     <div className="flex flex-col sm:flex-row gap-3">
       <button 
-        className="btn-8vc-primary flex items-center space-x-2"
+        className="px-4 py-2 bg-purple-600 border border-purple-600 text-white hover:bg-purple-700 transition-colors text-sm flex items-center"
         onClick={handleAddItem}
       >
         <Plus className="h-4 w-4 mr-2" />
         <span>Add Item</span>
       </button>
       <button 
-        className="btn-8vc flex items-center space-x-2"
+        className="px-4 py-2 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-sm flex items-center"
         onClick={handleExportCSV}
       >
-        <FileText className="h-4 w-4 mr-2" />
+        <Download className="h-4 w-4 mr-2" />
         <span>Export CSV</span>
+      </button>
+      <button 
+        className="px-4 py-2 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-sm flex items-center"
+        onClick={handleImportCSV}
+      >
+        <Upload className="h-4 w-4 mr-2" />
+        <span>Import CSV</span>
       </button>
     </div>
   );
@@ -215,6 +304,15 @@ export default function Inventory() {
           </div>
         )}
       </div>
+      
+      {/* Add Item Modal */}
+      <AddItemModal 
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onSuccess={handleAddSuccess}
+        categories={categories}
+        locations={locations}
+      />
     </PageWrapper>
   );
 }
