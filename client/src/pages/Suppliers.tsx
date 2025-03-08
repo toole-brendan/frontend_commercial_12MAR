@@ -55,71 +55,79 @@ export default function Suppliers() {
       className="space-y-4 pt-4"
       actions={actionButtons}
     >
-      <div className="flex items-center mb-8">
-        <div className="mr-4">
-          <h1 className="text-2xl font-semibold tracking-tight">Suppliers</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Manage your supplier relationships and contracts
-          </p>
-        </div>
-        <div className="ml-auto">
-          <span className="uppercase text-xs tracking-wide px-2 py-1 border border-purple-200 text-purple-600 dark:text-purple-400 dark:border-purple-800/50 bg-purple-50 dark:bg-purple-900/20 rounded-sm">
-            Partner Ecosystem
-          </span>
-        </div>
+      {/* 8VC Style Section Header */}
+      <div className="mb-4">
+        <div className="category-tag mb-1.5">Partner Network</div>
+        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Supplier Management</h2>
+        <p className="text-gray-500 dark:text-gray-400 mb-2">Manage your supplier relationships and blockchain contracts</p>
+        <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
       </div>
       
-      <div className="w-full h-px bg-border mb-6" />
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="flex flex-col p-5 rounded-sm border border-gray-200 dark:border-gray-700/60 bg-background dark:bg-black">
-          <h4 className="text-sm font-medium text-muted-foreground dark:text-gray-400 uppercase tracking-wide mb-2">Total Suppliers</h4>
-          <div className="text-3xl font-bold dark:text-white">{suppliers.length}</div>
-          <div className="text-xs font-medium text-muted-foreground dark:text-gray-400 mt-1">
-            {suppliers.filter(s => s.status === "Active").length} active
+      {/* 8VC Style Stat Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5">
+          <div className="category-tag mb-1.5">Network Size</div>
+          <div className="flex items-center space-x-3 mb-2">
+            <div className="w-8 h-8 flex items-center justify-center bg-purple-500/10 dark:bg-purple-500/20">
+              <Building size={18} className="text-purple-600 dark:text-purple-400" />
+            </div>
+            <h3 className="text-xl font-light text-gray-900 dark:text-white">{suppliers.length} Total Suppliers</h3>
+          </div>
+          <div className="text-sm font-light text-gray-500 dark:text-gray-400 mt-1">
+            {suppliers.filter(s => s.status === "Active").length} active partners
           </div>
         </div>
         
-        <div className="flex flex-col p-5 rounded-sm border border-gray-200 dark:border-gray-700/60 bg-background dark:bg-black">
-          <h4 className="text-sm font-medium text-muted-foreground dark:text-gray-400 uppercase tracking-wide mb-2">Smart Contracts</h4>
-          <div className="text-3xl font-bold dark:text-white">
-            {suppliers.filter(s => s.contractId).length}
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5">
+          <div className="category-tag mb-1.5">Smart Contracts</div>
+          <div className="flex items-center space-x-3 mb-2">
+            <div className="w-8 h-8 flex items-center justify-center bg-indigo-500/10 dark:bg-indigo-500/20">
+              <FileText size={18} className="text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <h3 className="text-xl font-light text-gray-900 dark:text-white">
+              {suppliers.filter(s => s.contractId).length} Blockchain Contracts
+            </h3>
           </div>
-          <div className="text-xs font-medium text-muted-foreground dark:text-gray-400 mt-1">
-            {Math.round((suppliers.filter(s => s.contractId).length / suppliers.length) * 100)}% of suppliers
+          <div className="text-sm font-light text-gray-500 dark:text-gray-400 mt-1">
+            {Math.round((suppliers.filter(s => s.contractId).length / suppliers.length) * 100)}% contract utilization rate
           </div>
         </div>
         
-        <div className="flex flex-col p-5 rounded-sm border border-gray-200 dark:border-gray-700/60 bg-background dark:bg-black">
-          <h4 className="text-sm font-medium text-muted-foreground dark:text-gray-400 uppercase tracking-wide mb-2">Avg. Supplier Rating</h4>
-          <div className="text-3xl font-bold flex items-center dark:text-white">
-            {(suppliers.reduce((acc, supplier) => acc + supplier.rating, 0) / suppliers.length).toFixed(1)}
-            <Star className="h-5 w-5 text-amber-500 dark:text-amber-400 ml-1" />
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5">
+          <div className="category-tag mb-1.5">Performance</div>
+          <div className="flex items-center space-x-3 mb-2">
+            <div className="w-8 h-8 flex items-center justify-center bg-amber-500/10 dark:bg-amber-500/20">
+              <Star size={18} className="text-amber-500 dark:text-amber-400" />
+            </div>
+            <h3 className="text-xl font-light text-gray-900 dark:text-white">
+              {(suppliers.reduce((acc, supplier) => acc + supplier.rating, 0) / suppliers.length).toFixed(1)} Average Rating
+            </h3>
           </div>
-          <div className="text-xs font-medium text-muted-foreground dark:text-gray-400 mt-1">
-            Based on performance history
+          <div className="text-sm font-light text-gray-500 dark:text-gray-400 mt-1">
+            Based on delivery performance metrics
           </div>
         </div>
       </div>
       
-      <div className="flex flex-col mb-8">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
+      {/* 8VC Style Search and Filter Bar */}
+      <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5 mt-3">
+        <div className="flex flex-col md:flex-row gap-4 justify-between">
+          <div className="flex items-center gap-4">
             <button 
               onClick={() => setFilterStatus(null)}
-              className={`px-3 py-1.5 text-sm font-medium ${!filterStatus ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400' : 'bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
+              className={`uppercase text-xs tracking-wider py-1.5 px-3 border ${!filterStatus ? 'border-purple-500/30 text-purple-600 dark:text-purple-400' : 'border-gray-300 dark:border-white/10 text-gray-500 dark:text-gray-400'}`}
             >
               All
             </button>
             <button 
               onClick={() => setFilterStatus("Active")}
-              className={`px-3 py-1.5 text-sm font-medium ${filterStatus === "Active" ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400' : 'bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
+              className={`uppercase text-xs tracking-wider py-1.5 px-3 border ${filterStatus === "Active" ? 'border-purple-500/30 text-purple-600 dark:text-purple-400' : 'border-gray-300 dark:border-white/10 text-gray-500 dark:text-gray-400'}`}
             >
               Active
             </button>
             <button 
               onClick={() => setFilterStatus("Inactive")}
-              className={`px-3 py-1.5 text-sm font-medium ${filterStatus === "Inactive" ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400' : 'bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50'}`}
+              className={`uppercase text-xs tracking-wider py-1.5 px-3 border ${filterStatus === "Inactive" ? 'border-purple-500/30 text-purple-600 dark:text-purple-400' : 'border-gray-300 dark:border-white/10 text-gray-500 dark:text-gray-400'}`}
             >
               Inactive
             </button>
@@ -127,96 +135,101 @@ export default function Suppliers() {
           
           <div className="flex items-center space-x-2">
             <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground dark:text-gray-400" />
-              <Input
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 text-gray-400" />
+              </div>
+              <input
                 type="search"
-                placeholder="Search suppliers..."
-                className="pl-8 w-[250px] rounded-sm bg-white dark:bg-black border border-gray-200 dark:border-gray-800"
+                placeholder="Search by name or category..."
+                className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-white/10 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:border-purple-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             
-            <button className="inline-flex items-center justify-center rounded-sm border border-gray-200 dark:border-gray-800 h-10 w-10 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-900">
+            <button className="inline-flex items-center justify-center border border-gray-300 dark:border-white/10 h-10 w-10 bg-transparent hover:bg-gray-50 dark:hover:bg-white/5">
               <Filter className="h-4 w-4 text-gray-500 dark:text-gray-400" />
             </button>
           </div>
         </div>
-        
-        <div className="border border-gray-200 dark:border-gray-800 rounded-sm bg-white dark:bg-black overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <thead>
-                <tr className="bg-gray-50 dark:bg-gray-900/50 border-b border-gray-200 dark:border-gray-800">
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Supplier</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Payment Terms</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rating</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Last Order</th>
-                  <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+      </div>
+      
+      {/* 8VC Style Table */}
+      <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 mt-3">
+        <div className="overflow-x-auto">
+          <table className="min-w-full data-table">
+            <thead>
+              <tr className="border-b border-gray-300 dark:border-white/10">
+                <th scope="col" className="py-2 pr-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Supplier</th>
+                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Category</th>
+                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Payment Terms</th>
+                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Rating</th>
+                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+                <th scope="col" className="py-2 px-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Last Order</th>
+                <th scope="col" className="py-2 pl-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-white/10">
+              {isLoading ? (
+                <tr>
+                  <td colSpan={7} className="py-2.5 px-4 text-center whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">Loading suppliers...</td>
                 </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-                {isLoading ? (
-                  <tr>
-                    <td colSpan={7} className="px-6 py-5 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Loading suppliers...</td>
-                  </tr>
-                ) : filteredSuppliers.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} className="px-6 py-5 text-center whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">No suppliers found</td>
-                  </tr>
-                ) : (
-                  filteredSuppliers.map((supplier) => (
-                    <tr key={supplier.id} className="hover:bg-gray-50 dark:hover:bg-gray-900/10">
-                      <td className="px-6 py-5 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 h-9 w-9 bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/50 text-purple-500 dark:text-purple-400 rounded-sm flex items-center justify-center">
-                            <Building className="h-4 w-4" />
-                          </div>
-                          <div className="ml-3">
-                            <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{supplier.name}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
-                          </div>
+              ) : filteredSuppliers.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className="py-2.5 px-4 text-center whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">No suppliers found</td>
+                </tr>
+              ) : (
+                filteredSuppliers.map((supplier) => (
+                  <tr key={supplier.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150 cursor-pointer">
+                    <td className="py-2.5 pr-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="w-8 h-8 flex items-center justify-center bg-purple-500/10 dark:bg-purple-500/20">
+                          <Building size={18} className="text-purple-600 dark:text-purple-400" />
                         </div>
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.category}</td>
-                      <td className="px-6 py-5 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{supplier.paymentTerms}</td>
-                      <td className="px-6 py-5 whitespace-nowrap">
-                        <div className="flex items-center text-sm text-gray-900 dark:text-gray-100">
-                          {supplier.rating}
-                          <Star className="h-4 w-4 ml-1 text-amber-500 dark:text-amber-400" />
+                        <div className="ml-3">
+                          <div className="text-sm font-normal text-gray-900 dark:text-white">{supplier.name}</div>
+                          <div className="text-xs font-light text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
                         </div>
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap">
-                        <span className={`px-2 py-1 inline-flex text-xs leading-none font-medium border ${
-                          supplier.status === "Active" 
-                            ? "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800/50" 
-                            : "bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-900/30 dark:text-gray-400 dark:border-gray-700"
-                        }`}>
-                          {supplier.status}
-                        </span>
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                        {format(supplier.lastOrder, 'MMM d, yyyy')}
-                      </td>
-                      <td className="px-6 py-5 whitespace-nowrap text-right text-sm font-medium">
+                      </div>
+                    </td>
+                    <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">{supplier.category}</td>
+                    <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">{supplier.paymentTerms}</td>
+                    <td className="py-2.5 px-4 whitespace-nowrap">
+                      <div className="flex items-center text-sm font-medium text-gray-900 dark:text-white">
+                        {supplier.rating}
+                        <Star className="h-4 w-4 ml-1 text-amber-500 dark:text-amber-400" />
+                      </div>
+                    </td>
+                    <td className="py-2.5 px-4 whitespace-nowrap">
+                      <span className={`px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border ${
+                        supplier.status === "Active" 
+                          ? "border-green-500/30 text-green-600 dark:text-green-400" 
+                          : "border-gray-500/30 text-gray-600 dark:text-gray-400"
+                      }`}>
+                        {supplier.status}
+                      </span>
+                    </td>
+                    <td className="py-2.5 px-4 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400 font-mono">
+                      {format(supplier.lastOrder, 'MMM d, yyyy')}
+                    </td>
+                    <td className="py-2.5 pl-4 whitespace-nowrap text-right">
+                      <div className="flex items-center space-x-3 justify-end">
                         <button 
-                          className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 mr-3"
-                          onClick={() => handleViewDetails(supplier)}
+                          className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400"
+                          onClick={(e) => { e.stopPropagation(); handleViewDetails(supplier); }}
                         >
-                          <ExternalLink className="h-4 w-4 inline" />
+                          <ExternalLink className="h-4 w-4" />
                         </button>
-                        <button className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300">
-                          <Edit className="h-4 w-4 inline" />
+                        <button className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400" onClick={(e) => { e.stopPropagation(); }}>
+                          <Edit className="h-4 w-4" />
                         </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
       
