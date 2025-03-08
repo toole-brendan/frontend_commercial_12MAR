@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { ArrowUp, ArrowDown, ArrowLeftRight, Circle } from 'lucide-react';
 
 interface Transaction {
   id: number;
@@ -27,88 +28,85 @@ export default function TransactionsTable({ transactions, onFilterChange }: Tran
   const getIconForTransactionType = (type: string) => {
     switch(type) {
       case 'incoming':
-        return <div className="bg-green-100 dark:bg-green-900/20 p-2 rounded"><i className="fas fa-arrow-down text-green-600 dark:text-green-400"></i></div>;
+        return <div className="w-8 h-8 flex items-center justify-center bg-green-500/10 dark:bg-green-500/20"><ArrowDown size={18} className="text-green-600 dark:text-green-400" /></div>;
       case 'outgoing':
-        return <div className="bg-red-100 dark:bg-red-900/20 p-2 rounded"><i className="fas fa-arrow-up text-red-600 dark:text-red-400"></i></div>;
+        return <div className="w-8 h-8 flex items-center justify-center bg-red-500/10 dark:bg-red-500/20"><ArrowUp size={18} className="text-red-600 dark:text-red-400" /></div>;
       case 'transfer':
-        return <div className="bg-blue-100 dark:bg-blue-900/20 p-2 rounded"><i className="fas fa-exchange-alt text-blue-600 dark:text-blue-400"></i></div>;
+        return <div className="w-8 h-8 flex items-center justify-center bg-purple-500/10 dark:bg-purple-500/20"><ArrowLeftRight size={18} className="text-purple-600 dark:text-purple-400" /></div>;
       default:
-        return <div className="bg-gray-100 dark:bg-gray-700 p-2 rounded"><i className="fas fa-circle text-gray-600 dark:text-gray-400"></i></div>;
+        return <div className="w-8 h-8 flex items-center justify-center bg-gray-500/10 dark:bg-gray-500/20"><Circle size={18} className="text-gray-600 dark:text-gray-400" /></div>;
     }
   };
 
   const getStatusBadge = (status: string) => {
     switch(status) {
       case 'completed':
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">Completed</span>;
+        return <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-green-500/30 text-green-600 dark:text-green-400">Completed</span>;
       case 'pending':
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">Pending</span>;
+        return <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-yellow-500/30 text-yellow-600 dark:text-yellow-400">Pending</span>;
       case 'in_transit':
       case 'in transit':
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">In Transit</span>;
+        return <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-purple-500/30 text-purple-600 dark:text-purple-400">In Transit</span>;
       case 'failed':
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300">Failed</span>;
+        return <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-red-500/30 text-red-600 dark:text-red-400">Failed</span>;
       default:
-        return <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">{status}</span>;
+        return <span className="px-2.5 py-0.5 inline-flex text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-400">{status}</span>;
     }
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow border dark:border-gray-700">
-      <div className="p-5 border-b border-gray-200 dark:border-gray-700">
-        <div className="flex justify-between items-center">
-          <h2 className="font-semibold text-gray-800 dark:text-gray-100">Latest Transactions</h2>
-          <div>
-            <select 
-              className="text-sm border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 rounded py-1 px-2"
-              onChange={handleFilterChange}
-            >
-              <option value="all">All Transactions</option>
-              <option value="payment">Payments</option>
-              <option value="transfer">Transfers</option>
-            </select>
-          </div>
+    <div className="w-full">
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <select 
+            className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1.5 px-3 text-gray-600 dark:text-white"
+            onChange={handleFilterChange}
+          >
+            <option value="all">All Transactions</option>
+            <option value="payment">Payments</option>
+            <option value="transfer">Transfers</option>
+          </select>
         </div>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-          <thead className="bg-gray-50 dark:bg-gray-800">
-            <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Transaction</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Amount</th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
+        <table className="min-w-full data-table">
+          <thead>
+            <tr className="border-b border-gray-300 dark:border-white/10">
+              <th scope="col" className="py-3 pr-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Transaction</th>
+              <th scope="col" className="py-3 px-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Date</th>
+              <th scope="col" className="py-3 px-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Amount</th>
+              <th scope="col" className="py-3 pl-6 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
             </tr>
           </thead>
-          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+          <tbody className="divide-y divide-gray-200 dark:divide-white/10">
             {transactions.map((transaction) => (
-              <tr key={transaction.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                <td className="px-6 py-4 whitespace-nowrap">
+              <tr key={transaction.id} className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors duration-150">
+                <td className="py-4 pr-6 whitespace-nowrap">
                   <div className="flex items-center">
                     {getIconForTransactionType(transaction.type)}
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{transaction.description}</div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">{transaction.reference}</div>
+                      <div className="text-sm font-normal text-gray-900 dark:text-white">{transaction.description}</div>
+                      <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">{transaction.reference}</div>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                <td className="py-4 px-6 whitespace-nowrap text-sm font-light text-gray-500 dark:text-gray-400">
                   {format(transaction.date, 'MMM d, yyyy')}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900 dark:text-gray-100">
+                <td className="py-4 px-6 whitespace-nowrap">
+                  <div className="text-sm font-medium text-gray-900 dark:text-white font-mono">
                     {transaction.currency === 'items' 
                       ? `${transaction.amount} items` 
                       : `${transaction.amount.toLocaleString()} ${transaction.currency}`}
                   </div>
                   {transaction.currency !== 'items' && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400">${transaction.amountUSD.toLocaleString()} USD</div>
+                    <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">${transaction.amountUSD.toLocaleString()} USD</div>
                   )}
                   {transaction.currency === 'items' && (
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Value: ${transaction.amountUSD.toLocaleString()}</div>
+                    <div className="text-xs font-light text-gray-500 dark:text-gray-400 font-mono">Value: ${transaction.amountUSD.toLocaleString()}</div>
                   )}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="py-4 pl-6 whitespace-nowrap">
                   {getStatusBadge(transaction.status)}
                 </td>
               </tr>

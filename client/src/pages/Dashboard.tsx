@@ -201,17 +201,17 @@ export default function Dashboard() {
           </div>
 
           {/* 8VC Style Section Header */}
-          <div className="mt-8 mb-8">
+          <div className="mt-14 mb-10">
             <div className="category-tag mb-2">Operations</div>
-            <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Inventory & transactions</h2>
-            <div className="horizontal-divider border-gray-200 dark:border-gray-800"></div>
+            <h2 className="heading-large mb-3 text-gray-900 dark:text-white">Inventory & transactions</h2>
+            <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
           </div>
           
           {/* Low Stock & Latest Transactions - 8VC Style */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
               <div className="category-tag mb-2">Inventory Alert</div>
-              <h3 className="heading-medium mb-4 text-gray-900 dark:text-white">Low stock items</h3>
+              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Low stock items</h3>
               <LowStockItems 
                 items={lowStockItems}
                 onReorder={handleReorderItem}
@@ -220,7 +220,7 @@ export default function Dashboard() {
             
             <div className="lg:col-span-2 bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-6">
               <div className="category-tag mb-2">Financial</div>
-              <h3 className="heading-medium mb-4 text-gray-900 dark:text-white">Latest transactions</h3>
+              <h3 className="heading-medium mb-6 text-gray-900 dark:text-white">Latest transactions</h3>
               <TransactionsTable 
                 transactions={mockTransactions}
               />
