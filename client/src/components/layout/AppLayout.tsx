@@ -39,19 +39,19 @@ export default function AppLayout({ children }: AppLayoutProps) {
         toggleSidebar={toggleSidebar}
       />
 
-      {/* Mobile header */}
-      <div className="md:hidden bg-gradient-to-r from-sky-100 to-blue-100 dark:from-sky-900 dark:to-blue-900 text-gray-800 dark:text-white p-4 shadow-md">
+      {/* Mobile header - 8VC Style */}
+      <div className="md:hidden bg-black dark:bg-black text-white p-4">
         <div className="flex items-center justify-between">
           <div 
             className="flex items-center cursor-pointer hover:opacity-90 transition-opacity"
             onClick={() => window.location.href = '/'}
           >
-            <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
-              <h1 className="text-base font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
+            <div className="border border-white/30 px-4 py-1.5">
+              <h1 className="text-base font-light tracking-widest text-white m-0">HandReceipt</h1>
             </div>
           </div>
           <button 
-            className="text-gray-800 dark:text-white hover:bg-blue-200 dark:hover:bg-blue-800 p-2 rounded-md transition-colors focus:outline-none"
+            className="text-white hover:text-purple-400 p-2 transition-colors focus:outline-none"
             onClick={toggleMobileMenu}
             aria-label="Open menu"
           >
@@ -63,25 +63,25 @@ export default function AppLayout({ children }: AppLayoutProps) {
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-60 z-40 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-80 z-40 md:hidden"
           onClick={toggleMobileMenu}
         />
       )}
 
-      {/* Mobile menu */}
+      {/* Mobile menu - 8VC Style */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-sky-100 to-blue-100 dark:from-sky-950 dark:to-blue-950 text-gray-800 dark:text-white z-50 md:hidden">
-          <div className="p-4 border-b border-gray-300/50 dark:border-gray-700/50 flex justify-between items-center">
+        <div className="fixed inset-y-0 left-0 w-64 bg-black text-white z-50 md:hidden">
+          <div className="p-4 border-b border-white/10 flex justify-between items-center">
             <div 
               className="flex items-center cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => window.location.href = '/'}
             >
-              <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
-                <h1 className="text-base font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
+              <div className="border border-white/30 px-4 py-1.5">
+                <h1 className="text-base font-light tracking-widest text-white m-0">HandReceipt</h1>
               </div>
             </div>
             <button 
-              className="text-gray-800 dark:text-white hover:bg-blue-200 dark:hover:bg-blue-800 p-2 rounded-md transition-colors focus:outline-none"
+              className="text-white hover:text-purple-400 p-2 transition-colors focus:outline-none"
               onClick={toggleMobileMenu}
               aria-label="Close menu"
             >

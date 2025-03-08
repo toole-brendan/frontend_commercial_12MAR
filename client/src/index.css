@@ -34,6 +34,13 @@
     --transition-speed: 0.3s;
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-display: 'D-DIN Condensed', 'Inter', system-ui, sans-serif;
+    --font-size-display: 3.5rem;
+    --font-size-heading: 2.5rem;
+    --font-size-subheading: 1.5rem;
+    --font-size-body: 1rem;
+    --8vc-purple: #6137ca;
+    --8vc-dark: #0e0e0e;
+    --8vc-light-gray: #f2f2f2;
   }
 
   * {
@@ -109,38 +116,123 @@
     --shadow-lg: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
-  /* Dark Theme - Sharp, Precise, Professional */
+  /* Dark Theme - 8VC Style */
   .dark-theme {
-    --bg-primary: 210 30% 8%;
-    --bg-secondary: 210 30% 6%;
-    --bg-accent: 210 100% 50%;
-    --bg-accent-hover: 210 100% 55%;
-    --bg-sidebar: 210 30% 10%; /* Exact same value as card-background */
+    --bg-primary: 0 0% 5%; /* Almost black background like 8VC site */
+    --bg-secondary: 0 0% 7%;
+    --bg-accent: 270 60% 50%; /* Purple accent color */
+    --bg-accent-hover: 270 60% 55%;
+    --bg-sidebar: 0 0% 7%; /* Dark sidebar */
     
     --text-primary: 0 0% 100%;
-    --text-secondary: 210 15% 65%;
-    --text-accent: 210 100% 75%;
-    --text-inverse: 210 50% 10%;
+    --text-secondary: 0 0% 70%;
+    --text-accent: 270 60% 75%; /* Purple accent text */
+    --text-inverse: 0 0% 5%;
     --text-sidebar: 0 0% 100%;
     
-    --border-primary: 210 30% 20%;
-    --border-accent: 210 100% 50%;
-    --border-sidebar: 210 30% 20%; /* Updated to match card border */
+    --border-primary: 0 0% 15%;
+    --border-accent: 270 60% 50%; /* Purple border */
+    --border-sidebar: 0 0% 20%;
     
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
     
     /* Standardized dark mode background values */
-    --page-background: 210 30% 8%;
-    --card-background: 210 30% 10%;
-    --input-background: 210 30% 12%;
-    --hover-background: 210 25% 15%;
+    --page-background: 0 0% 5%;
+    --card-background: 0 0% 7%;
+    --input-background: 0 0% 10%;
+    --hover-background: 0 0% 12%;
   }
 }
 
 /* Custom Components */
 @layer components {
+  /* 8VC Style Typography */
+  .display-heading {
+    @apply font-sans text-4xl md:text-5xl font-light leading-tight tracking-tight;
+    font-size: var(--font-size-display);
+  }
+  
+  .display-heading-italic {
+    @apply font-sans text-4xl md:text-5xl font-light leading-tight tracking-tight italic;
+    font-size: var(--font-size-display);
+  }
+  
+  .heading-large {
+    @apply font-sans text-3xl md:text-4xl font-light leading-tight;
+    font-size: var(--font-size-heading);
+  }
+  
+  .heading-medium {
+    @apply font-sans text-2xl md:text-3xl font-light leading-tight;
+    font-size: var(--font-size-subheading);
+  }
+  
+  .split-layout {
+    @apply flex flex-col md:flex-row w-full;
+  }
+  
+  .split-layout-left {
+    @apply w-full md:w-1/2 p-8 md:p-16;
+  }
+  
+  .split-layout-right {
+    @apply w-full md:w-1/2 p-8 md:p-16;
+  }
+  
+  .vertical-divider {
+    @apply hidden md:block w-px h-full bg-gray-200 dark:bg-gray-800;
+  }
+  
+  .horizontal-divider {
+    @apply w-full h-px bg-gray-200 dark:bg-gray-800 my-8;
+  }
+  
+  /* 8VC Style Button */
+  .btn-8vc {
+    @apply px-6 py-3 border border-gray-300 dark:border-gray-700 text-sm uppercase tracking-wider font-medium transition-all duration-300;
+    letter-spacing: 0.1em;
+  }
+  
+  .btn-8vc:hover {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+  
+  .btn-8vc-primary {
+    @apply px-6 py-3 bg-transparent border border-purple-600 text-purple-600 dark:text-purple-400 dark:border-purple-400 text-sm uppercase tracking-wider font-medium transition-all duration-300;
+    letter-spacing: 0.1em;
+  }
+  
+  .btn-8vc-primary:hover {
+    @apply bg-purple-600 text-white;
+  }
+  
+  /* 8VC Colored Text */
+  .text-purple-highlight {
+    @apply text-purple-600 dark:text-purple-400;
+  }
+  
+  /* 8VC Grid Layout */
+  .grid-8vc {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-0;
+  }
+  
+  /* 8VC Info Card */
+  .info-card-8vc {
+    @apply p-8 md:p-12 border-t border-gray-200 dark:border-gray-800;
+  }
+  
+  /* 8VC Category Tag */
+  .category-tag {
+    @apply uppercase text-xs tracking-widest text-gray-500 dark:text-gray-400 font-medium;
+    letter-spacing: 0.15em;
+  }
+  
+  /* 8VC Date Tag */
+  .date-tag {
+    @apply text-sm text-gray-500 dark:text-gray-400 font-normal;
+  }
   .card {
     @apply bg-white border border-border shadow-none;
     border-radius: var(--card-border-radius);
