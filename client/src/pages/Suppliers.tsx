@@ -109,38 +109,40 @@ export default function Suppliers() {
       
       {/* 8VC Style Table with Filter Controls */}
       <div className="w-full mt-3">
-        <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-5 mb-3">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+        <div className="bg-white dark:bg-black border border-gray-200 dark:border-white/10 p-4 sm:p-5 mb-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="col-span-1">
               <select 
-                className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1 px-3 text-gray-600 dark:text-white w-full sm:w-auto"
+                className="text-xs uppercase tracking-wider font-medium border border-gray-300 dark:border-white/10 bg-transparent py-1 px-3 text-gray-600 dark:text-white w-full"
                 onChange={(e) => setFilterStatus(e.target.value === "all" ? null : e.target.value)}
               >
                 <option value="all">All Suppliers</option>
                 <option value="Active">Active Only</option>
                 <option value="Inactive">Inactive Only</option>
               </select>
-              
-              <div className="relative w-full sm:w-auto">
+            </div>
+            
+            <div className="col-span-1">
+              <div className="relative w-full">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Search className="h-4 w-4 text-gray-400" />
                 </div>
                 <input
                   type="search"
                   placeholder="Search suppliers..."
-                  className="block w-full sm:w-[240px] pl-10 pr-3 py-1 border border-gray-300 dark:border-white/10 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:border-purple-500"
+                  className="block w-full pl-10 pr-3 py-1 border border-gray-300 dark:border-white/10 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:border-purple-500"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
             </div>
             
-            <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto">
+            <div className="col-span-1 flex items-center justify-between">
               <div className="text-xs uppercase tracking-wider font-medium text-gray-500 dark:text-gray-400 mr-3">
                 {filteredSuppliers.length} suppliers shown
               </div>
               <button 
-                className="btn-8vc-primary flex items-center space-x-2 py-1.5 px-3 text-xs"
+                className="btn-8vc-primary flex items-center py-1.5 px-3 text-xs whitespace-nowrap"
                 onClick={() => setIsAddDialogOpen(true)}
               >
                 <Plus className="h-3.5 w-3.5 mr-1" />
@@ -185,7 +187,7 @@ export default function Suppliers() {
                             <Building size={18} className="text-purple-600 dark:text-purple-400" />
                           </div>
                           <div className="ml-3">
-                            <div className="text-sm font-normal text-gray-900 dark:text-white">{supplier.name}</div>
+                            <div className="text-sm font-normal text-gray-900 dark:text-white font-mono">{supplier.name}</div>
                             <div className="text-xs font-light text-gray-500 dark:text-gray-400">{supplier.contactPerson}</div>
                           </div>
                         </div>
