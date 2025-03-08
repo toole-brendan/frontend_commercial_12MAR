@@ -3,10 +3,15 @@ import { useToast } from '@/hooks/use-toast';
 import { currentUser } from '@/lib/mockData';
 import { PageHeader } from '@/components/ui/page-header';
 import PageWrapper from '@/components/layout/PageWrapper';
+import { usePageLayout } from '@/hooks/use-page-layout';
 import { cn } from '@/lib/utils';
 import { Camera, Building2, DollarSign, KeyRound, BellRing, ShieldCheck, Workflow, User, Key } from 'lucide-react';
 
 export default function Settings() {
+  const { layoutClasses } = usePageLayout({
+    containerClasses: 'space-y-6'
+  });
+  
   const [activeTab, setActiveTab] = useState('profile');
   const [profileForm, setProfileForm] = useState({
     name: currentUser.name,
