@@ -82,7 +82,7 @@ export default function Analytics() {
       {/* 8VC Style Section Header */}
       <div className="mb-4">
         <div className="category-tag mb-1.5">Analytics</div>
-        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Supply chain performance</h2>
+        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Supply Chain Performance</h2>
         <p className="text-gray-500 dark:text-gray-400 mb-2">Track key performance indicators and supply chain metrics</p>
         <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
       </div>
@@ -197,7 +197,7 @@ export default function Analytics() {
       {/* 8VC Style Section Header */}
       <div className="mt-8 mb-4">
         <div className="category-tag mb-1.5">Data Visualization</div>
-        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Performance charts</h2>
+        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Performance Charts</h2>
         <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
       </div>
       

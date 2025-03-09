@@ -105,7 +105,7 @@ export default function Transactions() {
       {/* 8VC Style Section Header */}
       <div className="mb-4">
         <div className="category-tag mb-1.5">Financial Records</div>
-        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Transaction management</h2>
+        <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Transaction Management</h2>
         <p className="text-gray-500 dark:text-gray-400 mb-2">View and manage all financial transactions across the system</p>
         <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
       </div>

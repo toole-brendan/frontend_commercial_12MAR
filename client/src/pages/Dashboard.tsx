@@ -137,7 +137,7 @@ export default function Dashboard() {
         {/* 8VC Style Section Header */}
         <div className="mb-4">
           <div className="category-tag mb-1.5">Dashboard Overview</div>
-          <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Real-time inventory metrics</h2>
+          <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Real-Time Inventory Metrics</h2>
           <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
         </div>
       
@@ -203,7 +203,7 @@ export default function Dashboard() {
           {/* 8VC Style Section Header */}
           <div className="mt-8 mb-4">
             <div className="category-tag mb-1.5">Operations</div>
-            <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Inventory & transactions</h2>
+            <h2 className="heading-large mb-2 text-gray-900 dark:text-white">Inventory & Transactions</h2>
             <div className="horizontal-divider border-gray-200 dark:border-white/10"></div>
           </div>
           
