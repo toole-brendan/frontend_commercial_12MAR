@@ -26,7 +26,7 @@ export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true,
+    allowedHosts: true as true,
   };
 
   const vite = await createViteServer({
@@ -44,7 +44,16 @@ export async function setupVite(app: Express, server: Server) {
   });
 
   app.use(vite.middlewares);
-  app.use("*", async (req, res, next) => {
+  
+  const baseUrl = viteConfig.base || '/';
+  
+  // Redirect from root to base URL
+  app.get("/", (_req, res) => {
+    res.redirect(baseUrl);
+  });
+  
+  // Handle all requests under the base URL path
+  app.use(baseUrl + "*", async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
@@ -57,9 +66,11 @@ export async function setupVite(app: Express, server: Server) {
 
       // always reload the index.html file from disk incase it changes
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
+      
+      // Use the base URL when replacing the script source
       template = template.replace(
         `src="/src/main.tsx"`,
-        `src="/src/main.tsx?v=${nanoid()}"`,
+        `src="${baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl}/src/main.tsx?v=${nanoid()}"`
       );
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
@@ -72,6 +83,7 @@ export async function setupVite(app: Express, server: Server) {
 
 export function serveStatic(app: Express) {
   const distPath = path.resolve(__dirname, "public");
+  const baseUrl = viteConfig.base || '/';
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
@@ -79,10 +91,26 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Serve static files from the base URL path with proper MIME types
+  app.use(baseUrl, express.static(distPath, {
+    setHeaders: (res, path) => {
+      if (path.endsWith('.js')) {
+        res.setHeader('Content-Type', 'application/javascript');
+      } else if (path.endsWith('.css')) {
+        res.setHeader('Content-Type', 'text/css');
+      } else if (path.endsWith('.woff') || path.endsWith('.woff2')) {
+        res.setHeader('Content-Type', 'font/woff2');
+      }
+    }
+  }));
 
   // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
+  app.use(baseUrl + "*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
+  });
+  
+  // Redirect from root to base URL
+  app.get("/", (_req, res) => {
+    res.redirect(baseUrl);
   });
 }
