@@ -8,8 +8,11 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// This should match the BASE_PATH in client/src/lib/constants.ts
+const BASE_PATH = "/commercial";
+
 export default defineConfig({
-  base: "/commercial/",
+  base: BASE_PATH + "/",
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -33,5 +36,11 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
+  },
+  server: {
+    fs: {
+      // Allow serving files from one level up (the project root)
+      allow: ['..'],
+    },
   },
 });

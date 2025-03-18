@@ -9,6 +9,9 @@ import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
 
+// This should match the BASE_PATH in client/src/lib/constants.ts
+const BASE_PATH = "/commercial";
+
 const viteLogger = createLogger();
 
 export function log(message: string, source = "express") {
@@ -43,56 +46,108 @@ export async function setupVite(app: Express, server: Server) {
     appType: "custom",
   });
 
+  // Use vite middlewares
   app.use(vite.middlewares);
   
-  const baseUrl = viteConfig.base || '/';
-  
-  // Redirect from root to base URL
-  app.get("/", (_req, res) => {
-    res.redirect(baseUrl);
+  // Add a debug route to check the request handling
+  app.use('/debug-path', (req, res) => {
+    res.json({
+      originalUrl: req.originalUrl,
+      baseUrl: req.baseUrl,
+      path: req.path,
+      query: req.query
+    });
   });
   
-  // Handle all requests under the base URL path
-  app.use(baseUrl + "*", async (req, res, next) => {
-    const url = req.originalUrl;
+  // Simple routing for development:
+  
+  // Redirect root path to base path
+  app.get("/", (_req, res) => {
+    res.redirect(BASE_PATH);
+  });
+  
+  // Rewrite defense-prefixed API requests to standard API path
+  app.use(`${BASE_PATH}/api/*`, (req, res, next) => {
+    req.url = req.url.replace(`${BASE_PATH}/api`, '/api');
+    next();
+  });
+  
+  // Handle direct access to the base path itself
+  app.get(BASE_PATH, async (req, res) => {
+    await serveClientApp(req, res, vite);
+  });
+  
+  // Handle direct access to base path with trailing slash
+  app.get(`${BASE_PATH}/`, async (req, res) => {
+    await serveClientApp(req, res, vite);
+  });
+  
+  // IMPORTANT: This is the main handler for all frontend routes
+  app.get(`${BASE_PATH}/*`, async (req, res) => {
+    await serveClientApp(req, res, vite);
+  });
+  
+  // This is a catch-all redirect for non-API routes without the commercial prefix
+  app.use("*", (req, res, next) => {
+    if (!req.originalUrl.startsWith(BASE_PATH) && 
+        !req.originalUrl.startsWith("/api") && 
+        req.originalUrl !== '/debug-path') {
+      return res.redirect(`${BASE_PATH}${req.originalUrl === "/" ? "" : req.originalUrl}`);
+    }
+    next();
+  });
+
+  // Helper function to serve the client app
+  async function serveClientApp(req: any, res: any, vite: any) {
+    const clientTemplate = path.resolve(
+      __dirname,
+      "..",
+      "client",
+      "index.html"
+    );
 
     try {
-      const clientTemplate = path.resolve(
-        __dirname,
-        "..",
-        "client",
-        "index.html",
-      );
-
-      // always reload the index.html file from disk incase it changes
+      // Read the template
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
       
-      // Use the base URL when replacing the script source
-      template = template.replace(
-        `src="/src/main.tsx"`,
-        `src="${baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl}/src/main.tsx?v=${nanoid()}"`
-      );
-      const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
-    } catch (e) {
-      vite.ssrFixStacktrace(e as Error);
-      next(e);
+      // Add the base tag 
+      template = template.replace('<!-- BASE_TAG -->', `<base href="${BASE_PATH}/" />`);
+      
+      // Let Vite process the template
+      const html = await vite.transformIndexHtml(req.originalUrl, template);
+      
+      // Send the processed HTML
+      res.status(200).set({ "Content-Type": "text/html" }).end(html);
+    } catch (err) {
+      vite.ssrFixStacktrace(err as Error);
+      console.error(err);
+      res.status(500).send("Server Error");
     }
-  });
+  }
 }
 
 export function serveStatic(app: Express) {
   const distPath = path.resolve(__dirname, "public");
-  const baseUrl = viteConfig.base || '/';
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
       `Could not find the build directory: ${distPath}, make sure to build the client first`,
     );
   }
-
-  // Serve static files from the base URL path with proper MIME types
-  app.use(baseUrl, express.static(distPath, {
+  
+  // Redirect root to the base path
+  app.get("/", (_req, res) => {
+    res.redirect(BASE_PATH);
+  });
+  
+  // Rewrite commercial-prefixed API requests to standard API path
+  app.use(`${BASE_PATH}/api/*`, (req, res, next) => {
+    req.url = req.url.replace(`${BASE_PATH}/api`, '/api');
+    next();
+  });
+  
+  // Serve static files with the base path prefix
+  app.use(BASE_PATH, express.static(distPath, {
     setHeaders: (res, path) => {
       if (path.endsWith('.js')) {
         res.setHeader('Content-Type', 'application/javascript');
@@ -103,14 +158,29 @@ export function serveStatic(app: Express) {
       }
     }
   }));
-
-  // fall through to index.html if the file doesn't exist
-  app.use(baseUrl + "*", (_req, res) => {
+  
+  // Serve index.html for the base path
+  app.get(BASE_PATH, (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
   
-  // Redirect from root to base URL
-  app.get("/", (_req, res) => {
-    res.redirect(baseUrl);
+  // Serve index.html for the base path with trailing slash
+  app.get(`${BASE_PATH}/`, (_req, res) => {
+    res.sendFile(path.resolve(distPath, "index.html"));
+  });
+  
+  // Serve index.html for all paths under the base path (SPA routing)
+  app.get(`${BASE_PATH}/*`, (_req, res) => {
+    res.sendFile(path.resolve(distPath, "index.html"));
+  });
+  
+  // Redirect non-prefixed paths to the prefixed ones
+  app.use("*", (req, res, next) => {
+    if (!req.originalUrl.startsWith(BASE_PATH) && 
+        !req.originalUrl.startsWith("/api") && 
+        req.originalUrl !== '/debug-path') {
+      return res.redirect(`${BASE_PATH}${req.originalUrl === "/" ? "" : req.originalUrl}`);
+    }
+    next();
   });
 }

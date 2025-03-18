@@ -56,6 +56,18 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
+  // This constant should match the one in client/src/lib/constants.ts
+  const BASE_PATH = "/commercial";
+  
+  // Add a fallback route to redirect to BASE_PATH for any unmatched routes
+  app.use('*', (req, res, next) => {
+    // Only redirect the root path to avoid redirect loops
+    if (req.originalUrl === '/' || req.originalUrl === '') {
+      return res.redirect(BASE_PATH + '/');
+    }
+    next();
+  });
+  
   // Try to find an available port starting from 5000
   const startPort = 5000;
   let currentPort = startPort;
@@ -67,7 +79,7 @@ app.use((req, res, next) => {
     });
     
     serverInstance.on('listening', () => {
-      log(`Server running at http://localhost:${port}`);
+      log(`Server running at http://localhost:${port}/commercial/`);
     });
     
     serverInstance.on('error', (err: any) => {
