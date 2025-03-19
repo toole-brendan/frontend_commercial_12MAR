@@ -120,13 +120,13 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [showTransferModal, setShowTransferModal] = useState(false);
   const [scannedItem, setScannedItem] = useState<InventoryItem | null>(null);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    // Check for saved theme preference or use system preference
+    // Check for saved theme preference or use light mode as default
     const savedTheme = localStorage.getItem('handreceipt-theme');
     if (savedTheme === 'dark' || savedTheme === 'light') {
       return savedTheme;
     }
-    // Use system preference as fallback
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Use light mode as default for commercial frontend
+    return 'light';
   });
   const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
     const savedState = localStorage.getItem('handreceipt-sidebar');

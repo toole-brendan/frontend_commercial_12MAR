@@ -30,6 +30,11 @@ const TopNavigation: React.FC = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    // Navigate to the main HandReceipt website
+    window.location.href = 'https://handreceipt.com';
+  };
+
   return (
     <header className="bg-white dark:bg-black border-b border-gray-200 dark:border-white/10 py-4 px-6 flex items-center justify-between">
       {/* Mobile Menu Button */}
@@ -38,7 +43,10 @@ const TopNavigation: React.FC = () => {
       </button>
       
       {/* Mobile Logo */}
-      <div className="lg:hidden flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity">
+      <div 
+        className="lg:hidden flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity"
+        onClick={handleLogoClick}
+      >
         <div className="border border-gray-800/70 dark:border-gray-100/70 px-4 py-1.5">
           <h1 className="text-lg font-light tracking-widest text-gray-800 dark:text-gray-100 m-0 font-serif">HandReceipt</h1>
         </div>

@@ -77,8 +77,8 @@ export default function Sidebar({
   };
   
   const handleLogoClick = () => {
-    // Navigate to the dashboard page
-    window.location.href = '/';
+    // Navigate to the main HandReceipt website
+    window.location.href = 'https://handreceipt.com';
   };
 
   // Using Lucide icons instead of FontAwesome 
