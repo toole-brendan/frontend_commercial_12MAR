@@ -13,6 +13,13 @@ aws s3 cp s3://www.handreceipt.com/commercial/public/index.html \
   --content-type "text/html" \
   --cache-control "no-cache"
 
+# Make sure index.html is accessible at the root of commercial
+echo "📤 Ensuring index.html is properly available at the root..."
+aws s3 cp s3://www.handreceipt.com/commercial/public/index.html \
+  s3://www.handreceipt.com/commercial/ \
+  --content-type "text/html" \
+  --cache-control "no-cache"
+
 # Remove the redirect at /commercial/dashboard if it exists
 echo "🗑️ Removing any redirect files at /commercial/dashboard..."
 aws s3 rm s3://www.handreceipt.com/commercial/dashboard || echo "No dashboard file to remove"
@@ -33,7 +40,7 @@ jq 'del(.ETag) | .DistributionConfig.CustomErrorResponses = {
       "ErrorCode": 404,
       "ResponsePagePath": "/commercial/index.html",
       "ResponseCode": "200", 
-      "ErrorCachingMinTTL": 10
+      "ErrorCachingMinTTL": 0
     }
   ]
 }' cloudfront-config.json > cloudfront-with-errors.json
@@ -49,7 +56,7 @@ aws cloudfront update-distribution --id E3T7VX6HV95Q5O --if-match "$ETAG" --dist
 echo "⏱️ Invalidating CloudFront cache..."
 aws cloudfront create-invalidation \
   --distribution-id E3T7VX6HV95Q5O \
-  --paths "/commercial/*"
+  --paths "/commercial/*" "/commercial" "/commercial/index.html"
 
 echo "✅ SPA routing setup complete!"
 echo "⏱️ Note: It may take a few minutes (up to 15) for CloudFront to refresh the cache." 

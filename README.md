@@ -169,4 +169,14 @@ The design implementation uses:
 - **Context API**: Theme state management for light/dark mode switching
 - **Responsive Design**: Mobile-first approach with progressive enhancement
 
+## Deployment
+
+For deployment instructions, refer to the following resources:
+
+- **General Deployment**: Use `./deploy.sh` script for AWS S3/CloudFront deployment
+- **Mobile Compatibility**: See [MOBILE_DEPLOYMENT.md](./MOBILE_DEPLOYMENT.md) for detailed instructions on ensuring mobile compatibility
+- **SPA Routing**: Run `./fix-spa-routing.sh` after deployment to configure CloudFront for proper single-page application routing
+
+The mobile deployment guide contains important information about path handling, asset loading, and troubleshooting mobile-specific issues.
+
 This comprehensive design system ensures a consistent, elegant user experience that matches the 8VC aesthetic while maintaining usability and accessibility across devices and theme preferences.
